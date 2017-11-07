@@ -81,7 +81,7 @@
       <Project>{d1f3aac6-d88c-4506-a718-a31e2a4ddcf7}</Project>
       <Name>ObscureWare.Tests.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj">
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj">
       <Project>{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}</Project>
       <Name>ObscureWare.Console.Operations.Interfaces</Name>
     </ProjectReference>

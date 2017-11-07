@@ -21,13 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A0D9A8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.Shared", "Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj", "{3F6C7A65-7F28-41B8-A451-6448A86CED47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Interfaces", "Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj", "{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.Operations.Interfaces", "Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj", "{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Implementation", "Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj", "{24DEAFB5-866B-43B9-B802-7A60F1A3AEA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.Operations.Implementation", "Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj", "{24DEAFB5-866B-43B9-B802-7A60F1A3AEA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Tests.Common", "Tests\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj", "{D1F3AAC6-D88C-4506-A718-A31E2A4DDCF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Tests.Common", "Tests\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj", "{D1F3AAC6-D88C-4506-A718-A31E2A4DDCF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Tests", "Operations\ObscureWare.Console.Operations.Tests\ObscureWare.Console.Operations.Tests.csproj", "{3868219F-8867-4F7A-8B35-4001FD74C0AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Tests", "Tests\ObscureWare.Console.Operations.Tests\ObscureWare.Console.Operations.Tests.csproj", "{3868219F-8867-4F7A-8B35-4001FD74C0AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
