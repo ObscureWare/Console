@@ -48,7 +48,7 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
         /// <param name="src">Underlying object of the row</param>
         public void AddRow(T src)
         {
-            if (src == null)
+            if (EqualityComparer<T>.Default.Equals(src, default(T)))
             {
                 throw new ArgumentNullException(nameof(src));
             }

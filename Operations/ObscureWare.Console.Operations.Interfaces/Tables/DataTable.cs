@@ -64,7 +64,7 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
         /// <param name="rowValues">Object's textual, vectorized representation</param>
         public void AddRow(T src, string[] rowValues)
         {
-            if (src == null)
+            if (EqualityComparer<T>.Default.Equals(src, default(T)))
             {
                 throw new ArgumentNullException(nameof(src));
             }

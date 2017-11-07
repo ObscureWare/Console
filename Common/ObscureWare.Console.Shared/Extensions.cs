@@ -30,12 +30,15 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Conditions;
 
 namespace ObscureWare.Console.Shared
 {
     public static class Extensions
     {
+        private static readonly Random Rnd = new Random();
+
         /// <summary>
         /// The minimum fitting area for string splitting.
         /// </summary>
@@ -223,6 +226,44 @@ namespace ObscureWare.Console.Shared
         public static bool IsSystemChar(this char ch)
         {
             return (int)ch < 32;
+        }
+
+        /// <summary>
+        /// Returns base text without first matched prefix. Matching on the left-most end of the text.
+        /// </summary>
+        /// <param name="baseText"></param>
+        /// <param name="prefixes"></param>
+        /// <returns></returns>
+        public static string CutLeftFirst(this string baseText, params string[] prefixes)
+        {
+            foreach (string prefix in prefixes)
+            {
+                if (baseText.StartsWith(prefix))
+                {
+                    return baseText.Substring(prefix.Length);
+                }
+            }
+
+            return baseText;
+        }
+
+        /// <summary>
+        /// Picks one element from collection randomly.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">Must not be empty!</param>
+        /// <returns></returns>
+        public static T SelectRandom<T>(this ICollection<T> collection)
+        {
+            if (collection.Count > 1)
+            {
+                int index = Rnd.Next(0, collection.Count);
+                return collection.Skip(index).First();
+            }
+            else
+            {
+                return collection.First(); // or crash
+            }
         }
     }
 }
