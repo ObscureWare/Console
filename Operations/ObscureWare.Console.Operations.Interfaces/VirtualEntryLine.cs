@@ -451,7 +451,7 @@ namespace ObscureWare.Console.Operations.Interfaces
 
         public void InsertCharsAt(char[] buffer, int from, char[] newChars, ref int bufferUsedLength)
         {
-            if (bufferUsedLength + newChars.Length >= buffer.Length)
+            if (bufferUsedLength + newChars.Length > buffer.Length)
             {
                 throw new ArgumentException("Buffer is not large enough to store requested sub-buffer.", nameof(buffer));
             }
