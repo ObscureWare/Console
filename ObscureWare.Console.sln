@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Root.De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Demo", "Demos\ObscureWare.Console.Operations.Demo\ObscureWare.Console.Operations.Demo.csproj", "{C5EF06B9-AAF6-482C-BF9F-907EF3A93906}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Root.Tests", "Tests\ObscureWare.Console.Root.Tests\ObscureWare.Console.Root.Tests.csproj", "{611CE5A2-AD81-4419-BE96-701E37A5B688}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{C5EF06B9-AAF6-482C-BF9F-907EF3A93906}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5EF06B9-AAF6-482C-BF9F-907EF3A93906}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5EF06B9-AAF6-482C-BF9F-907EF3A93906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{611CE5A2-AD81-4419-BE96-701E37A5B688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{611CE5A2-AD81-4419-BE96-701E37A5B688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{611CE5A2-AD81-4419-BE96-701E37A5B688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{611CE5A2-AD81-4419-BE96-701E37A5B688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +118,7 @@ Global
 		{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 		{024CAC06-E16A-429C-A6D8-763A525E8599} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 		{C5EF06B9-AAF6-482C-BF9F-907EF3A93906} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
+		{611CE5A2-AD81-4419-BE96-701E37A5B688} = {2FFA54FD-E738-4F12-9B41-C83784632BB4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27BF5FD-4504-4BFD-8AE6-159AF8EB23E2}
