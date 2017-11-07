@@ -42,6 +42,7 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
         // For now - assuming that DataTable just stores static data
 
         private readonly Dictionary<T, string[]> _data = new Dictionary<T, string[]>();
+        private readonly char[] EmptyCharArray = new char[0];
 
         /// <summary>
         /// Initializes new instance of <see cref="DataTable{T}"/>
@@ -68,7 +69,7 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
             {
                 throw new ArgumentNullException(nameof(src));
             }
-            if (rowValues.SelectMany(row => row.ToCharArray()).Any(ch => ch.IsSystemChar()))
+            if (rowValues.SelectMany(cell => cell?.ToCharArray() ?? EmptyCharArray).Any(ch => ch.IsSystemChar()))
             {
                 throw new ArgumentException("Row values cannot contain special characters. Clean data before adding it to the table.", nameof(rowValues));
             }
