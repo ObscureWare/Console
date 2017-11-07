@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5EF06B9-AAF6-482C-BF9F-907EF3A93906}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ObscureWare.Console.Operations.Demo</RootNamespace>
+    <AssemblyName>ObscureWare.Console.Operations.Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj">
+      <Project>{3f6c7a65-7f28-41b8-a451-6448a86ced47}</Project>
+      <Name>ObscureWare.Console.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Framework.csproj">
+      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
+      <Name>ObscureWare.Console.Root.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Interfaces\ObscureWare.Console.Root.Interfaces.csproj">
+      <Project>{51581016-D53B-4169-890B-92E6751F138F}</Project>
+      <Name>ObscureWare.Console.Root.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj">
+      <Project>{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}</Project>
+      <Name>ObscureWare.Console.Operations.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tests\ObscureWare.Console.Operations.Tests\ObscureWare.Console.Operations.Tests.csproj">
+      <Project>{3868219F-8867-4F7A-8B35-4001FD74C0AC}</Project>
+      <Name>ObscureWare.Console.Operations.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tests\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj">
+      <Project>{D1F3AAC6-D88C-4506-A718-A31E2A4DDCF7}</Project>
+      <Name>ObscureWare.Tests.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -10,7 +10,7 @@ namespace ObscureWare.Console.Commands.Demo.Commands
         /// <inheritdoc />
         public void Execute(object contextObject, ICommandOutput output, object runtimeModel)
         {
-            output.PrintWarning("Temrinating application...");
+            output.PrintWarning("Terminating application...");
             (contextObject as ConsoleContext).ShallFinishInteracativeSession = true; // let it throw on null
         }
     }
