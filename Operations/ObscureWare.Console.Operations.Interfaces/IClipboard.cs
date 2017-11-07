@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IAutoComplete.cs" company="Obscureware Solutions">
+// <copyright file="IClipboard.cs" company="Obscureware Solutions">
 // MIT License
 //
 // Copyright(c) 2017 Sebastian Gruchacz
@@ -23,24 +23,23 @@
 // SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the IAutoComplete interface.
+//   Defines the IClipboard class that is used to get access to system clipboard functionality (or equivalent).
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace ObscureWare.Console.Operations.Interfaces
 {
-    using System.Collections.Generic;
-
     /// <summary>
-    /// Implement by class, that provides auto-complete information in particular context
+    /// Used to get access to system clipboard functionality (or equivalent).
     /// </summary>
-    public interface IAutoComplete
+    public interface IClipboard
     {
         /// <summary>
-        /// TRies to find matching element using existing text for auto-completion
+        /// Gets current contents of the clipboard as text. Or NULL if not a text.
         /// </summary>
-        /// <param name="text">Text to analyze for auto-completion matching</param>
-        /// <returns>Collection of matching substitutes</returns>
-        IEnumerable<string> MatchAutoComplete(string text);
+        /// <returns></returns>
+        string GetText();
+
+        // TODO: will adding copy functionality be necessary? Maybe this will just be taken care by the system...
     }
 }

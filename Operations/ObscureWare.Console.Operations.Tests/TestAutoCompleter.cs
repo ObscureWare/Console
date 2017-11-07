@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IAutoComplete.cs" company="Obscureware Solutions">
+// <copyright file="TestAutoCompleter.cs" company="Obscureware Solutions">
 // MIT License
 //
 // Copyright(c) 2017 Sebastian Gruchacz
@@ -23,24 +23,33 @@
 // SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the IAutoComplete interface.
+//   Defines the TestAutoCompleter class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ObscureWare.Console.Operations.Interfaces
+namespace ObscureWare.Console.Operations.Tests
 {
     using System.Collections.Generic;
+    using System.Linq;
+
+    using ObscureWare.Console.Operations.Interfaces;
 
     /// <summary>
-    /// Implement by class, that provides auto-complete information in particular context
+    /// This auto-completer provides some auto-completion from predefined, hard-coded list
     /// </summary>
-    public interface IAutoComplete
+    public class TestAutoCompleter : IAutoComplete
     {
-        /// <summary>
-        /// TRies to find matching element using existing text for auto-completion
-        /// </summary>
-        /// <param name="text">Text to analyze for auto-completion matching</param>
-        /// <returns>Collection of matching substitutes</returns>
-        IEnumerable<string> MatchAutoComplete(string text);
+        private readonly string[] _availableTexts;
+
+        public TestAutoCompleter(params string[] availableTexts)
+        {
+            this._availableTexts = availableTexts;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<string> MatchAutoComplete(string text)
+        {
+            return this._availableTexts.Where(t => t.Contains(text));
+        }
     }
 }

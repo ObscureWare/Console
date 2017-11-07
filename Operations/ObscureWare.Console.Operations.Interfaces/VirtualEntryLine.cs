@@ -34,7 +34,9 @@ namespace ObscureWare.Console.Operations.Interfaces
     using System.Drawing;
     using System.Linq;
     using System.Text;
+
     using Conditions;
+    using ObscureWare.Console.Shared;
     using ObscureWare.Console.Root.Interfaces;
 
     /// <summary>
@@ -42,20 +44,24 @@ namespace ObscureWare.Console.Operations.Interfaces
     /// </summary>
     /// <remarks>I'm gonna need this anyway for graphical console implementation in the future... So maybe better implement this correctly already...
     /// TODO: Anyway, try targeting both stateless and state-full console (most work on the Commands library though)..</remarks>
+    /// TODO: simplify, refactor, improve all of this
     public class VirtualEntryLine
     {
         private const int MAX_COMMAND_LENGTH = 2048; // more?! no problem, but what for?
         private readonly IConsole _console;
+        private readonly IClipboard _clipboard;
         private readonly ConsoleFontColor _cmdColor;
         private readonly List<string> _commandHistory = new List<string>();
         private int _historyIndex = -1;
         private bool _overWriting = false;
 
-        public VirtualEntryLine(IConsole console, ConsoleFontColor cmdColor)
+        public VirtualEntryLine(IConsole console, IClipboard clipboard, ConsoleFontColor cmdColor)
         {
             console.Requires(nameof(console)).IsNotNull();
+            clipboard.Requires(nameof(clipboard)).IsNotNull();
 
             this._console = console;
+            this._clipboard = clipboard;
             this._cmdColor = cmdColor;
         }
 
@@ -365,7 +371,12 @@ namespace ObscureWare.Console.Operations.Interfaces
 
         private string GetCleanValueFromClipBoard()
         {
-            var txt = Clipboard.GetText().ToCharArray();
+            var txt = this._clipboard.GetText()?.ToCharArray();
+            if (txt == null || !txt.Any())
+            {
+                return string.Empty;
+            }
+
             StringBuilder result = new StringBuilder(txt.Length);
 
             foreach (char c in txt)
@@ -386,7 +397,7 @@ namespace ObscureWare.Console.Operations.Interfaces
         /// <param name="currentPosition"></param>
         /// <param name="consoleLineWidth"></param>
         /// <returns></returns>
-        internal int CalculatePositionInLine(Point startPosition, Point currentPosition, int consoleLineWidth)
+        public int CalculatePositionInLine(Point startPosition, Point currentPosition, int consoleLineWidth)
         {
             return (currentPosition.Y - startPosition.Y) * consoleLineWidth + currentPosition.X - startPosition.X;
         }
@@ -398,7 +409,7 @@ namespace ObscureWare.Console.Operations.Interfaces
         /// <param name="consoleLineWidth"></param>
         /// <param name="targetIndex"></param>
         /// <returns></returns>
-        internal Point CalculateCursorPositionForLineIndex(Point startPosition, int consoleLineWidth, int targetIndex)
+        public Point CalculateCursorPositionForLineIndex(Point startPosition, int consoleLineWidth, int targetIndex)
         {
             int fullLines = ((targetIndex + startPosition.X) / consoleLineWidth);
             return new Point(
@@ -428,7 +439,7 @@ namespace ObscureWare.Console.Operations.Interfaces
             }
         }
 
-        internal void RemoveCharsAt(char[] buffer, int from, int qty, ref int currentCommandEndIndex)
+        public void RemoveCharsAt(char[] buffer, int from, int qty, ref int currentCommandEndIndex)
         {
             for (int i = from; i < currentCommandEndIndex - qty && i < buffer.Length && i >= 0; i++)
             {
@@ -438,7 +449,7 @@ namespace ObscureWare.Console.Operations.Interfaces
             currentCommandEndIndex -= qty;
         }
 
-        internal void InsertCharsAt(char[] buffer, int from, char[] newChars, ref int bufferUsedLength)
+        public void InsertCharsAt(char[] buffer, int from, char[] newChars, ref int bufferUsedLength)
         {
             if (bufferUsedLength + newChars.Length >= buffer.Length)
             {

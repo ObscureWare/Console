@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IAutoComplete.cs" company="Obscureware Solutions">
+// <copyright file="FakeClipBoard.cs" company="Obscureware Solutions">
 // MIT License
 //
 // Copyright(c) 2017 Sebastian Gruchacz
@@ -23,24 +23,19 @@
 // SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the IAutoComplete interface.
+//   Defines the FakeClipBoard class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ObscureWare.Console.Operations.Interfaces
+namespace ObscureWare.Console.Operations.Tests
 {
-    using System.Collections.Generic;
+    using ObscureWare.Console.Operations.Interfaces;
 
-    /// <summary>
-    /// Implement by class, that provides auto-complete information in particular context
-    /// </summary>
-    public interface IAutoComplete
+    public class FakeClipBoard : IClipboard
     {
-        /// <summary>
-        /// TRies to find matching element using existing text for auto-completion
-        /// </summary>
-        /// <param name="text">Text to analyze for auto-completion matching</param>
-        /// <returns>Collection of matching substitutes</returns>
-        IEnumerable<string> MatchAutoComplete(string text);
+        public string GetText()
+        {
+            return null;
+        }
     }
 }
