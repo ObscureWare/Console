@@ -30,6 +30,7 @@ namespace ObscureWare.Console.Commands.Interfaces.Model
 {
     using System;
 
+    [AttributeUsageAttribute(AttributeTargets.Property, AllowMultiple = false)]
     public class CommandOptionSwitchAttribute : Attribute
     {
         public Type SwitchBaseType { get; private set; }

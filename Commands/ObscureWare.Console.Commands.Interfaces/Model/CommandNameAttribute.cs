@@ -26,10 +26,12 @@
 //   Defines the CommandNameAttribute command model type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace ObscureWare.Console.Commands.Interfaces.Model
 {
     using System;
 
+    [AttributeUsageAttribute(AttributeTargets.Class, AllowMultiple = false)]
     /// <summary>
     /// Specifies command name
     /// </summary>

@@ -5,7 +5,7 @@
 
     [CommandModelFor(typeof(DirCommand))]
     [CommandName("dir")]
-    [CommandDescription(@"Lists files withing current folder or repository state, depending on selected options.")]
+    [CommandDescription(@"Lists files within current folder or repository state, depending on selected options.")]
     public class DirCommandModel : CommandModel
     {
         [CommandOptionName(@"includeFolders")]
