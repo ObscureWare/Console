@@ -29,8 +29,13 @@
 
 namespace ObscureWare.Console.Commands.Interfaces
 {
+    using System;
+
     public interface IDependencyResolver
     {
         // TODO: design and implement
+
+        IConsoleCommand BuildCommand(Type commandType);
+
     }
 }

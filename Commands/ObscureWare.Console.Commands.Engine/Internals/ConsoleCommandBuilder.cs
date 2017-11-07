@@ -3,11 +3,22 @@
     using System;
     using System.Linq;
 
+    using Conditions;
+
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Interfaces.Model;
 
     internal class ConsoleCommandBuilder
     {
+        private readonly IDependencyResolver _commandBuilder;
+
+        public ConsoleCommandBuilder(IDependencyResolver commandBuilder)
+        {
+            commandBuilder.Requires(nameof(commandBuilder)).IsNotNull();
+
+            this._commandBuilder = commandBuilder;
+        }
+
         /// <summary>
         /// Validates command definitions and creates instance
         /// </summary>
@@ -39,14 +50,10 @@
             var mBuilder = this.ValidateModel(modelAtt.ModelType, commandType);
 
             // 4. Try creating instance of the command.
-            IConsoleCommand instance;
-            try
+            IConsoleCommand instance = this._commandBuilder.BuildCommand(commandType);
+            if (instance == null)
             {
-                instance = (IConsoleCommand)Activator.CreateInstance(commandType);
-            }
-            catch (Exception iex)
-            {
-                throw new InvalidOperationException($"Could not create instance of the command {commandType.FullName} using default activator. Make sure it exposes public, parameterless constructor.", iex);
+                throw new InvalidOperationException($"Command was not constructed - make sure that your custom resolver is working properly with command of type '{commandType.FullName}'");
             }
 
             return new Tuple<CommandModelBuilder, IConsoleCommand>(mBuilder, instance);
@@ -96,7 +103,7 @@
             if (string.IsNullOrWhiteSpace(modelNameAtt.CommandName))
                 throw new ArgumentException($"Model type must be decorated with {nameof(CommandNameAttribute)}.", nameof(modelType));
 
-            return  new CommandModelBuilder(modelType, modelNameAtt.CommandName);
+            return new CommandModelBuilder(modelType, modelNameAtt.CommandName);
         }
     }
 }

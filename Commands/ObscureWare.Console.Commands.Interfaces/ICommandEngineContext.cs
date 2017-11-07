@@ -41,11 +41,5 @@ namespace ObscureWare.Console.Commands.Interfaces
         /// </summary>
         /// <returns></returns>
         string GetCurrentPrompt();
-
-        /// <summary>
-        /// Returns application-wide DI-container based resolver. Or anything similar that your commands need to work properly.
-        /// </summary>
-        /// <returns></returns>
-        IDependencyResolver GetDependencyResolver();
     }
 }

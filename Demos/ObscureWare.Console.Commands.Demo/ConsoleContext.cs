@@ -1,6 +1,7 @@
-﻿namespace ConsoleTests
+﻿namespace ObscureWare.Console.Commands.Demo
 {
     using System;
+
     using ObscureWare.Console.Commands.Interfaces;
 
     public class ConsoleContext : ICommandEngineContext
@@ -16,14 +17,5 @@
             }
             return dir;
         }
-
-        public IDependencyResolver GetDependencyResolver()
-        {
-            return new FakeDependencyResolver();
-        }
-    }
-
-    public class FakeDependencyResolver : IDependencyResolver
-    {
     }
 }

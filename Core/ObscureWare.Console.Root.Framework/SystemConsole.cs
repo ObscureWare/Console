@@ -29,6 +29,7 @@
 namespace ObscureWare.Console.Root.Framework
 {
     using System;
+    using System.Diagnostics;
     using System.Drawing;
     using System.Text;
     using System.Windows.Forms;
@@ -92,15 +93,35 @@ namespace ObscureWare.Console.Root.Framework
             }
             else
             {
-                // set console (buffer) little bigger by default
-                Console.BufferWidth = 120;
-                Console.BufferHeight = 500;
-                Console.WindowWidth = 120;
-                Console.WindowHeight = 40;
+                if (!this.IsExcutedAsChild)
+                {
+                    // set console (buffer) little bigger by default (not when child process of cmd...)
+                    // TODO: improve this code in case of already configured larger window...
+                    Console.BufferWidth = 120;
+                    Console.BufferHeight = 500;
+                    Console.WindowWidth = 120;
+                    Console.WindowHeight = 40;
+                }
             }
 
             this.WindowWidth = Console.WindowWidth;
             this.WindowHeight = Console.WindowHeight;
+        }
+
+        public bool IsExcutedAsChild
+        {
+            get
+            {
+                try
+                {
+                    var parentprocess = ParentProcessUtilities.GetParentProcess();
+                    return parentprocess?.MainWindowTitle.Contains("cmd.exe") ?? false;
+                }
+                catch
+                {
+                    return true; // safe assumption in case of failure ( API changed) - do not resize.
+                }
+            }
         }
 
         /// <summary>

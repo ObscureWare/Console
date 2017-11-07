@@ -26,6 +26,9 @@
 //   Defines the CommandManager internal class responsible for holding collection of known commands.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using Conditions;
+
 namespace ObscureWare.Console.Commands.Engine.Internals
 {
     using System;
@@ -37,6 +40,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals
 
     internal class CommandManager
     {
+        private readonly IDependencyResolver _resolver;
         private readonly Dictionary<string, CommandInfo> _commands;
         private StringComparison _selectedComparison = StringComparison.InvariantCulture;
 
@@ -58,8 +62,11 @@ namespace ObscureWare.Console.Commands.Engine.Internals
             }
         }
 
-        public CommandManager(Type[] commands)
+        public CommandManager(Type[] commands, IDependencyResolver resolver)
         {
+            resolver.Requires(nameof(resolver)).IsNotNull();
+
+            _resolver = resolver;
             this._commands = this.InitializeCommands(commands);
         }
 
@@ -100,7 +107,9 @@ namespace ObscureWare.Console.Commands.Engine.Internals
         {
             Dictionary<string, CommandInfo> result = new Dictionary<string, CommandInfo>();
 
-            ConsoleCommandBuilder builder = new ConsoleCommandBuilder();
+            // TODO: do not pre-build commands on the fly, only on demand. Do cache builder objects
+
+            ConsoleCommandBuilder builder = new ConsoleCommandBuilder(this._resolver);
             foreach (var commandType in commands)
             {
                 Tuple<CommandModelBuilder, IConsoleCommand> cmd = builder.ValidateAndBuildCommand(commandType);

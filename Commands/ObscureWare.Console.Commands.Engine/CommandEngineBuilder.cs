@@ -25,6 +25,8 @@ namespace ObscureWare.Console.Commands.Engine
 
         private IClipboard _clipboard;
 
+        private IDependencyResolver _resolver;
+
         private CommandEngineBuilder()
         {
             this._commands = new List<Type>();
@@ -102,6 +104,23 @@ namespace ObscureWare.Console.Commands.Engine
         }
 
         /// <summary>
+        /// This dependency resolver will be used to construct command objects
+        /// </summary>
+        /// <param name="resolver"></param>
+        /// <returns></returns>
+        public CommandEngineBuilder UsingDependencyResolver(IDependencyResolver resolver)
+        {
+            if (resolver == null)
+            {
+                throw new ArgumentNullException(nameof(resolver));
+            }
+
+            this._resolver = resolver;
+
+            return this;
+        }
+
+        /// <summary>
         /// Finally construct Engine instance when all items are ready
         /// </summary>
         /// <param name="console"></param>
@@ -128,8 +147,13 @@ namespace ObscureWare.Console.Commands.Engine
                 this._clipboard = new DoNothingClipBoard();
             }
 
+            if (this._resolver == null)
+            {
+                this._resolver = new DefaultCommandResolver();
+            }
+
             var printHelper = new HelpPrinter(this._options, this._styles.HelpStyles, console);
-            var commandManager = new CommandManager(this._commands.Distinct().ToArray())
+            var commandManager = new CommandManager(this._commands.Distinct().ToArray(), this._resolver)
             {
                 CommandsSensitivenes = this._options.CommandsSensitivenes
             };
