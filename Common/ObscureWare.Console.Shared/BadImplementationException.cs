@@ -37,7 +37,9 @@ namespace ObscureWare.Console.Shared
     /// Such errors should be detected during testing or debug sessions though - of course unless depend on user accessible configuration or extensions...
     /// </summary>
     [Serializable]
+#pragma warning disable RCS1194 // Implement exception constructors. (OTHER CONSTRUCTORS NOT ADDED BY DESIGN - this exception is not really structured, and has to be run with failing type specified.)
     public class BadImplementationException : Exception
+#pragma warning restore RCS1194 // Implement exception constructors.
     {
         /// <summary>
         /// The type that has been improperly implemented or configured.
@@ -53,7 +55,5 @@ namespace ObscureWare.Console.Shared
         {
             this.TargetType = targetType;
         }
-
-        // OTHER CONSTRUCTORS NOT ADDED BY DESIGN - this exception is not really structured.
     }
 }

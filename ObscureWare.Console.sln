@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Command
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Commands.Engine", "Commands\ObscureWare.Console.Commands.Engine\ObscureWare.Console.Commands.Engine.csproj", "{842FE372-5953-415B-90AA-F9B5F2BE20CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Commands.Demo", "Demos\ObscureWare.Console.Commands.Demo\ObscureWare.Console.Commands.Demo.csproj", "{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{842FE372-5953-415B-90AA-F9B5F2BE20CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{842FE372-5953-415B-90AA-F9B5F2BE20CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{842FE372-5953-415B-90AA-F9B5F2BE20CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{3868219F-8867-4F7A-8B35-4001FD74C0AC} = {2FFA54FD-E738-4F12-9B41-C83784632BB4}
 		{FF5E4D7B-2A4E-4D5B-AC5E-47DA8BB825EB} = {7A0C724C-CF43-4470-9CB9-02F9940C3652}
 		{842FE372-5953-415B-90AA-F9B5F2BE20CE} = {7A0C724C-CF43-4470-9CB9-02F9940C3652}
+		{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27BF5FD-4504-4BFD-8AE6-159AF8EB23E2}

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ObscureWare.Console.Commands.Demo</RootNamespace>
+    <AssemblyName>ObscureWare.Console.Commands.Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\ChangeDirCommand.cs" />
+    <Compile Include="Commands\ChangeDirCommandModel.cs" />
+    <Compile Include="Commands\ChangeDirUpCommand.cs" />
+    <Compile Include="Commands\ChangeDirUpCommandModel.cs" />
+    <Compile Include="Commands\ClsCommand.cs" />
+    <Compile Include="Commands\ClsCommandModel.cs" />
+    <Compile Include="CommandsDemo.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\ExitCommandModel.cs" />
+    <Compile Include="ConsoleContext.cs" />
+    <Compile Include="Commands\DirCommand.cs" />
+    <Compile Include="Commands\DirCommandModel.cs" />
+    <Compile Include="Commands\DirectoryListMode.cs" />
+    <Compile Include="InternalTests.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Commands\ObscureWare.Console.Commands.Engine\ObscureWare.Console.Commands.Engine.csproj">
+      <Project>{842fe372-5953-415b-90aa-f9b5f2be20ce}</Project>
+      <Name>ObscureWare.Console.Commands.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Commands\ObscureWare.Console.Commands.Interfaces\ObscureWare.Console.Commands.Interfaces.csproj">
+      <Project>{ff5e4d7b-2a4e-4d5b-ac5e-47da8bb825eb}</Project>
+      <Name>ObscureWare.Console.Commands.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj">
+      <Project>{3f6c7a65-7f28-41b8-a451-6448a86ced47}</Project>
+      <Name>ObscureWare.Console.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Framework.csproj">
+      <Project>{aaff5245-d9b6-4ab5-b67f-68b38a578d82}</Project>
+      <Name>ObscureWare.Console.Root.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Interfaces\ObscureWare.Console.Root.Interfaces.csproj">
+      <Project>{51581016-d53b-4169-890b-92e6751f138f}</Project>
+      <Name>ObscureWare.Console.Root.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj">
+      <Project>{24deafb5-866b-43b9-b802-7a60f1a3aea4}</Project>
+      <Name>ObscureWare.Console.Operations.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj">
+      <Project>{ebf3d264-6875-49ef-9218-9ceb9bb7ad0e}</Project>
+      <Name>ObscureWare.Console.Operations.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

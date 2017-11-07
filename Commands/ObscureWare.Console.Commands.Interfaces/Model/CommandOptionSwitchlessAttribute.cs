@@ -26,10 +26,12 @@
 //   Defines the CommandOptionSwitchlessAttribute command model type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace ObscureWare.Console.Commands.Interfaces.Model
 {
     using System;
 
+    [AttributeUsageAttribute(AttributeTargets.Property, AllowMultiple = false)]
     public class CommandOptionSwitchlessAttribute : Attribute
     {
         public int ArgumentIndex { get; set; }
@@ -40,7 +42,7 @@ namespace ObscureWare.Console.Commands.Interfaces.Model
             {
                 throw new ArgumentOutOfRangeException(nameof(argumentIndex));
             }
-            
+
             this.ArgumentIndex = argumentIndex;
         }
     }
