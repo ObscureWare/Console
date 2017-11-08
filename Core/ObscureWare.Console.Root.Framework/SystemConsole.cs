@@ -177,10 +177,12 @@ namespace ObscureWare.Console.Root.Framework
         }
 
         /// <inheritdoc />
-        public void WriteLine(ConsoleFontColor colors, string text)
+        public void WriteLine(ConsoleFontColor colors, string text) // TODO: add flag to keep BG color to next line
         {
             this.SetColors(colors.ForeColor, colors.BgColor);
-            Console.WriteLine(text);
+            Console.Write(text);
+            this.SetColors(colors.ForeColor, Color.Black); // try resetting BG color...
+            Console.WriteLine();
         }
 
         /// <inheritdoc />

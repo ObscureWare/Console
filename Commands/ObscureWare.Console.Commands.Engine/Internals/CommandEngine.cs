@@ -85,8 +85,8 @@ namespace ObscureWare.Console.Commands.Engine.Internals
             this._helpPrinter = printHelper;
             this._outputManager = new OutputManager(this._console, this._styles, this._options.UiCulture);
 
-            // TODO: check option
-            this._console.WriteLine(styles.Default, "Initializing ObscureWare's command engine...");
+            // TODO: check option before displaying this message
+            // this._console.WriteLine(styles.Default, "Initializing ObscureWare's command engine...");
         }
 
         /// <inheritdoc />
