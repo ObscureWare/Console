@@ -21,5 +21,10 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
         /// <param name="aIdentifier">Artificial Idx identifier to be used for searching in the first column</param>
         /// <returns></returns>
         T GetUnderlyingValue(string aIdentifier);
+
+        /// <summary>
+        /// Gets number of rows
+        /// </summary>
+        int RowCount { get; }
     }
 }

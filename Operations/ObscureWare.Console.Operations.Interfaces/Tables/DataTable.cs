@@ -92,6 +92,9 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
             return this._data.FirstOrDefault(pair => pair.Value.First().Equals(aIdentifier, StringComparison.InvariantCultureIgnoreCase)).Key;
         }
 
+        /// <inheritdoc />
+        public int RowCount => this._data.Count;
+
         /// <summary>
         /// Finds first value that matches given predicate filtering function or NULL
         /// </summary>
