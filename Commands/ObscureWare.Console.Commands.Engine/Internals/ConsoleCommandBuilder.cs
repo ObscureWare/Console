@@ -7,6 +7,7 @@
 
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Interfaces.Model;
+    using ObscureWare.Console.Shared;
 
     internal class ConsoleCommandBuilder
     {
@@ -32,16 +33,13 @@
             if (commandType.IsAbstract || commandType.IsInterface)
             {
                 return null; // ignore abstract layer...
-            };
+            }
             if (!typeof(IConsoleCommand).IsAssignableFrom(commandType))
-                throw new ArgumentException($"Command type must implement {nameof(IConsoleCommand)} interface.", nameof(commandType));
+                throw new BadImplementationException($"Command type must implement {nameof(IConsoleCommand)} interface.", commandType);
 
             // 1a. Model attribute check
-            var modelAtt =
-                (CommandModelAttribute)
-                commandType.GetCustomAttributes(typeof(CommandModelAttribute), inherit: true).FirstOrDefault();
-            if (modelAtt == null)
-                throw new ArgumentException($"Command type must be decorated with {nameof(CommandModelAttribute)}.", nameof(commandType));
+            var modelAtt = (CommandModelAttribute)commandType.GetCustomAttributes(typeof(CommandModelAttribute), inherit: true).FirstOrDefault();
+            if (modelAtt == null) throw new BadImplementationException($"Command type must be decorated with {nameof(CommandModelAttribute)}.", commandType);
 
             // 2. Verify that code of the command doe snot directly call System.Console type, which might be a very common error
             this.VerifyCodeForReference(typeof(Console));

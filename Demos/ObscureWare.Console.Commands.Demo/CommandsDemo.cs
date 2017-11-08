@@ -38,7 +38,7 @@
             //    // custom styles go here
             //};
 
-            bool executedProperly = engine.ExecuteCommand(context, @"dir \d -m CurrentDir -f *.*");
+            bool executedProperly = engine.ExecuteCommand(context, @"dir \d -m CurrentDir *.*");
             //engine.ExecuteCommand(context, console, "cls" );
             engine.ExecuteCommand(context, @"diraa");
             engine.ExecuteCommand(context, @"-help");

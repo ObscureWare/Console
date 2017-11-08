@@ -26,6 +26,7 @@
 //   Defines internal class responsible for building command's model from given command arguments.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace ObscureWare.Console.Commands.Engine.Internals
 {
     using System;
@@ -36,18 +37,11 @@ namespace ObscureWare.Console.Commands.Engine.Internals
 
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Interfaces.Model;
-    using ObscureWare.Console.Root.Interfaces;
-    using ObscureWare.Console.Commands.Interfaces.Styles;
-    using ObscureWare.Console.Commands.Engine.Styles;
-    using ObscureWare.Console.Operations.Interfaces;
-    using ObscureWare.Console.Operations.Interfaces.Styles;
-    using ObscureWare.Console.Operations.Interfaces.Tables;
-    using ObscureWare.Console.Operations.Interfaces.TablePrinters;
-    
+
     using Parsers;
     using Shared;
 
-    internal class CommandModelBuilder
+    public class CommandModelBuilder
     {
         // Cached model definitions and help content
         private readonly Dictionary<string, FlagPropertyParser> _flagParsers = new Dictionary<string, FlagPropertyParser>();
@@ -393,37 +387,37 @@ namespace ObscureWare.Console.Commands.Engine.Internals
                 switch (options.OptionArgumentMode)
                 {
                     case CommandOptionArgumentMode.Separated:
-                    {
-                        string cleanFlag = argSyntax.CutLeftFirst(switchPrefix);
-                        var parser = this._switchParsers.FirstOrDefault(p => p.Key.Equals(cleanFlag)).Value;
-                        if (parser != null)
                         {
-                            return parser;
+                            string cleanFlag = argSyntax.CutLeftFirst(switchPrefix);
+                            var parser = this._switchParsers.FirstOrDefault(p => p.Key.Equals(cleanFlag)).Value;
+                            if (parser != null)
+                            {
+                                return parser;
+                            }
+                            break;
                         }
-                        break;
-                    }
                     case CommandOptionArgumentMode.Merged:
-                    {
-                        var availableSwitches = this._switchParsers.Keys.OrderByDescending(k => k.Length);
-                        string cleanFlag = argSyntax.CutLeftFirst(switchPrefix);
-                        string matchingKey = availableSwitches.FirstOrDefault(sw => cleanFlag.StartsWith(sw));
-                        if (matchingKey != null)
                         {
-                            return this._switchParsers[matchingKey];
+                            var availableSwitches = this._switchParsers.Keys.OrderByDescending(k => k.Length);
+                            string cleanFlag = argSyntax.CutLeftFirst(switchPrefix);
+                            string matchingKey = availableSwitches.FirstOrDefault(sw => cleanFlag.StartsWith(sw));
+                            if (matchingKey != null)
+                            {
+                                return this._switchParsers[matchingKey];
+                            }
+                            break;
                         }
-                        break;
-                    }
                     case CommandOptionArgumentMode.Joined:
-                    {
-                        string[] parts = argSyntax.Split(options.OptionArgumentJoinCharacater);
-                        string cleanFlag = parts[0].CutLeftFirst(switchPrefix);
-                        var parser =  this._switchParsers.FirstOrDefault(p => p.Key.Equals(cleanFlag)).Value;
-                        if (parser != null)
                         {
-                            return parser;
+                            string[] parts = argSyntax.Split(options.OptionArgumentJoinCharacater);
+                            string cleanFlag = parts[0].CutLeftFirst(switchPrefix);
+                            var parser = this._switchParsers.FirstOrDefault(p => p.Key.Equals(cleanFlag)).Value;
+                            if (parser != null)
+                            {
+                                return parser;
+                            }
+                            break;
                         }
-                        break;
-                    }
                     default:
                         throw new ArgumentOutOfRangeException(nameof(options), nameof(options.OptionArgumentMode));
                 }

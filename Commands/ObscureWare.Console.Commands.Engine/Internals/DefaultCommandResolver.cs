@@ -4,7 +4,7 @@
 
     using ObscureWare.Console.Commands.Interfaces;
 
-    internal class DefaultCommandResolver : IDependencyResolver
+    public class DefaultCommandResolver : IDependencyResolver
     {
         public IConsoleCommand BuildCommand(Type commandType)
         {

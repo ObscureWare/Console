@@ -38,7 +38,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals
     using ObscureWare.Console.Commands.Interfaces;
 
 
-    internal class CommandManager
+    public class CommandManager
     {
         private readonly IDependencyResolver _resolver;
         private readonly Dictionary<string, CommandInfo> _commands;

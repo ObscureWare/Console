@@ -35,7 +35,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals
 
     using ObscureWare.Console.Commands.Interfaces;
 
-    internal class SyntaxInfo
+    public class SyntaxInfo
     {
         private readonly PropertyInfo _propertyInfo;
 
@@ -145,7 +145,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals
         }
     }
 
-    internal enum SyntaxOptionType
+    public enum SyntaxOptionType
     {
         Flag,
 

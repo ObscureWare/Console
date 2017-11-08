@@ -62,11 +62,14 @@ namespace ObscureWare.Console.Commands.Engine.Internals.Parsers
             if (options.OptionArgumentMode == CommandOptionArgumentMode.Separated)
             {
                 string[] optionArguments = new string[this._expectedArguments];
+                argIndex++; // skip option arg itself
+
                 for (int i = 0; i < optionArguments.Length; ++i)
                 {
-                    argIndex++; // skip option arg itself
                     optionArguments[i] = this.SafelyGetNextArg(args, ref argIndex);
                 }
+
+                argIndex--; // move one arg back to keep compatibility with other switches
 
                 return this.DoApplySwitch(model, optionArguments, options);
             }
@@ -94,7 +97,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals.Parsers
                 string[] combinations = CommandsSyntaxHelpers.Combine(options.SwitchCharacters, this._switchLetters, (s, s1) => s + s1).ToArray();
                 string remainder = firstArg.CutLeftFirst(combinations);
 
-                return this.DoApplySwitch(model, new []{ remainder }, options);
+                return this.DoApplySwitch(model, new[] { remainder }, options);
             }
 
             throw new ArgumentOutOfRangeException(nameof(options), nameof(options.OptionArgumentMode));

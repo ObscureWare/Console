@@ -35,7 +35,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals
     /// <summary>
     /// Precompiled command information record
     /// </summary>
-    internal class CommandInfo
+    public class CommandInfo
     {
         /// <summary>
         /// Gets instance of the command
