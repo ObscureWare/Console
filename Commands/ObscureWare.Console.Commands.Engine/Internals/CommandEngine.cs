@@ -163,15 +163,23 @@ namespace ObscureWare.Console.Commands.Engine.Internals
 
             try
             {
-                cmd.Command.Execute(context, _outputManager, model); // skip only cmdName itself
-            }
-            catch (Exception ex)
-            {
-                this._console.WriteLine(this._styles.Error, "An exception occurred during command execution:");
-                this._console.WriteLine(this._styles.Error, ex.ToString());
+                try
+                {
+                    cmd.Command.Execute(context, _outputManager, model); // skip only cmdName itself
+                }
+                catch (Exception ex)
+                {
+                    this._console.WriteLine(this._styles.Error, "An exception occurred during command execution:");
+                    this._console.WriteLine(this._styles.Error, ex.ToString());
 
-                // TODO: log also to file?
-                return false;
+                    // TODO: log also to file?
+                    return false;
+                }
+            }
+            finally
+            {
+                // reset color to default after each command - best for CMD execution
+                this._console.SetColors(this._styles.Default);
             }
 
             return true;
