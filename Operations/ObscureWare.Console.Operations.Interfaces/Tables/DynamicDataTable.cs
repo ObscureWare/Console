@@ -11,7 +11,7 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
     /// </summary>
     /// <typeparam name="T">Underlying object</typeparam>
     public class DynamicDataTable<T> : IDataTable<T>
-        //where T : INotifyPropertyChanged
+    //where T : INotifyPropertyChanged
     {
         private readonly Func<T, string[]> _vectorizingFunction;
 
@@ -78,6 +78,9 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
             return this._data.FirstOrDefault(i => this._vectorizingFunction(i).First().Equals(aIdentifier, StringComparison.InvariantCultureIgnoreCase));
         }
 
+        /// <inheritdoc />
+        public int RowCount => this._data.Count;
+
         /// <summary>
         /// Finds first value that matches given predicate filtering function or NULL
         /// </summary>
@@ -102,7 +105,7 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
         {
             uint scopedIndexer = 1;
             DynamicDataTable<TKey> table = new DynamicDataTable<TKey>(
-                (src) => new[] { (scopedIndexer++).ToAlphaEnum() + '.'}.Concat(vectorizingFunction.Invoke(src)).ToArray(), // decorating fn
+                (src) => new[] { (scopedIndexer++).ToAlphaEnum() + '.' }.Concat(vectorizingFunction.Invoke(src)).ToArray(), // decorating fn
                 new[] { "Idx" }.Concat(header).Select(head => new ColumnInfo(head)).ToArray());
 
             foreach (TKey src in dataSource)
