@@ -1,12 +1,14 @@
 ﻿namespace ObscureWare.Console.Commands.Tests.TestModels
 {
+    using System;
+
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Interfaces.Model;
 
     [CommandModelFor(typeof(MultipleMandatoryCustomSwitchesFakeCmd))]
     [CommandName("CreateOrder")]
     [CommandDescription(@"Creates new Order. Optionally also creates Lead.")]
-    internal class MultipleMandatoryCustomSwitches : CommandModel
+    internal class MultipleMandatoryCustomSwitches : CommandModel, IEquatable<MultipleMandatoryCustomSwitches>
     {
         [CommandOptionName(@"supplierId")]
         [Mandatory(true)]
@@ -39,6 +41,33 @@
         public int ChannelId { get; set; }
 
 
+        public bool Equals(MultipleMandatoryCustomSwitches other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return SupplierId == other.SupplierId && MemberId == other.MemberId && DepartmentId == other.DepartmentId && string.Equals(UserId, other.UserId) && ChannelId == other.ChannelId;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((MultipleMandatoryCustomSwitches)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = SupplierId;
+                hashCode = (hashCode * 397) ^ MemberId;
+                hashCode = (hashCode * 397) ^ DepartmentId;
+                hashCode = (hashCode * 397) ^ (UserId != null ? UserId.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ ChannelId;
+                return hashCode;
+            }
+        }
     }
 
     [CommandModel(typeof(MultipleMandatoryCustomSwitches))]

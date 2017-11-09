@@ -69,13 +69,12 @@ namespace ObscureWare.Console.Commands.Engine.Internals.Parsers
                     optionArguments[i] = this.SafelyGetNextArg(args, ref argIndex);
                 }
 
-                argIndex--; // move one arg back to keep compatibility with other switches
-
                 return this.DoApplySwitch(model, optionArguments, options);
             }
             else if (options.OptionArgumentMode == CommandOptionArgumentMode.Joined)
             {
                 string firstArg = this.SafelyGetNextArg(args, ref argIndex);
+
                 string[] parts = firstArg.Split(options.OptionArgumentJoinCharacater);
                 if (parts.Length < 2)
                 {
@@ -110,7 +109,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals.Parsers
                 throw new InvalidOperationException("Command line provided less arguments that Option expected.");
             }
 
-            return args[argIndex++];
+            return args[argIndex++]; // here is global moving forward operation...
         }
 
         protected abstract IParsingResult DoApplySwitch(CommandModel model, string[] switchArguments, IValueParsingOptions pOptions);

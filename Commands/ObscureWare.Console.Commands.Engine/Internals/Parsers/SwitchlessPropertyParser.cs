@@ -63,6 +63,8 @@ namespace ObscureWare.Console.Commands.Engine.Internals.Parsers
             {
                 this.TargetProperty.SetValue(model, this._converter.TryConvert(args[argIndex], options.UiCulture));
 
+                argIndex++;
+
                 return ParsingSuccess.Instance;
             }
             catch (Exception e)

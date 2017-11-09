@@ -52,6 +52,8 @@ namespace ObscureWare.Console.Commands.Engine.Internals.Parsers
             {
                 this.TargetProperty.SetValue(model, true);
 
+                argIndex++;
+
                 return ParsingSuccess.Instance;
             }
             catch (Exception e)

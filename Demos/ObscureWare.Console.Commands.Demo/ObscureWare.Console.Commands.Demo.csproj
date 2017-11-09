@@ -52,7 +52,7 @@
     <Compile Include="Commands\ChangeDirUpCommandModel.cs" />
     <Compile Include="Commands\ClsCommand.cs" />
     <Compile Include="Commands\ClsCommandModel.cs" />
-    <Compile Include="CommandsDemo.cs" />
+    <Compile Include="TestCommands.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\ExitCommandModel.cs" />
     <Compile Include="ConsoleContext.cs" />

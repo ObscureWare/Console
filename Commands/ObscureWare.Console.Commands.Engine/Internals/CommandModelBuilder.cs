@@ -321,7 +321,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals
                     return null;
                 }
 
-                argIndex++;
+                //argIndex++; not needed, all parsers move index forward accordingly to parsing settings and expected number of arguments
             }
 
             foreach (var syntaxInfo in this._syntax)
