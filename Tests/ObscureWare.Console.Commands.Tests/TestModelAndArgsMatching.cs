@@ -73,6 +73,7 @@
                 SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
         };
 
+        // ReSharper disable once MemberCanBePrivate.Global (Not really, must be public, so it can be discovered by MemberDataAttribute below.)
         public static IEnumerable<object[]> ParsingTestSets()
         {
             // 1. Multiple custom value switches
