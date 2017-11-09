@@ -110,6 +110,13 @@ namespace ObscureWare.Console.Commands.Engine.Internals
 
         public bool ExecuteCommand(ICommandEngineContext context, string[] commandLineArguments)
         {
+            if (commandLineArguments == null || !commandLineArguments.Any())
+            {
+                // co commands - suggest assistance
+                this._helpPrinter.PrintHelpOnHelp();
+                return false;
+            }
+
             // ...
             string cmdName = commandLineArguments[0];
             if (this._helpPrinter.IsGlobalHelpRequested(cmdName))
