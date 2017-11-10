@@ -42,13 +42,12 @@
                 T = new TimeSpan(10, 23, 0)
             };
 
-
             this.ValidateCommandLine(cmd, commandType, parserOptions, expectedModel);
         }
 
         private static ICommandParserOptions BuildParserOptions(string cultureName)
         {
-            ICommandParserOptions simpleSeparatedParsingOptions = new CommandParserOptions
+            return new CommandParserOptions
             {
                 UiCulture = CultureInfo.CreateSpecificCulture(cultureName),
                 FlagCharacters = new[] { @"\" },
@@ -60,7 +59,6 @@
                 SwitchlessOptionsMode =
                     SwitchlessOptionsMode.EndOnly
             };
-            return simpleSeparatedParsingOptions;
         }
     }
 }

@@ -59,15 +59,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocalizedParsingTests.cs" />
-    <Compile Include="ParsingTestsBase.cs" />
+    <Compile Include="Engine\ParsingTestsBase.cs" />
+    <Compile Include="ParseOtherTypesTests.cs" />
     <Compile Include="TestCommandLineSplitting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestConsole.cs" />
+    <Compile Include="Engine\TestConsole.cs" />
     <Compile Include="TestModelAndArgsMatching.cs" />
     <Compile Include="TestModels\DateTimePropertiesTestCommand.cs" />
     <Compile Include="TestModels\FloatPropertiesTestCommand.cs" />
     <Compile Include="TestModels\MixedSwitchesDirCommand.cs" />
     <Compile Include="TestModels\MultipleMandatoryCustomSwitches.cs" />
+    <Compile Include="TestModels\ParseOtherTypesCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Commands\ObscureWare.Console.Commands.Engine\ObscureWare.Console.Commands.Engine.csproj">
