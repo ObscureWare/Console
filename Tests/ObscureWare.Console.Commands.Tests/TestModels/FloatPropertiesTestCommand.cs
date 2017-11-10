@@ -31,11 +31,17 @@
         [CommandDescription("a")]
         public float B { get; set; }
 
+        [CommandOptionName(@"d")]
+        [Mandatory(false)]
+        [CommandOptionCustomValueSwitch("d")]
+        [CommandDescription("d")]
+        public decimal D { get; set; }
+
         public bool Equals(FloatPropertiesTestCommandModel other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return A.Equals(other.A) && B.Equals(other.B);
+            return A.Equals(other.A) && B.Equals(other.B) && D == other.D;
         }
 
         public override bool Equals(object obj)
@@ -50,7 +56,10 @@
         {
             unchecked
             {
-                return (A.GetHashCode() * 397) ^ B.GetHashCode();
+                var hashCode = A.GetHashCode();
+                hashCode = (hashCode * 397) ^ B.GetHashCode();
+                hashCode = (hashCode * 397) ^ D.GetHashCode();
+                return hashCode;
             }
         }
     }

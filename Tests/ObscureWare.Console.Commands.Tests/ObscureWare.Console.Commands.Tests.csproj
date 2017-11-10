@@ -63,6 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConsole.cs" />
     <Compile Include="TestModelAndArgsMatching.cs" />
+    <Compile Include="TestModels\DateTimePropertiesTestCommand.cs" />
+    <Compile Include="TestModels\FloatPropertiesTestCommand.cs" />
     <Compile Include="TestModels\MixedSwitchesDirCommand.cs" />
     <Compile Include="TestModels\MultipleMandatoryCustomSwitches.cs" />
   </ItemGroup>

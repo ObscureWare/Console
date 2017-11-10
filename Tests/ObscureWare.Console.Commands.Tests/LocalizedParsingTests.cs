@@ -23,18 +23,18 @@
         private static IConsole console = new TestConsole();
 
         [Theory]
-        [InlineData("en-US", "ParseFloats -a 12.445 -b 23.454")]
-        [InlineData("pl-PL", "ParseFloats -a 12,445 -b 23,454")]
+        [InlineData("en-US", "ParseFloats -a 12.445 -b 23.454 -d 67.33")]
+        [InlineData("pl-PL", "ParseFloats -a 12,445 -b 23,454 -d 67,33")]
         public void float_and_decimal_values_shall_be_parsed_correctly_according_to_culture(string cultureName, string cmd)
         {
             var parserOptions = BuildParserOptions(cultureName);
-            var modelType = typeof(FloatPropertiesTestCommandModel);
             var commandType = typeof(FloatPropertiesTestCommand);
 
             var expectedModel = new FloatPropertiesTestCommandModel
             {
                 A = 12.445,
-                B = 23.454f
+                B = 23.454f,
+                D = 67.33m
             };
 
             var validatingCommandLine = CommandLineUtilities.SplitCommandLine(cmd).ToArray(); ;
@@ -57,9 +57,28 @@
         {
             var simpleSeparatedParsingOptions = BuildParserOptions(cultureName);
 
+            var parserOptions = BuildParserOptions(cultureName);
+            var commandType = typeof(DateTimePropertiesTestCommand);
+
+            var expectedModel = new DateTimePropertiesTestCommandModel()
+            {
+                D = new DateTime(2017, 12, 14),
+                DT = new DateTime(2017, 12, 14, 10, 23, 14),
+                T = new TimeSpan(10, 23, 0)
+            };
+
+            var validatingCommandLine = CommandLineUtilities.SplitCommandLine(cmd).ToArray(); ;
+
+            var cmdManager = new CommandManager(new Type[] { commandType }, new DefaultCommandResolver());
+            var outputManager = new OutputManager(console, CommandEngineStyles.DefaultStyles, CultureInfo.InvariantCulture);
+
+            var cmdInfo = cmdManager.FindCommand(validatingCommandLine[0]);
+            var model = this.BuildModelForCommand(cmdInfo, validatingCommandLine.Skip(1), parserOptions, outputManager);
+
+            model.ShouldNotBeNull();
+            model.ShouldBeOfType(expectedModel.GetType());
+            model.ShouldBe(expectedModel);
         }
-
-
 
         private object BuildModelForCommand(CommandInfo cmdInfo, IEnumerable<string> arguments, ICommandParserOptions options, ICommandOutput outputManager)
         {
