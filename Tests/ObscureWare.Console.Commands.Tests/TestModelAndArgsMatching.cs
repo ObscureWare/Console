@@ -3,24 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
 
-    using ObscureWare.Console.Commands.Engine;
-    using ObscureWare.Console.Commands.Engine.Internals;
-    using ObscureWare.Console.Commands.Engine.Styles;
     using ObscureWare.Console.Commands.Interfaces;
+    using ObscureWare.Console.Commands.Interfaces.Model;
     using ObscureWare.Console.Commands.Tests.TestModels;
-    using ObscureWare.Console.Root.Interfaces;
-    using ObscureWare.Console.Shared;
-
-    using Shouldly;
 
     using Xunit;
 
-    public class TestModelAndArgsMatching
+    public class TestModelAndArgsMatching : ParsingTestsBase
     {
-        private IConsole console = new TestConsole(); // could use mock here, but might like console output from test...
-
         private static ICommandParserOptions simpleSeparatedParsingOptions = new CommandParserOptions
         {
             UiCulture = CultureInfo.CreateSpecificCulture("en-US"), // "da-DK"
@@ -164,26 +155,9 @@
         [MemberData(nameof(ParsingTestSets))]
         public void various_combination_of_models_shall_be_parsed_properly_no_matter_what_are_parsing_syntax_settings(Type commandType, ICommandParserOptions parserOptions, string commandText, object expectedModel)
         {
-            var modelType = typeof(MultipleMandatoryCustomSwitches);
-
-            var validatingCommandLine = CommandLineUtilities.SplitCommandLine(commandText).ToArray(); ;
-
-            var cmdManager = new CommandManager(new Type[] { commandType }, new DefaultCommandResolver());
-            var outputManager = new OutputManager(console, CommandEngineStyles.DefaultStyles, CultureInfo.InvariantCulture);
-
-            var cmdInfo = cmdManager.FindCommand(validatingCommandLine[0]);
-            var model = this.BuildModelForCommand(cmdInfo, validatingCommandLine.Skip(1), parserOptions, outputManager);
-
-            model.ShouldNotBeNull();
-            model.ShouldBeOfType(expectedModel.GetType());
-            model.ShouldBe(expectedModel);
+            this.ValidateCommandLine(commandText, commandType, parserOptions, expectedModel as CommandModel);
         }
 
-        private object BuildModelForCommand(CommandInfo cmdInfo, IEnumerable<string> arguments, ICommandParserOptions options, ICommandOutput outputManager)
-        {
-            return cmdInfo.CommandModelBuilder.BuildModel(arguments, options, outputManager);
-        }
-
-        // TODO: test "same" commands with different settings to verify various syntaxes
+        // TODO: test _MORE_ "same" commands with different settings to verify various syntaxes
     }
 }

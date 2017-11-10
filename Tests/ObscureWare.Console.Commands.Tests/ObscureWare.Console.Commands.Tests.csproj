@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocalizedParsingTests.cs" />
+    <Compile Include="ParsingTestsBase.cs" />
     <Compile Include="TestCommandLineSplitting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConsole.cs" />
