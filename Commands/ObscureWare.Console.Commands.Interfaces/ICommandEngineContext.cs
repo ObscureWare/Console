@@ -41,5 +41,7 @@ namespace ObscureWare.Console.Commands.Interfaces
         /// </summary>
         /// <returns></returns>
         string GetCurrentPrompt();
+
+        // TODO: share base style object used by Engine with commands. User can of course add his own styles to context / DI as he wishes.
     }
 }

@@ -42,6 +42,8 @@ namespace ObscureWare.Console.Commands.Engine.Internals
     public class OutputManager : ICommandOutput
     {
         // TODO: add everywhere console / buffer boundaries checking
+        // TODO: monitor console/buffer resizing  / scrolling - might be very tricky!
+        // TODO: need for  progress / status / spinner display - have to control how these objects move through living buffer and to stop  putting content when already outside boundaries...
 
         private readonly IConsole _consoleInstance;
         private readonly CommandEngineStyles _engineStyles;
@@ -60,7 +62,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals
             this._uiCulture = uiCulture;
 
             this._tablePrinter = new SimpleTablePrinter(
-                consoleInstance, 
+                consoleInstance,
                 new SimpleTableStyle(engineStyles.HelpStyles.HelpHeader, engineStyles.OddRowColor)
                 {
                     EvenRowColor = engineStyles.EvenRowColor,
