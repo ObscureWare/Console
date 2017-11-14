@@ -6,6 +6,8 @@
     using System.IO;
     using System.Reflection;
 
+    using ObscureWare.Console.Root.Desktop;
+
     using Xunit;
     using ObscureWare.Console.Root.Shared;
     using ObscureWare.Console.Shared;
@@ -21,7 +23,7 @@
         public void PrintDefaultColorsTest()
         {
             string fName = "default_setup.html";
-            using (var colorHelper = CloseColorFinder.GetDefault())
+            using (var colorHelper = new CloseColorFinder(PredefinedColorSets.Windows10Definitions().ToArray()).GetDefault())
             {
                 PrintAllNamedColorsToHtml(colorHelper, fName);
             }
@@ -31,7 +33,7 @@
         public void PrintCustomizedColorsBySeba()
         {
             string fName = "custom_setup_seba.html";
-            using (var colorHelper = CloseColorFinder.CustomizedDefault(
+            using (var colorHelper = new CloseColorFinder(PredefinedColorSets.Windows10Definitions().ToArray()).CustomizedDefault(
                 new Tuple<ConsoleColor, Color>(ConsoleColor.DarkCyan, Color.Chocolate),
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, Color.DodgerBlue),
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, Color.Gold),
@@ -48,23 +50,23 @@
 
             string fName = "custom_setup_dnv.html";
             using (
-                var colorHelper = CloseColorFinder.CustomizedDefault(
-                    new Tuple<ConsoleColor, Color>(ConsoleColor.Cyan, (Color) converter.ConvertFromString("#99d9f0")),
+                var colorHelper = new CloseColorFinder(PredefinedColorSets.Windows10Definitions().ToArray()).CustomizedDefault(
+                    new Tuple<ConsoleColor, Color>(ConsoleColor.Cyan, (Color)converter.ConvertFromString("#99d9f0")),
                     new Tuple<ConsoleColor, Color>(ConsoleColor.DarkCyan,
-                        (Color) converter.ConvertFromString("#e98300")),
-                    new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, (Color) converter.ConvertFromString("#009fda")),
-                    new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, (Color) converter.ConvertFromString("#fecb00")),
+                        (Color)converter.ConvertFromString("#e98300")),
+                    new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, (Color)converter.ConvertFromString("#009fda")),
+                    new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, (Color)converter.ConvertFromString("#fecb00")),
                     new Tuple<ConsoleColor, Color>(ConsoleColor.DarkGreen,
-                        (Color) converter.ConvertFromString("#36842d")),
-                    new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, (Color) converter.ConvertFromString("#003591")),
+                        (Color)converter.ConvertFromString("#36842d")),
+                    new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, (Color)converter.ConvertFromString("#003591")),
                     new Tuple<ConsoleColor, Color>(ConsoleColor.Magenta,
-                        (Color) converter.ConvertFromString("#635091")),
+                        (Color)converter.ConvertFromString("#635091")),
                     new Tuple<ConsoleColor, Color>(ConsoleColor.DarkRed,
-                        (Color) converter.ConvertFromString("#c4262e")),
+                        (Color)converter.ConvertFromString("#c4262e")),
                     new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue,
-                        (Color) converter.ConvertFromString("#0f204b")),
+                        (Color)converter.ConvertFromString("#0f204b")),
                     new Tuple<ConsoleColor, Color>(ConsoleColor.DarkGray,
-                        (Color) converter.ConvertFromString("#988f86"))))
+                        (Color)converter.ConvertFromString("#988f86"))))
             {
                 PrintAllNamedColorsToHtml(colorHelper, fName);
             }
@@ -95,7 +97,7 @@
                 {
                     tw.WriteLine("<tr>");
 
-                    Color c = (Color) propertyInfo.GetValue(null);
+                    Color c = (Color)propertyInfo.GetValue(null);
                     ConsoleColor cc = helper.FindClosestColor(c);
 
                     Color cCol = helper.GetCurrentConsoleColor(cc);

@@ -26,7 +26,7 @@
 //   Defines the PredefinedColorSets class with predefined sets of colors
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Root.Shared
+namespace ObscureWare.Console.Root.Core
 {
     using System;
     using System.Collections.Generic;

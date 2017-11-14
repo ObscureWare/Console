@@ -32,6 +32,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals.Parsers
     using System;
     using System.Reflection;
 
+    using Conditions;
 
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Interfaces.Model;
@@ -53,10 +54,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals.Parsers
 
         public IParsingResult Apply(ICommandParserOptions options, CommandModel model, string[] args, ref int argIndex)
         {
-            if (model.GetType() != this.TargetProperty.DeclaringType)
-            {
-                throw new InvalidOperationException("Incompatible model type.");
-            }
+            model.Requires(nameof(model)).IsNotNull().Evaluate(t => this.TargetProperty.DeclaringType.IsAssignableFrom(t.GetType()), @"Incompatible model type.");
 
             return this.DoApply(options, model, args, ref argIndex);
         }

@@ -63,6 +63,10 @@
       <Project>{3f6c7a65-7f28-41b8-a451-6448a86ced47}</Project>
       <Name>ObscureWare.Console.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Desktop.csproj">
+      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
+      <Name>ObscureWare.Console.Root.Desktop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
       <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
       <Name>ObscureWare.Console.Root.Shared</Name>

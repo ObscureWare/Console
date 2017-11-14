@@ -49,8 +49,12 @@ namespace ObscureWare.Console.Root.Shared
 
         private bool _disposed = false;
 
+        private readonly IEnumerable<KeyValuePair<ConsoleColor, Color>> _defaultSet;
+
         public CloseColorFinder(KeyValuePair<ConsoleColor, Color>[] colorBuffer, ColorBalancer colorBalancer = null)
         {
+            _defaultSet = colorBuffer;
+
             int expLength = Enum.GetNames(typeof(ConsoleColor)).Length;
 
             colorBuffer.Requires(nameof(colorBuffer))
@@ -105,18 +109,18 @@ namespace ObscureWare.Console.Root.Shared
             return this._colorBuffer.Single(pair => pair.Key == cc).Value;
         }
 
-        public static CloseColorFinder GetDefault()
+        public CloseColorFinder GetDefault()
         {
             return new CloseColorFinder(GetDefaultDefinitions().ToArray());
         }
 
-        private static IEnumerable<KeyValuePair<ConsoleColor, Color>> GetDefaultDefinitions()
+        private IEnumerable<KeyValuePair<ConsoleColor, Color>> GetDefaultDefinitions()
         {
             // TODO: Provide switch to turn old colors set (now being alternate...)
-            return PredefinedColorSets.Windows10Definitions();
+            return this._defaultSet;
         }
 
-        public static CloseColorFinder CustomizedDefault(params Tuple<ConsoleColor, Color>[] overwrites)
+        public CloseColorFinder CustomizedDefault(params Tuple<ConsoleColor, Color>[] overwrites)
         {
             Condition.Requires(overwrites, nameof(overwrites))
                 .IsNotNull()
