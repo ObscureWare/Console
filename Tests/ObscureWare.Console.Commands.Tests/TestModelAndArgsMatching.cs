@@ -6,6 +6,7 @@
 
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Interfaces.Model;
+    using ObscureWare.Console.Commands.Tests.Engine;
     using ObscureWare.Console.Commands.Tests.TestModels;
 
     using Xunit;

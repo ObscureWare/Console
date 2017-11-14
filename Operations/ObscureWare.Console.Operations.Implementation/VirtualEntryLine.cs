@@ -27,7 +27,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ObscureWare.Console.Operations.Interfaces
+namespace ObscureWare.Console.Operations.Implementation
 {
     using System;
     using System.Collections.Generic;
@@ -36,8 +36,10 @@ namespace ObscureWare.Console.Operations.Interfaces
     using System.Text;
 
     using Conditions;
+
+    using ObscureWare.Console.Operations.Interfaces;
+    using ObscureWare.Console.Root.Shared;
     using ObscureWare.Console.Shared;
-    using ObscureWare.Console.Root.Interfaces;
 
     /// <summary>
     /// In order to use auto-completion I must simulate more or less all other expected behavior of console editing.

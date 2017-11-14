@@ -26,15 +26,15 @@
 //   Defines the core SystemConsole wrapper on SystemConsole that implements IConsole interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Root.Framework
+namespace ObscureWare.Console.Root.Desktop
 {
     using System;
-    using System.Diagnostics;
     using System.Drawing;
     using System.Text;
     using System.Windows.Forms;
     using Conditions;
-    using ObscureWare.Console.Root.Interfaces;
+
+    using ObscureWare.Console.Root.Shared;
 
     /// <summary>
     /// Wraps System.Console with IConsole interface methods
@@ -235,7 +235,7 @@ namespace ObscureWare.Console.Root.Framework
         public int WindowWidth { get; }
 
         /// <inheritdoc />
-        public ConsoleMode ConsoleMode => Interfaces.ConsoleMode.Buffered;
+        public ConsoleMode ConsoleMode => ConsoleMode.Buffered;
 
         /// <inheritdoc />
         public string ReadLine()

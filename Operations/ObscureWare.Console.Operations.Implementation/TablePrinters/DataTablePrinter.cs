@@ -27,21 +27,22 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ObscureWare.Console.Operations.Interfaces.TablePrinters
+namespace ObscureWare.Console.Operations.Implementation.TablePrinters
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Console.Root.Interfaces;
-    using Styles;
-    using Tables;
+
+    using ObscureWare.Console.Operations.Implementation.Tables;
+    using ObscureWare.Console.Operations.Interfaces.Styles;
+    using ObscureWare.Console.Root.Shared;
 
     /// <summary>
     /// Base class for printing content of the <see cref="DataTable{T}"/>. Contains base routines for measurement.
     /// </summary>
     public abstract class DataTablePrinter
     {
-        private const int MIN_SPACE_PER_COLUMN = 3;
+        private const int MIN_SPACE_PER_COLUMN = 3; // TODO: improve code to reduce limit to 1-2
 
         private readonly IConsole _console;
         private readonly ICoreTableStyle _coreStyle;
@@ -173,7 +174,7 @@ namespace ObscureWare.Console.Operations.Interfaces.TablePrinters
 
         public void PrintTable<T>(DataTable<T> table)
         {
-            this.PrintTable(table.Columns.Values.ToArray(), table.GetRows().ToArray());
+            this.PrintTable(table.Columns.Values.Cast<ColumnInfo>().ToArray(), table.GetRows().ToArray());
         }
 
         /// <summary>

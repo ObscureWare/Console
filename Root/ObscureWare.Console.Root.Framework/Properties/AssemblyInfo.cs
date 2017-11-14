@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ObscureWare.Console.Root.Framework")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("ObscureWare.Console.Root.Desktop")]
+[assembly: AssemblyDescription("Console manipulations root library for Windows Desktop.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ObscureWare Solutions")]
 [assembly: AssemblyProduct("ObscureWare.Console.Root.Framework")]

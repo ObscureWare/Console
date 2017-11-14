@@ -26,16 +26,19 @@
 //   Defines the ColumnInfo class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Operations.Interfaces.Tables
+
+namespace ObscureWare.Console.Operations.Implementation.Tables
 {
     using System;
     using System.Linq;
-    using Shared;
+
+    using ObscureWare.Console.Operations.Interfaces.Tables;
+    using ObscureWare.Console.Shared;
 
     /// <summary>
     /// Defines table-column
     /// </summary>
-    public class ColumnInfo
+    public class ColumnInfo : IColumnInfo
     {
         public ColumnInfo(string header, ColumnAlignment alignment = ColumnAlignment.Left, int fixedLength = 0)
         {

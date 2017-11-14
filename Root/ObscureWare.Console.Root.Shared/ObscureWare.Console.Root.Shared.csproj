@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>ObscureWare.Console.Root.Shared</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Conditions.NetStandard" Version="1.1.0" />
-    <PackageReference Include="xunit" Version="2.3.1" />
   </ItemGroup>
 
 </Project>

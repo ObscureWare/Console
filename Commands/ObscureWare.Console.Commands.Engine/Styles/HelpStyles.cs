@@ -1,8 +1,9 @@
 ﻿using ObscureWare.Console.Commands.Interfaces.Styles;
-using ObscureWare.Console.Root.Interfaces;
 
 namespace ObscureWare.Console.Commands.Engine.Styles
 {
+    using ObscureWare.Console.Root.Shared;
+
     public class HelpStyles : IHelpStyles
     {
         public HelpStyles(ICommonStyles commonStyles)

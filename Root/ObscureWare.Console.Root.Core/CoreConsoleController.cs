@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Drawing;
 
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
 
     /// <summary>
     /// Super-simplified color-controlling functionality

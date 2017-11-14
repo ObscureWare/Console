@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Root.Framework
+﻿namespace ObscureWare.Console.Root.Desktop
 {
     using System;
     using System.Diagnostics;

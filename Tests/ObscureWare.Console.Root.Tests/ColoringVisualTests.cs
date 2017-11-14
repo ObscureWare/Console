@@ -7,7 +7,7 @@
     using System.Reflection;
 
     using Xunit;
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
     using ObscureWare.Console.Shared;
 
     public class ColoringVisualTests

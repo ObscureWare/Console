@@ -1,10 +1,11 @@
-namespace ObscureWare.Console.Operations.Interfaces.Tables
+namespace ObscureWare.Console.Operations.Implementation.Tables
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Linq;
-    using Shared;
+
+    using ObscureWare.Console.Operations.Interfaces.Tables;
+    using ObscureWare.Console.Shared;
 
     /// <summary>
     /// DataTable object to store "dynamic" objects together with vectorizing function(s)
@@ -34,13 +35,13 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
             }
 
             this._vectorizingFunction = vectorizingFunction;
-            this.Columns = columns.ToDictionary(c => c.Header, c => c);
+            this.Columns = columns.ToDictionary(c => c.Header, c => (IColumnInfo)c);
         }
 
         /// <summary>
         /// Gets columns collection
         /// </summary>
-        public Dictionary<string, ColumnInfo> Columns { get; }
+        public Dictionary<string, IColumnInfo> Columns { get; }
 
         /// <summary>
         /// Adds new row to the table

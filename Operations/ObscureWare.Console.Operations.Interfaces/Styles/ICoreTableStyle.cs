@@ -28,7 +28,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace ObscureWare.Console.Operations.Interfaces.Styles
 {
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
 
     public interface ICoreTableStyle
     {

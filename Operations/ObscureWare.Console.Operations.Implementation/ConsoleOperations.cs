@@ -27,15 +27,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ObscureWare.Console.Operations.Interfaces
+namespace ObscureWare.Console.Operations.Implementation
 {
     using System;
     using System.Diagnostics;
     using System.Drawing;
     using System.Linq;
-    using ObscureWare.Console.Root.Interfaces;
-    using ObscureWare.Console.Shared;
+
     using ObscureWare.Console.Operations.Interfaces.Styles;
+    using ObscureWare.Console.Root.Shared;
+    using ObscureWare.Console.Shared;
 
     /// <summary>
     /// TODO: totally refactor this into pieces...

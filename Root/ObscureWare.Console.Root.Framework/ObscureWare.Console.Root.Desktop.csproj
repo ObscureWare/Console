@@ -7,8 +7,8 @@
     <ProjectGuid>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ObscureWare.Console.Root.Framework</RootNamespace>
-    <AssemblyName>ObscureWare.Console.Root.Framework</AssemblyName>
+    <RootNamespace>ObscureWare.Console.Root.Desktop</RootNamespace>
+    <AssemblyName>ObscureWare.Console.Root.Desktop</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,13 +50,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ObscureWare.Console.Root.Interfaces\ObscureWare.Console.Root.Interfaces.csproj">
-      <Project>{51581016-d53b-4169-890b-92e6751f138f}</Project>
-      <Name>ObscureWare.Console.Root.Interfaces</Name>
-    </ProjectReference>
+    <None Include="ObscureWare.Console.Root.Desktop.nuspec" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
+      <Project>{116bb296-d09b-47d6-9787-aff751928152}</Project>
+      <Name>ObscureWare.Console.Root.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -40,10 +40,9 @@ namespace ObscureWare.Console.Commands.Engine.Internals
 
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Engine.Styles;
-
-    using ObscureWare.Console.Root.Interfaces;
-
+    using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Interfaces;
+    using ObscureWare.Console.Root.Shared;
 
 
     /// <summary>

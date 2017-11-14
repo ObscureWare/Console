@@ -30,7 +30,6 @@
 namespace ObscureWare.Console.TestShared
 {
     using System.Collections.Generic;
-
     using ObscureWare.Console.Operations.Interfaces;
 
     /// <summary>

@@ -26,7 +26,7 @@
 //   Provides access to Windows API native functions and structures.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Root.Framework
+namespace ObscureWare.Console.Root.Desktop
 {
     using System;
     using System.Drawing;

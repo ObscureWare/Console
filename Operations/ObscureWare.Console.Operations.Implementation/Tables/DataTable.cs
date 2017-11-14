@@ -26,11 +26,13 @@
 //   Defines the DataTable class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Operations.Interfaces.Tables
+namespace ObscureWare.Console.Operations.Implementation.Tables
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using ObscureWare.Console.Operations.Interfaces.Tables;
     using ObscureWare.Console.Shared;
 
     /// <summary>
@@ -50,13 +52,13 @@ namespace ObscureWare.Console.Operations.Interfaces.Tables
         /// <param name="columns">Initial set of columns that table will contain.</param>
         public DataTable(params ColumnInfo[] columns)
         {
-            this.Columns = columns.ToDictionary(c => c.Header, c => c);
+            this.Columns = columns.ToDictionary(c => c.Header, c => (IColumnInfo)c);
         }
 
         /// <summary>
         /// Gets columns collection
         /// </summary>
-        public Dictionary<string, ColumnInfo> Columns { get; }
+        public Dictionary<string, IColumnInfo> Columns { get; }
 
         /// <summary>
         /// Adds new row to the table

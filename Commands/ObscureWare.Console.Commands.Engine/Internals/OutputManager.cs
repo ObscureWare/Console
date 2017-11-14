@@ -32,12 +32,13 @@ namespace ObscureWare.Console.Commands.Engine.Internals
     using System.Globalization;
 
     using ObscureWare.Console.Commands.Interfaces;
-    using ObscureWare.Console.Root.Interfaces;
     using ObscureWare.Console.Commands.Engine.Styles;
+    using ObscureWare.Console.Operations.Implementation.TablePrinters;
+    using ObscureWare.Console.Operations.Implementation.Tables;
     using ObscureWare.Console.Operations.Interfaces;
     using ObscureWare.Console.Operations.Interfaces.Styles;
     using ObscureWare.Console.Operations.Interfaces.Tables;
-    using ObscureWare.Console.Operations.Interfaces.TablePrinters;
+    using ObscureWare.Console.Root.Shared;
 
     public class OutputManager : ICommandOutput
     {

@@ -1,13 +1,12 @@
-﻿using ObscureWare.Console.Commands.Demo;
-
-namespace ConsoleTests
+﻿namespace ObscureWare.Console.Commands.Demo
 {
     using System;
     using System.Drawing;
 
+    using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Interfaces;
-    using ObscureWare.Console.Root.Framework;
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Desktop;
+    using ObscureWare.Console.Root.Shared;
 
     internal static class Program
     {

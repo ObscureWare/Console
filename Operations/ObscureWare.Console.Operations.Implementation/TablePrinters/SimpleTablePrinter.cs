@@ -26,15 +26,17 @@
 //   Defines the SimpleTablePrinter class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Operations.Interfaces.TablePrinters
+
+namespace ObscureWare.Console.Operations.Implementation.TablePrinters
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ObscureWare.Console.Root.Interfaces;
-    using Shared;
-    using Styles;
-    using Tables;
+
+    using ObscureWare.Console.Operations.Implementation.Tables;
+    using ObscureWare.Console.Operations.Interfaces.Styles;
+    using ObscureWare.Console.Root.Shared;
+    using ObscureWare.Console.Shared;
 
     public class SimpleTablePrinter : DataTablePrinter
     {

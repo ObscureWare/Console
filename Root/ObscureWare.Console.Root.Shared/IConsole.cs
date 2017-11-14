@@ -26,7 +26,7 @@
 //   Defines the core IConsole interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Root.Interfaces
+namespace ObscureWare.Console.Root.Shared
 {
     using System;
     using System.Drawing;

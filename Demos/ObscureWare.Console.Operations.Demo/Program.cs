@@ -34,14 +34,18 @@ namespace ObscureWare.Console.Operations.Demo
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+
+    using ObscureWare.Console.Operations.Implementation;
+    using ObscureWare.Console.Operations.Implementation.TablePrinters;
+    using ObscureWare.Console.Operations.Implementation.Tables;
     using ObscureWare.Console.Operations.Interfaces;
     using ObscureWare.Console.Operations.Interfaces.Styles;
-    using ObscureWare.Console.Operations.Interfaces.TablePrinters;
     using ObscureWare.Console.Operations.Interfaces.Tables;
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Desktop;
     using ObscureWare.Tests.Common;
     using ObscureWare.Console.Shared;
-    using Root.Framework;
+    using ObscureWare.Console.Root.Shared;
+
     using Tests;
     using ObscureWare.Console.TestShared;
 

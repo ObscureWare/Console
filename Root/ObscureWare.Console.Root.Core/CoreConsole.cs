@@ -6,7 +6,7 @@
 
     using Conditions;
 
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
 
     /// <summary>
     /// IMplemntation of IConsole for Core COnsole application

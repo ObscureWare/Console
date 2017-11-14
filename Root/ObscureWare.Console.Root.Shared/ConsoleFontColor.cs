@@ -26,7 +26,7 @@
 //   Defines the structure used to store color info for console operations.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Root.Interfaces
+namespace ObscureWare.Console.Root.Shared
 {
     using System.Drawing;
 

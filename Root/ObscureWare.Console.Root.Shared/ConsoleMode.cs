@@ -1,8 +1,8 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FramedTablePrinter.cs" company="Obscureware Solutions">
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ConsoleMode.cs" company="Obscureware Solutions">
 // MIT License
 //
-// Copyright(c) 2017 Sebastian Gruchacz
+// Copyright(c) 2015-2017 Sebastian Gruchacz
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,32 +23,29 @@
 // SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the FramedTablePrinter class.
+//   Defines the core ConsoleMode enumeration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Operations.Interfaces.TablePrinters
+namespace ObscureWare.Console.Root.Shared
 {
-    using System;
-    using System.Collections.Generic;
-
-    using ObscureWare.Console.Root.Interfaces;
-    using Styles;
-    using Tables;
-
-    public class FramedTablePrinter : DataTablePrinter
+    /// <summary>
+    /// Specifies working mode of the console
+    /// </summary>
+    public enum ConsoleMode
     {
-        private readonly TableStyle _printStyle;
+        /// <summary>
+        /// Buffered, scrolling lines during overflow, cleaning lines on the beginning of the buffer
+        /// </summary>
+        Buffered,
 
-        public FramedTablePrinter(IConsole console, TableStyle printStyle) : base(console, printStyle)
-        {
-            this._printStyle = printStyle;
-        }
+        /// <summary>
+        /// No buffering, no vertical overflow. Has line wrapping. Yet screen-exceeding lines are just dropped
+        /// </summary>
+        SingleScreen,
 
-        protected override int ExternalFrameThickness { get; } = 2;
-
-        protected override void RenderTable(ColumnInfo[] columns, IEnumerable<string[]> rows)
-        {
-            this.Console.WriteLine("Not implemented");
-        }
+        /// <summary>
+        /// No buffering, no overflow. No screen wrapping. Exceeding text is just dropped (horizontally and vertically).
+        /// </summary>
+        SingleScreenNoWrapping
     }
 }

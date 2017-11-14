@@ -26,14 +26,15 @@
 //   Provides routines used to manipulate console colors.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace ObscureWare.Console.Root.Framework
+namespace ObscureWare.Console.Root.Desktop
 {
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Runtime.InteropServices;
     using Conditions;
-    using ObscureWare.Console.Root.Interfaces;
+
+    using ObscureWare.Console.Root.Shared;
 
     /// <summary>
     /// Class used to control basic system's console behavior

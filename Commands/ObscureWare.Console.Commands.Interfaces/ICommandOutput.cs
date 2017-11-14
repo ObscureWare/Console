@@ -28,12 +28,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using ObscureWare.Console.Operations.Interfaces.Tables;
-using ObscureWare.Console.Root.Interfaces;
 
 namespace ObscureWare.Console.Commands.Interfaces
 {
     using System.Collections.Generic;
     using System.Globalization;
+
+    using ObscureWare.Console.Operations.Implementation.Tables;
+    using ObscureWare.Console.Root.Shared;
 
     public interface ICommandOutput
     {

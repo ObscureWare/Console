@@ -84,13 +84,9 @@
       <Project>{3F6C7A65-7F28-41B8-A451-6448A86CED47}</Project>
       <Name>ObscureWare.Console.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Framework.csproj">
-      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
-      <Name>ObscureWare.Console.Root.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Interfaces\ObscureWare.Console.Root.Interfaces.csproj">
-      <Project>{51581016-D53B-4169-890B-92E6751F138F}</Project>
-      <Name>ObscureWare.Console.Root.Interfaces</Name>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
+      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
+      <Name>ObscureWare.Console.Root.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj">
       <Project>{d1f3aac6-d88c-4506-a718-a31e2a4ddcf7}</Project>

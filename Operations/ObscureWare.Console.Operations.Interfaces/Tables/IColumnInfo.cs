@@ -2,7 +2,7 @@
 // <copyright file="IColumnInfo.cs" company="Obscureware Solutions">
 // MIT License
 //
-// Copyright(c) 2016 Sebastian Gruchacz
+// Copyright(c) 2017 Sebastian Gruchacz
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,37 +23,17 @@
 // SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the IDataTable<T> interface.
+//   Defines the IColumnInfo interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace ObscureWare.Console.Operations.Interfaces.Tables
 {
-    using System.Collections.Generic;
-
-    /// <summary>
-    /// Core functionality for a DataTable collection.
-    /// </summary>
-    /// <typeparam name="T">Stored objects type</typeparam>
-    public interface IDataTable<T>
+    public interface IColumnInfo
     {
-        /// <summary>
-        /// Gets columns collection
-        /// </summary>
-        Dictionary<string, IColumnInfo> Columns { get; }
-
-        IEnumerable<string[]> GetRows();
-
-        /// <summary>
-        /// Finds first value that is identified by value stored in the first column or NULL
-        /// </summary>
-        /// <param name="aIdentifier">Artificial Idx identifier to be used for searching in the first column</param>
-        /// <returns></returns>
-        T GetUnderlyingValue(string aIdentifier);
-
-        /// <summary>
-        /// Gets number of rows
-        /// </summary>
-        int RowCount { get; }
+        string Header { get; }
+        int FixedLength { get; set; }
+        ColumnAlignment Alignment { get; set; }
+        bool HasFixedLength { get; }
     }
 }

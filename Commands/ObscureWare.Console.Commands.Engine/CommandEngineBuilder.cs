@@ -9,7 +9,7 @@ namespace ObscureWare.Console.Commands.Engine
     using ObscureWare.Console.Commands.Engine.Internals;
     using ObscureWare.Console.Commands.Engine.Styles;
     using ObscureWare.Console.Commands.Interfaces;
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
     using ObscureWare.Console.Shared;
 
     /// <summary>
