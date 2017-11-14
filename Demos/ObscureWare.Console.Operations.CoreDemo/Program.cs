@@ -27,29 +27,29 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ObscureWare.Console.Operations.Demo
+namespace ObscureWare.Console.Operations.CoreDemo
 {
     using System;
     using System.Drawing;
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+
     using ObscureWare.Console.Operations.Interfaces;
     using ObscureWare.Console.Operations.Interfaces.Styles;
     using ObscureWare.Console.Operations.Interfaces.TablePrinters;
     using ObscureWare.Console.Operations.Interfaces.Tables;
-    using ObscureWare.Console.Root.Interfaces;
-    using ObscureWare.Tests.Common;
-    using ObscureWare.Console.Shared;
-    using Tests;
     using ObscureWare.Console.Root.Core;
+    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Shared;
     using ObscureWare.Console.TestShared;
+    using ObscureWare.Tests.Common;
 
     internal static class Program
     {
         private static void Main(string[] args)
         {
-            //ConsoleController controller = new ConsoleController();
+            var coreController = new CoreConsoleController();
             ////helper.ReplaceConsoleColor(ConsoleColor.DarkCyan, Color.Salmon);
 
             //controller.ReplaceConsoleColors(
@@ -58,17 +58,14 @@ namespace ObscureWare.Console.Operations.Demo
             //    new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, Color.Gold),
             //    new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue, Color.MidnightBlue));
 
-            //IConsole console = new SystemConsole(controller, isFullScreen: false);
-
-            var coreController = new CoreConsoleController();
             IConsole console = new CoreConsole(coreController);
 
             ConsoleOperations ops = new ConsoleOperations(console);
 
-            //SplitterTest();
-            //PrintColorsMessages(console);
-            //PrintAllNamedColors(controller, console);
-            //PrintFrames(ops, console);
+            SplitterTest(console);
+            PrintColorsMessages(console);
+            PrintAllNamedColors(coreController, console);
+            PrintFrames(ops, console);
             PrintTables(console);
 
             SimulateConsole(console);
@@ -101,8 +98,10 @@ namespace ObscureWare.Console.Operations.Demo
             }
         }
 
-        private static void SplitterTest()
+        private static void SplitterTest(IConsole console)
         {
+            console.WriteLine("SplitterTest");
+
             for (int i = 0; i < 20; i++)
             {
                 string str = TestTools.AlphaSentence.BuildRandomStringFrom(20, 50);
@@ -110,6 +109,9 @@ namespace ObscureWare.Console.Operations.Demo
 
                 Console.WriteLine(str + " => " + string.Join("|", split));
             }
+
+            console.WriteLine("ENTER to continue");
+            console.ReadLine();
         }
 
         private static void PrintTables(IConsole console)
