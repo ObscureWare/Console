@@ -5,6 +5,7 @@
 
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Interfaces.Model;
+    using ObscureWare.Console.Operations.Implementation.Tables;
     using ObscureWare.Console.Operations.Interfaces.Tables;
     using ObscureWare.Console.Shared;
 

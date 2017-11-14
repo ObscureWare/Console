@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Commands.Tests
+﻿namespace ObscureWare.Console.Commands.Tests.Engine
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +10,7 @@
     using ObscureWare.Console.Commands.Engine.Styles;
     using ObscureWare.Console.Commands.Interfaces;
     using ObscureWare.Console.Commands.Interfaces.Model;
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
     using ObscureWare.Console.Shared;
 
     using Shouldly;

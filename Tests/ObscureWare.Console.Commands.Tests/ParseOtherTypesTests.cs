@@ -4,6 +4,7 @@
     using System.Globalization;
 
     using ObscureWare.Console.Commands.Interfaces;
+    using ObscureWare.Console.Commands.Tests.Engine;
     using ObscureWare.Console.Commands.Tests.TestModels;
 
     using Xunit;

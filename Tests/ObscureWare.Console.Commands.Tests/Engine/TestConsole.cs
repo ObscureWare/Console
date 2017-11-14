@@ -1,9 +1,9 @@
-﻿namespace ObscureWare.Console.Commands.Tests
+﻿namespace ObscureWare.Console.Commands.Tests.Engine
 {
     using System;
     using System.Drawing;
 
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
 
     internal class TestConsole : IConsole
     {

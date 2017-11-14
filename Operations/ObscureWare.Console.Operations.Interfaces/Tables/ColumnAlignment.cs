@@ -26,6 +26,7 @@
 //   Defines the ColumnAlignment enumeration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace ObscureWare.Console.Operations.Interfaces.Tables
 {
     /// <summary>

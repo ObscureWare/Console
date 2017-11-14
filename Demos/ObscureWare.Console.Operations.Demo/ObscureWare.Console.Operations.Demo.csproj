@@ -53,25 +53,37 @@
       <Project>{3f6c7a65-7f28-41b8-a451-6448a86ced47}</Project>
       <Name>ObscureWare.Console.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Framework.csproj">
-      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
-      <Name>ObscureWare.Console.Root.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Interfaces\ObscureWare.Console.Root.Interfaces.csproj">
-      <Project>{51581016-D53B-4169-890B-92E6751F138F}</Project>
-      <Name>ObscureWare.Console.Root.Interfaces</Name>
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj">
+      <Project>{24deafb5-866b-43b9-b802-7a60f1a3aea4}</Project>
+      <Name>ObscureWare.Console.Operations.Implementation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj">
       <Project>{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}</Project>
       <Name>ObscureWare.Console.Operations.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Desktop.csproj">
+      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
+      <Name>ObscureWare.Console.Root.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
+      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
+      <Name>ObscureWare.Console.Root.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Tests\ObscureWare.Console.Operations.Tests\ObscureWare.Console.Operations.Tests.csproj">
       <Project>{3868219F-8867-4F7A-8B35-4001FD74C0AC}</Project>
       <Name>ObscureWare.Console.Operations.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Tests\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj">
+      <Project>{7E00E1CC-1894-4CA0-A567-67200B6B6388}</Project>
+      <Name>ObscureWare.Console.TestShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Tests\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj">
       <Project>{D1F3AAC6-D88C-4506-A718-A31E2A4DDCF7}</Project>
       <Name>ObscureWare.Tests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObscureWare.Console.Root.Demo\ObscureWare.Console.Root.Demo.csproj">
+      <Project>{024cac06-e16a-429c-a6d8-763a525e8599}</Project>
+      <Name>ObscureWare.Console.Root.Demo</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

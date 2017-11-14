@@ -27,15 +27,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using ObscureWare.Console.Operations.Interfaces;
-using ObscureWare.Console.Root.Interfaces;
-
 namespace ObscureWare.Console.Operations.Tests
 {
     using System.Drawing;
 
     using Moq;
 
+    using ObscureWare.Console.Operations.Implementation;
+    using ObscureWare.Console.Operations.Interfaces;
+    using ObscureWare.Console.Root.Shared;
+    using ObscureWare.Console.TestShared;
     using Shouldly;
 
     using Xunit;

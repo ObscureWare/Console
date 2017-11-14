@@ -5,7 +5,7 @@
     using ObscureWare.Console.Commands.Engine;
     using ObscureWare.Console.Commands.Engine.Styles;
     using ObscureWare.Console.Commands.Interfaces;
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
 
     public class TestCommands
     {

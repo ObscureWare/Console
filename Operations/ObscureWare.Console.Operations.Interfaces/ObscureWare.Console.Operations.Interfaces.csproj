@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj" />
-    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Interfaces\ObscureWare.Console.Root.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj" />
   </ItemGroup>
 
 </Project>

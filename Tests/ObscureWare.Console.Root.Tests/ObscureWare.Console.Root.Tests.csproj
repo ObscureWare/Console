@@ -56,17 +56,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj">
       <Project>{3f6c7a65-7f28-41b8-a451-6448a86ced47}</Project>
       <Name>ObscureWare.Console.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Interfaces\ObscureWare.Console.Root.Interfaces.csproj">
-      <Project>{51581016-D53B-4169-890B-92E6751F138F}</Project>
-      <Name>ObscureWare.Console.Root.Interfaces</Name>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
+      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
+      <Name>ObscureWare.Console.Root.Shared</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

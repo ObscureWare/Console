@@ -63,16 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeAutoCompleter.cs" />
-    <Compile Include="FakeClipBoard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestAutoCompleter.cs" />
     <Compile Include="VirtualEntryLineTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\ObscureWare.Console.Root.Interfaces\ObscureWare.Console.Root.Interfaces.csproj">
-      <Project>{51581016-D53B-4169-890B-92E6751F138F}</Project>
-      <Name>ObscureWare.Console.Root.Interfaces</Name>
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj">
+      <Project>{24deafb5-866b-43b9-b802-7a60f1a3aea4}</Project>
+      <Name>ObscureWare.Console.Operations.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
+      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
+      <Name>ObscureWare.Console.Root.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Tests\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj">
       <Project>{d1f3aac6-d88c-4506-a718-a31e2a4ddcf7}</Project>
@@ -81,6 +82,10 @@
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj">
       <Project>{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}</Project>
       <Name>ObscureWare.Console.Operations.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj">
+      <Project>{7E00E1CC-1894-4CA0-A567-67200B6B6388}</Project>
+      <Name>ObscureWare.Console.TestShared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

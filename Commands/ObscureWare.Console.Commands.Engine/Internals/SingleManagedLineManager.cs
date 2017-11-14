@@ -33,7 +33,7 @@ namespace ObscureWare.Console.Commands.Engine.Internals
     using System.Linq;
 
     using ObscureWare.Console.Commands.Interfaces;
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
 
     /// <summary>
     /// The single managed line manager.

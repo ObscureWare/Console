@@ -34,23 +34,28 @@ namespace ObscureWare.Console.Operations.Demo
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+
+    using ObscureWare.Console.Operations.Implementation;
+    using ObscureWare.Console.Operations.Implementation.TablePrinters;
+    using ObscureWare.Console.Operations.Implementation.Tables;
     using ObscureWare.Console.Operations.Interfaces;
     using ObscureWare.Console.Operations.Interfaces.Styles;
-    using ObscureWare.Console.Operations.Interfaces.TablePrinters;
     using ObscureWare.Console.Operations.Interfaces.Tables;
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Desktop;
     using ObscureWare.Tests.Common;
     using ObscureWare.Console.Shared;
-    using Root.Framework;
+    using ObscureWare.Console.Root.Shared;
+
     using Tests;
+    using ObscureWare.Console.TestShared;
 
     internal static class Program
     {
         private static void Main(string[] args)
         {
             ConsoleController controller = new ConsoleController();
-
             //helper.ReplaceConsoleColor(ConsoleColor.DarkCyan, Color.Salmon);
+
             controller.ReplaceConsoleColors(
                 new Tuple<ConsoleColor, Color>(ConsoleColor.DarkCyan, Color.Chocolate),
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, Color.DodgerBlue),
@@ -58,6 +63,7 @@ namespace ObscureWare.Console.Operations.Demo
                 new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue, Color.MidnightBlue));
 
             IConsole console = new SystemConsole(controller, isFullScreen: false);
+
             ConsoleOperations ops = new ConsoleOperations(console);
 
             //SplitterTest();
@@ -86,7 +92,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             var fakeAutocompleter = new TestAutoCompleter("abcd", "aabbdd", "nbbdbd", "sdsdsds", "sddsdssfdf", "abc");
             string cmd = "";
-            while (cmd.ToUpper() != "EXIT")
+            while (!string.Equals(cmd, "EXIT", StringComparison.OrdinalIgnoreCase))
             {
                 console.WriteText(promptConsoleColor, "c:\\");
                 cmd = cmdSimulator.GetUserEntry(fakeAutocompleter);

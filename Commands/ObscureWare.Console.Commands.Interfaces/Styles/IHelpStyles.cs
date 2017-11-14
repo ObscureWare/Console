@@ -1,6 +1,6 @@
 ﻿namespace ObscureWare.Console.Commands.Interfaces.Styles
 {
-    using ObscureWare.Console.Root.Interfaces;
+    using ObscureWare.Console.Root.Shared;
 
     public interface IHelpStyles
     {
