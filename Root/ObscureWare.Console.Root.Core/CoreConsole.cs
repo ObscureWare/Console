@@ -108,7 +108,7 @@
         /// <inheritdoc />
         public ConsoleKeyInfo ReadKey()
         {
-            return Console.ReadKey();
+            return Console.ReadKey(intercept: true);
         }
 
         /// <inheritdoc />
