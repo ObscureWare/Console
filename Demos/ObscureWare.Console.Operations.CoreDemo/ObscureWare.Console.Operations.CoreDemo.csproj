@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj" />
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj" />
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj" />
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Core\ObscureWare.Console.Root.Core.csproj" />
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj" />
     <ProjectReference Include="..\..\Tests\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj" />
-    <ProjectReference Include="..\..\Tests\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj" />
   </ItemGroup>
 
 </Project>
