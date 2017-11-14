@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.4.0</Version>
+    <AssemblyVersion>0.4.0.0</AssemblyVersion>
+    <FileVersion>0.4.0.0</FileVersion>
+    <Company>ObscureWare Solutions</Company>
+    <Authors>Sebastian Gruchacz</Authors>
+    <Description>Some operations for console - tables printing. NOTE: This lib is a deep in BETA, much can change in the future.</Description>
+    <Copyright>Copyright © Sebastian Gruchacz 2015-2017</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

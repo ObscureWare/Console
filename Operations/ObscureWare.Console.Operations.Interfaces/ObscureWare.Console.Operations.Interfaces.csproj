@@ -9,8 +9,4 @@
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TablePrinters\" />
-  </ItemGroup>
-
 </Project>
