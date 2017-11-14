@@ -2,6 +2,9 @@
 {
     using System;
     using System.Drawing;
+    using System.Text;
+
+    using Conditions;
 
     using ObscureWare.Console.Root.Interfaces;
 
@@ -10,10 +13,24 @@
     /// </summary>
     public class CoreConsole : IConsole
     {
+        private readonly CoreConsoleController _controller;
+
+        public CoreConsole(CoreConsoleController controller)
+        {
+            controller.Requires(nameof(controller)).IsNotNull();
+
+            this._controller = controller;
+
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+        }
+
         /// <inheritdoc />
         public void WriteText(int x, int y, string text, Color foreColor, Color bgColor)
         {
-            throw new NotImplementedException();
+            this.SetCursorPosition(x, y);
+            this.SetColors(foreColor, bgColor);
+            this.WriteText(text);
         }
 
         /// <inheritdoc />
@@ -25,7 +42,8 @@
         /// <inheritdoc />
         public void WriteText(ConsoleFontColor colors, string text)
         {
-            throw new NotImplementedException();
+            this.SetColors(colors.ForeColor, colors.BgColor);
+            Console.Write(text);
         }
 
         /// <inheritdoc />
@@ -37,7 +55,8 @@
         /// <inheritdoc />
         public void WriteLine(ConsoleFontColor colors, string text)
         {
-            throw new NotImplementedException();
+            this.SetColors(colors.ForeColor, colors.BgColor);
+            Console.WriteLine(text);
         }
 
         /// <inheritdoc />
@@ -49,7 +68,8 @@
         /// <inheritdoc />
         public void SetColors(Color foreColor, Color bgColor)
         {
-            throw new NotImplementedException();
+            Console.ForegroundColor = this._controller.CloseColorFinder.FindClosestColor(foreColor);
+            Console.BackgroundColor = this._controller.CloseColorFinder.FindClosestColor(bgColor);
         }
 
         /// <inheritdoc />
@@ -112,7 +132,7 @@
         /// <inheritdoc />
         public void SetColors(ConsoleFontColor style)
         {
-            throw new NotImplementedException();
+            this.SetColors(style.ForeColor, style.BgColor);
         }
 
         /// <inheritdoc />

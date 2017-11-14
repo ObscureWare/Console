@@ -35,7 +35,7 @@ namespace ObscureWare.Console.Operations.Tests
     using System.Drawing;
 
     using Moq;
-
+    using ObscureWare.Console.TestShared;
     using Shouldly;
 
     using Xunit;

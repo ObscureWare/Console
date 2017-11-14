@@ -54,7 +54,7 @@ namespace ObscureWare.Console.Root.Framework
         /// <param name="controller"></param>
         public SystemConsole(ConsoleController controller)
         {
-            Condition.Requires(controller, nameof(controller)).IsNotNull();
+            controller.Requires(nameof(controller)).IsNotNull();
 
             this._controller = controller;
 

@@ -41,24 +41,27 @@ namespace ObscureWare.Console.Operations.Demo
     using ObscureWare.Console.Root.Interfaces;
     using ObscureWare.Tests.Common;
     using ObscureWare.Console.Shared;
-    using Root.Framework;
     using Tests;
+    using ObscureWare.Console.Root.Core;
     using ObscureWare.Console.TestShared;
 
     internal static class Program
     {
         private static void Main(string[] args)
         {
-            ConsoleController controller = new ConsoleController();
-            //helper.ReplaceConsoleColor(ConsoleColor.DarkCyan, Color.Salmon);
+            //ConsoleController controller = new ConsoleController();
+            ////helper.ReplaceConsoleColor(ConsoleColor.DarkCyan, Color.Salmon);
 
-            controller.ReplaceConsoleColors(
-                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkCyan, Color.Chocolate),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, Color.DodgerBlue),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, Color.Gold),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue, Color.MidnightBlue));
+            //controller.ReplaceConsoleColors(
+            //    new Tuple<ConsoleColor, Color>(ConsoleColor.DarkCyan, Color.Chocolate),
+            //    new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, Color.DodgerBlue),
+            //    new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, Color.Gold),
+            //    new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue, Color.MidnightBlue));
 
-            IConsole console = new SystemConsole(controller, isFullScreen: false);
+            //IConsole console = new SystemConsole(controller, isFullScreen: false);
+
+            var coreController = new CoreConsoleController();
+            IConsole console = new CoreConsole(coreController);
 
             ConsoleOperations ops = new ConsoleOperations(console);
 
@@ -293,7 +296,7 @@ namespace ObscureWare.Console.Operations.Demo
             console.Clear();
         }
 
-        private static void PrintAllNamedColors(ConsoleController controller, IConsole console)
+        private static void PrintAllNamedColors(CoreConsoleController controller, IConsole console)
         {
             var props =
                 typeof(Color).GetProperties(BindingFlags.Static | BindingFlags.Public)

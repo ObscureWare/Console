@@ -69,6 +69,10 @@
       <Project>{3868219F-8867-4F7A-8B35-4001FD74C0AC}</Project>
       <Name>ObscureWare.Console.Operations.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Tests\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj">
+      <Project>{7E00E1CC-1894-4CA0-A567-67200B6B6388}</Project>
+      <Name>ObscureWare.Console.TestShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Tests\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj">
       <Project>{D1F3AAC6-D88C-4506-A718-A31E2A4DDCF7}</Project>
       <Name>ObscureWare.Tests.Common</Name>

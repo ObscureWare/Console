@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FakeClipBoard.cs" company="Obscureware Solutions">
+// <copyright file="TestAutoCompleter.cs" company="Obscureware Solutions">
 // MIT License
 //
 // Copyright(c) 2017 Sebastian Gruchacz
@@ -23,19 +23,33 @@
 // SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the FakeClipBoard class.
+//   Defines the TestAutoCompleter class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ObscureWare.Console.Operations.Tests
+namespace ObscureWare.Console.TestShared
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using ObscureWare.Console.Operations.Interfaces;
 
-    public class FakeClipBoard : IClipboard
+    /// <summary>
+    /// This auto-completer provides some auto-completion from predefined, hard-coded list
+    /// </summary>
+    public class TestAutoCompleter : IAutoComplete
     {
-        public string GetText()
+        private readonly string[] _availableTexts;
+
+        public TestAutoCompleter(params string[] availableTexts)
         {
-            return null;
+            this._availableTexts = availableTexts;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<string> MatchAutoComplete(string text)
+        {
+            return this._availableTexts.Where(t => t.Contains(text));
         }
     }
 }

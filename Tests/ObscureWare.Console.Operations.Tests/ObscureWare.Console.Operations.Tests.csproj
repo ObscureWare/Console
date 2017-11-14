@@ -63,10 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeAutoCompleter.cs" />
-    <Compile Include="FakeClipBoard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestAutoCompleter.cs" />
     <Compile Include="VirtualEntryLineTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +78,10 @@
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj">
       <Project>{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}</Project>
       <Name>ObscureWare.Console.Operations.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj">
+      <Project>{7E00E1CC-1894-4CA0-A567-67200B6B6388}</Project>
+      <Name>ObscureWare.Console.TestShared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

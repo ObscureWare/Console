@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Core\ObscureWare.Console.Root.Core.csproj" />
+    <ProjectReference Include="..\..\Tests\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj" />
+    <ProjectReference Include="..\..\Tests\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj" />
+  </ItemGroup>
+
+</Project>

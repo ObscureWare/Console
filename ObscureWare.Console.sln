@@ -45,7 +45,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Root.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Commands.Tests", "Tests\ObscureWare.Console.Commands.Tests\ObscureWare.Console.Commands.Tests.csproj", "{86B545E8-812E-4D12-9E86-9C162C5EEBCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Root.Core", "Root\ObscureWare.Console.Root.Core\ObscureWare.Console.Root.Core.csproj", "{E0509E90-ABF2-48B6-84F9-3059C0A5028C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.Root.Core", "Root\ObscureWare.Console.Root.Core\ObscureWare.Console.Root.Core.csproj", "{E0509E90-ABF2-48B6-84F9-3059C0A5028C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.CoreDemo", "Demos\ObscureWare.Console.Operations.CoreDemo\ObscureWare.Console.Operations.CoreDemo.csproj", "{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.TestShared", "Tests\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj", "{7E00E1CC-1894-4CA0-A567-67200B6B6388}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +117,14 @@ Global
 		{E0509E90-ABF2-48B6-84F9-3059C0A5028C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0509E90-ABF2-48B6-84F9-3059C0A5028C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0509E90-ABF2-48B6-84F9-3059C0A5028C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E00E1CC-1894-4CA0-A567-67200B6B6388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E00E1CC-1894-4CA0-A567-67200B6B6388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E00E1CC-1894-4CA0-A567-67200B6B6388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E00E1CC-1894-4CA0-A567-67200B6B6388}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +145,8 @@ Global
 		{611CE5A2-AD81-4419-BE96-701E37A5B688} = {2FFA54FD-E738-4F12-9B41-C83784632BB4}
 		{86B545E8-812E-4D12-9E86-9C162C5EEBCD} = {2FFA54FD-E738-4F12-9B41-C83784632BB4}
 		{E0509E90-ABF2-48B6-84F9-3059C0A5028C} = {3A4BEA05-1B54-4850-B70D-DE6ADAF21438}
+		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
+		{7E00E1CC-1894-4CA0-A567-67200B6B6388} = {2FFA54FD-E738-4F12-9B41-C83784632BB4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27BF5FD-4504-4BFD-8AE6-159AF8EB23E2}
