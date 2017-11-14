@@ -6,15 +6,13 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/ObscureWare/Console/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/ObscureWare/Console</projectUrl>
+    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Rebuild, rearranged, renamed and converted to use Standard FWK.</releaseNotes>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright 2017</copyright>
-    <tags>Console Tools Colors</tags>
+    <tags>Tag1 Tag2</tags>
   </metadata>
-  <files>
-    <file src="bin\$configuration$\ObscureWare.Console.Root.Shared.dll" target="lib\net461" />
-  </files>
 </package>

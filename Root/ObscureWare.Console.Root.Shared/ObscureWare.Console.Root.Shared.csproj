@@ -1,12 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>ObscureWare.Console.Root.Shared</AssemblyName>
+    <AssemblyVersion>0.4.0.0</AssemblyVersion>
+    <FileVersion>0.4.0.0</FileVersion>
+    <Version>0.4.0</Version>
+    <Authors>Sebastian Gruchacz</Authors>
+    <Description>Shared library for console operations</Description>
+    <Copyright>Copyright Sebastian Gruchacz 2017</Copyright>
+    <Company>ObscureWare Solutions</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://github.com/ObscureWare/Console/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ObscureWare/Console</PackageProjectUrl>
+    <PackageReleaseNotes>Rebuild, rearranged, renamed and converted to use Standard FWK.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Conditions.NetStandard" Version="1.1.0" />
+    <PackageReference Include="Conditions" Version="2.1.0" />
   </ItemGroup>
 
 </Project>

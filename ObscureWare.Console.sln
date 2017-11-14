@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{3A4BEA05-1B54-4850-B70D-DE6ADAF21438}"
 EndProject
@@ -29,8 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.Command
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Commands.Demo", "Demos\ObscureWare.Console.Commands.Demo\ObscureWare.Console.Commands.Demo.csproj", "{CFB16C5C-EE36-4ACE-9513-0AD18DFF9D00}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{DE19A5FA-318C-42F6-83B6-85109167A35B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Root.Demo", "Demos\ObscureWare.Console.Root.Demo\ObscureWare.Console.Root.Demo.csproj", "{024CAC06-E16A-429C-A6D8-763A525E8599}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Demo", "Demos\ObscureWare.Console.Operations.Demo\ObscureWare.Console.Operations.Demo.csproj", "{C5EF06B9-AAF6-482C-BF9F-907EF3A93906}"
@@ -39,10 +37,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Root.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Commands.Tests", "Tests\ObscureWare.Console.Commands.Tests\ObscureWare.Console.Commands.Tests.csproj", "{86B545E8-812E-4D12-9E86-9C162C5EEBCD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.Root.Core", "Root\ObscureWare.Console.Root.Core\ObscureWare.Console.Root.Core.csproj", "{E0509E90-ABF2-48B6-84F9-3059C0A5028C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.Operations.CoreDemo", "Demos\ObscureWare.Console.Operations.CoreDemo\ObscureWare.Console.Operations.CoreDemo.csproj", "{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.TestShared", "Tests\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj", "{7E00E1CC-1894-4CA0-A567-67200B6B6388}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Console.Root.Shared", "Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj", "{116BB296-D09B-47D6-9787-AFF751928152}"
@@ -50,6 +44,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Root.Desktop", "Root\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Desktop.csproj", "{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObscureWare.Tests.Common", "Common\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj", "{BF939EA3-3AF8-4F85-8539-28F5AB5A7347}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{225589FD-D1AC-486C-A47A-F074FC87EA94}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{0B72737F-45B1-46DA-9C5E-5CC5D084F0E6}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\build_all.ps1 = Scripts\build_all.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,14 +105,6 @@ Global
 		{86B545E8-812E-4D12-9E86-9C162C5EEBCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86B545E8-812E-4D12-9E86-9C162C5EEBCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86B545E8-812E-4D12-9E86-9C162C5EEBCD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0509E90-ABF2-48B6-84F9-3059C0A5028C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0509E90-ABF2-48B6-84F9-3059C0A5028C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0509E90-ABF2-48B6-84F9-3059C0A5028C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0509E90-ABF2-48B6-84F9-3059C0A5028C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E00E1CC-1894-4CA0-A567-67200B6B6388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E00E1CC-1894-4CA0-A567-67200B6B6388}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E00E1CC-1894-4CA0-A567-67200B6B6388}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -141,8 +137,6 @@ Global
 		{C5EF06B9-AAF6-482C-BF9F-907EF3A93906} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 		{611CE5A2-AD81-4419-BE96-701E37A5B688} = {2FFA54FD-E738-4F12-9B41-C83784632BB4}
 		{86B545E8-812E-4D12-9E86-9C162C5EEBCD} = {2FFA54FD-E738-4F12-9B41-C83784632BB4}
-		{E0509E90-ABF2-48B6-84F9-3059C0A5028C} = {3A4BEA05-1B54-4850-B70D-DE6ADAF21438}
-		{B9B60551-AD7C-40EA-97ED-B510A51DF7BB} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 		{7E00E1CC-1894-4CA0-A567-67200B6B6388} = {2FFA54FD-E738-4F12-9B41-C83784632BB4}
 		{116BB296-D09B-47D6-9787-AFF751928152} = {3A4BEA05-1B54-4850-B70D-DE6ADAF21438}
 		{AAFF5245-D9B6-4AB5-B67F-68B38A578D82} = {3A4BEA05-1B54-4850-B70D-DE6ADAF21438}

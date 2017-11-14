@@ -26,6 +26,7 @@
 //   Defines the CloseColorFinder class responsible for color matching routines.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace ObscureWare.Console.Root.Shared
 {
     using System;
