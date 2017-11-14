@@ -10,8 +10,6 @@
     /// </summary>
     public class CoreConsole : IConsole
     {
-        private readonly object _instanceHandle = new object();
-
         /// <inheritdoc />
         public void WriteText(int x, int y, string text, Color foreColor, Color bgColor)
         {
@@ -118,6 +116,6 @@
         }
 
         /// <inheritdoc />
-        public object AtomicHandle => this._instanceHandle;
+        public object AtomicHandle => Console.Out; //https://github.com/dotnet/corefx/issues/2808
     }
 }

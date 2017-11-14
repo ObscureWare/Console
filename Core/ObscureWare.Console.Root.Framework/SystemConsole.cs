@@ -43,8 +43,6 @@ namespace ObscureWare.Console.Root.Framework
     {
         private readonly ConsoleController _controller;
 
-        private readonly object _atomicHandle = new object();
-
         /// <summary>
         /// In characters...
         /// </summary>
@@ -181,7 +179,8 @@ namespace ObscureWare.Console.Root.Framework
         {
             this.SetColors(colors.ForeColor, colors.BgColor);
             Console.Write(text);
-            this.SetColors(colors.ForeColor, Color.Black); // try resetting BG color...
+            Console.ResetColor();
+            // this.SetColors(colors.ForeColor, Color.Black); // try resetting BG color...
             Console.WriteLine();
         }
 
@@ -263,7 +262,7 @@ namespace ObscureWare.Console.Root.Framework
         }
 
         /// <inheritdoc />
-        public object AtomicHandle => this._atomicHandle;
+        public object AtomicHandle => Console.Out; //https://github.com/dotnet/corefx/issues/2808
 
         /// <inheritdoc />
         public void ReplaceConsoleColor(ConsoleColor color, Color rgbColor)
