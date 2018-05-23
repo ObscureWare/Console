@@ -42,6 +42,12 @@
     <Reference Include="Moq, Version=4.7.145.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Moq.4.7.145\lib\net45\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="ObscureWare.Console.Root.Desktop, Version=0.4.0.16785, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ObscureWare.Console.Root.Desktop.0.4.0.16785\lib\net461\ObscureWare.Console.Root.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="ObscureWare.Console.Root.Shared, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ObscureWare.Console.Root.Shared.0.4.0\lib\net461\ObscureWare.Console.Root.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="Shouldly, Version=2.8.2.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Shouldly.2.8.2\lib\net451\Shouldly.dll</HintPath>
     </Reference>
@@ -70,10 +76,6 @@
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj">
       <Project>{24deafb5-866b-43b9-b802-7a60f1a3aea4}</Project>
       <Name>ObscureWare.Console.Operations.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
-      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
-      <Name>ObscureWare.Console.Root.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Interfaces\ObscureWare.Console.Operations.Interfaces.csproj">
       <Project>{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}</Project>

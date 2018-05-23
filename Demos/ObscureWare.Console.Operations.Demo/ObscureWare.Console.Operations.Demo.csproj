@@ -32,6 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Conditions, Version=2.1.0.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Conditions.2.1.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Conditions.dll</HintPath>
+    </Reference>
+    <Reference Include="ObscureWare.Console.Root.Desktop, Version=0.4.0.16785, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ObscureWare.Console.Root.Desktop.0.4.0.16785\lib\net461\ObscureWare.Console.Root.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="ObscureWare.Console.Root.Shared, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ObscureWare.Console.Root.Shared.0.4.0\lib\net461\ObscureWare.Console.Root.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -47,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj">
@@ -65,14 +75,6 @@
       <Project>{EBF3D264-6875-49EF-9218-9CEB9BB7AD0E}</Project>
       <Name>ObscureWare.Console.Operations.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Desktop.csproj">
-      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
-      <Name>ObscureWare.Console.Root.Desktop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
-      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
-      <Name>ObscureWare.Console.Root.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Tests\ObscureWare.Console.Operations.Tests\ObscureWare.Console.Operations.Tests.csproj">
       <Project>{3868219F-8867-4F7A-8B35-4001FD74C0AC}</Project>
       <Name>ObscureWare.Console.Operations.Tests</Name>
@@ -80,10 +82,6 @@
     <ProjectReference Include="..\..\Tests\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj">
       <Project>{7E00E1CC-1894-4CA0-A567-67200B6B6388}</Project>
       <Name>ObscureWare.Console.TestShared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ObscureWare.Console.Root.Demo\ObscureWare.Console.Root.Demo.csproj">
-      <Project>{024cac06-e16a-429c-a6d8-763a525e8599}</Project>
-      <Name>ObscureWare.Console.Root.Demo</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
