@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace ObscureWare.Console.Root.Demo
 {
+    using Console = System.Console;
+
     class Program
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(OsInfo.OsVersionInfo.Win10Version.HasApril2018Update);
         }
     }
 }

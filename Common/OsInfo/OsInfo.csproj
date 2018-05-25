@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{024CAC06-E16A-429C-A6D8-763A525E8599}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ObscureWare.Console.Root.Demo</RootNamespace>
-    <AssemblyName>ObscureWare.Console.Root.Demo</AssemblyName>
+    <ProjectGuid>{6DF55C4B-418D-478B-9899-60023F869076}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OsInfo</RootNamespace>
+    <AssemblyName>OsInfo</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,17 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="OsVersionInfo.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="ProcessorArchitecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\OsInfo\OsInfo.csproj">
-      <Project>{6df55c4b-418d-478b-9899-60023f869076}</Project>
-      <Name>OsInfo</Name>
-    </ProjectReference>
+    <Compile Include="RegistryHelpers.cs" />
+    <Compile Include="SoftwareArchitecture.cs" />
+    <Compile Include="Win10Version.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
