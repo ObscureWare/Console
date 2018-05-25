@@ -191,10 +191,18 @@ namespace ObscureWare.Console.Root.Desktop
         /// <inheritdoc />
         public void WriteLine(ConsoleFontColor colors, string text) // TODO: add flag to keep BG color to next line
         {
-            this.SetColors(colors.ForeColor, colors.BgColor);
-            Console.Write(text);
+            if (this.VirtualConsoleEnabled)
+            {
+                Console.Write($"\x1b[38;2;{colors.ForeColor.R};{colors.ForeColor.G};{colors.ForeColor.B};48;2;{colors.BgColor.R};{colors.BgColor.G};{colors.BgColor.B}m{text}");
+            }
+            else
+            {
+                this.SetColors(colors.ForeColor, colors.BgColor);
+                Console.Write(text);
+                // this.SetColors(colors.ForeColor, Color.Black); // try resetting BG color...
+            }
+
             Console.ResetColor();
-            // this.SetColors(colors.ForeColor, Color.Black); // try resetting BG color...
             Console.WriteLine();
         }
 
@@ -286,7 +294,14 @@ namespace ObscureWare.Console.Root.Desktop
         /// <inheritdoc />
         public void SetColors(ConsoleFontColor style)
         {
-            this.SetColors(style.ForeColor, style.BgColor);
+            if (this.VirtualConsoleEnabled)
+            {
+                Console.Write($"\x1b[38;2;{style.ForeColor.R};{style.ForeColor.G};{style.ForeColor.B};48;2;{style.BgColor.R};{style.BgColor.G};{style.BgColor.B}m");
+            }
+            else
+            {
+                this.SetColors(style.ForeColor, style.BgColor);
+            }
         }
 
         /// <inheritdoc />
