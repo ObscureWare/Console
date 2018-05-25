@@ -188,5 +188,7 @@ namespace OsInfo
         public const int VER_SUITE_PERSONAL = 512;
         public const int VER_SUITE_BLADE = 1024;
         #endregion VERSIONS
+
+        // ReSharper restore InconsistentNaming
     }
 }

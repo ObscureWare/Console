@@ -54,6 +54,10 @@
       <Project>{6df55c4b-418d-478b-9899-60023f869076}</Project>
       <Name>OsInfo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Desktop\ObscureWare.Console.Root.Desktop.csproj">
+      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
+      <Name>ObscureWare.Console.Root.Desktop</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

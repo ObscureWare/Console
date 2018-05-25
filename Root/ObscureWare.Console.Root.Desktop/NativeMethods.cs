@@ -38,8 +38,8 @@ namespace ObscureWare.Console.Root.Desktop
     {
         // ReSharper disable InconsistentNaming (PInvoke structures named accordingly to win.h definitions...)
 
-        public const int STD_OUTPUT_HANDLE = -11;                           // per WinBase.h
-        public static readonly IntPtr INVALID_HANDLE = new IntPtr(-1);      // per WinBase.h
+        public const int STD_OUTPUT_HANDLE = -11; // per WinBase.h
+        public static readonly IntPtr INVALID_HANDLE = new IntPtr(-1); // per WinBase.h
 
         [StructLayout(LayoutKind.Sequential)]
         internal struct COORD
@@ -125,10 +125,12 @@ namespace ObscureWare.Console.Root.Desktop
         public static extern bool CloseHandle(IntPtr hObject);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool GetConsoleScreenBufferInfoEx(IntPtr hConsoleOutput, ref CONSOLE_SCREEN_BUFFER_INFO_EX csbe);
+        public static extern bool GetConsoleScreenBufferInfoEx(IntPtr hConsoleOutput,
+            ref CONSOLE_SCREEN_BUFFER_INFO_EX csbe);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool SetConsoleScreenBufferInfoEx(IntPtr hConsoleOutput, ref CONSOLE_SCREEN_BUFFER_INFO_EX csbe);
+        public static extern bool SetConsoleScreenBufferInfoEx(IntPtr hConsoleOutput,
+            ref CONSOLE_SCREEN_BUFFER_INFO_EX csbe);
 
         [DllImport("user32")]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter,
@@ -140,6 +142,38 @@ namespace ObscureWare.Console.Root.Desktop
         public const int SWP_NOZORDER = 0x4;
         public const int SWP_NOACTIVATE = 0x10;
 
+        [DllImport("kernel32.dll")]
+        public static extern bool GetConsoleMode(IntPtr hConsoleHandle, out uint lpMode);
+
+
+        [DllImport("kernel32.dll")]
+        public static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint dwMode);
+
         // ReSharper restore InconsistentNaming
     }
+
+    [Flags]
+    internal enum ConsoleInputModes : uint
+    {
+        ENABLE_PROCESSED_INPUT = 0x0001,
+        ENABLE_LINE_INPUT = 0x0002,
+        ENABLE_ECHO_INPUT = 0x0004,
+        ENABLE_WINDOW_INPUT = 0x0008,
+        ENABLE_MOUSE_INPUT = 0x0010,
+        ENABLE_INSERT_MODE = 0x0020,
+        ENABLE_QUICK_EDIT_MODE = 0x0040,
+        ENABLE_EXTENDED_FLAGS = 0x0080,
+        ENABLE_AUTO_POSITION = 0x0100,
+    }
+
+    [Flags]
+    internal enum ConsoleOutputModes : uint
+    {
+        ENABLE_PROCESSED_OUTPUT = 0x0001,
+        ENABLE_WRAP_AT_EOL_OUTPUT = 0x0002,
+        ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004,
+        DISABLE_NEWLINE_AUTO_RETURN = 0x0008,
+        ENABLE_LVB_GRID_WORLDWIDE = 0x0010,
+    }
+
 }

@@ -30,6 +30,7 @@ namespace ObscureWare.Console.Root.Desktop
 {
     using System;
     using System.Drawing;
+    using System.Runtime.InteropServices;
     using System.Text;
     using System.Windows.Forms;
     using Conditions;
@@ -63,6 +64,8 @@ namespace ObscureWare.Console.Root.Desktop
 
             this.WindowWidth = Console.WindowWidth;
             this.WindowHeight = Console.WindowHeight;
+
+            this.TryTurningVirtualConsoleMode();
         }
 
         /// <summary>
@@ -104,6 +107,8 @@ namespace ObscureWare.Console.Root.Desktop
 
             this.WindowWidth = Console.WindowWidth;
             this.WindowHeight = Console.WindowHeight;
+
+            this.TryTurningVirtualConsoleMode();
         }
 
         public bool IsExcutedAsChild
@@ -142,6 +147,8 @@ namespace ObscureWare.Console.Root.Desktop
 
             this.WindowWidth = Console.WindowWidth;
             this.WindowHeight = Console.WindowHeight;
+
+            this.TryTurningVirtualConsoleMode();
         }
 
         private void SetConsoleWindowToFullScreen()
@@ -158,8 +165,15 @@ namespace ObscureWare.Console.Root.Desktop
         public void WriteText(int x, int y, string text, Color foreColor, Color bgColor)
         {
             this.SetCursorPosition(x, y);
-            this.SetColors(foreColor, bgColor);
-            this.WriteText(text);
+            if (this.VirtualConsoleEnabled)
+            {
+                Console.Write($"\x1b[38;2;{foreColor.R};{foreColor.G};{foreColor.B};48;2;{bgColor.R};{bgColor.G};{bgColor.B}m{text}");
+            }
+            else
+            {
+                this.SetColors(foreColor, bgColor);
+                this.WriteText(text);
+            }
         }
 
         /// <inheritdoc />
@@ -193,8 +207,15 @@ namespace ObscureWare.Console.Root.Desktop
         /// <inheritdoc />
         public void SetColors(Color foreColor, Color bgColor)
         {
-            Console.ForegroundColor = this._controller.CloseColorFinder.FindClosestColor(foreColor);
-            Console.BackgroundColor = this._controller.CloseColorFinder.FindClosestColor(bgColor);
+            if (this.VirtualConsoleEnabled)
+            {
+                Console.Write($"\x1b[38;2;{foreColor.R};{foreColor.G};{foreColor.B};48;2;{bgColor.R};{bgColor.G};{bgColor.B}m");
+            }
+            else
+            {
+                Console.ForegroundColor = this._controller.CloseColorFinder.FindClosestColor(foreColor);
+                Console.BackgroundColor = this._controller.CloseColorFinder.FindClosestColor(bgColor);
+            }
         }
 
         /// <inheritdoc />
@@ -206,8 +227,15 @@ namespace ObscureWare.Console.Root.Desktop
         /// <inheritdoc />
         public void WriteText(ConsoleFontColor colors, string text)
         {
-            this.SetColors(colors.ForeColor, colors.BgColor);
-            Console.Write(text);
+            if (this.VirtualConsoleEnabled)
+            {
+                Console.Write($"\x1b[38;2;{colors.ForeColor.R};{colors.ForeColor.G};{colors.ForeColor.B};48;2;{colors.BgColor.R};{colors.BgColor.G};{colors.BgColor.B}m{text}");
+            }
+            else
+            {
+                this.SetColors(colors.ForeColor, colors.BgColor);
+                Console.Write(text);
+            }
         }
 
         /// <inheritdoc />
@@ -291,5 +319,37 @@ namespace ObscureWare.Console.Root.Desktop
         {
             System.Console.CursorVisible = true;
         }
+
+        public void TryTurningVirtualConsoleMode()
+        {
+            this.VirtualConsoleEnabled = false;
+
+            var hConsoleOutput = NativeMethods.GetStdHandle(NativeMethods.STD_OUTPUT_HANDLE); // 7
+            if (hConsoleOutput == NativeMethods.INVALID_HANDLE)
+            {
+                throw new SystemException("GetStdHandle->WinError: #" + Marshal.GetLastWin32Error());
+            }
+
+            uint dwMode;
+            if (!NativeMethods.GetConsoleMode(hConsoleOutput, out dwMode))
+            {
+                throw new SystemException("GetStdHandle->WinError: #" + Marshal.GetLastWin32Error());
+            }
+
+            if ((dwMode & (uint)ConsoleOutputModes.ENABLE_VIRTUAL_TERMINAL_PROCESSING) == (uint)ConsoleOutputModes.ENABLE_VIRTUAL_TERMINAL_PROCESSING)
+            {
+                this.VirtualConsoleEnabled = true;
+            }
+            dwMode |= (uint)ConsoleOutputModes.ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+            if (!NativeMethods.SetConsoleMode(hConsoleOutput, dwMode))
+            {
+                // TODO: warn NativeMethods.GetLastError();
+                return;
+            }
+
+            this.VirtualConsoleEnabled = true;
+        }
+
+        public bool VirtualConsoleEnabled { get; private set; }
     }
 }

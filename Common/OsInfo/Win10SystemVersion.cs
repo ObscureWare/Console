@@ -21,6 +21,8 @@
 
         public bool IsWindows10 => _isWindows10;
 
+        public bool IsMobile => _isMobile;
+
         public bool IsThreshold1Version => _isWindows10 && !_isMobile && _buildNumber < 10240;
 
         public bool HasNovemberUpdate => _isWindows10 && ((!_isMobile && _buildNumber > 10240) || _isMobile);
@@ -34,6 +36,7 @@
         public bool HasApril2018Update => _isWindows10 && ((!_isMobile && _buildNumber > 16299) || (_isMobile && _buildNumber > 15254)); // TODO: update when changed
 
         public bool HasRedstone5Update => _isWindows10 && ((!_isMobile && _buildNumber > 17134)); // TODO: update when changed
+
 
         // TODO	Version 1809 and more
 

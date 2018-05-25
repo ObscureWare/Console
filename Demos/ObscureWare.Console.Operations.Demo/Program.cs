@@ -66,10 +66,10 @@ namespace ObscureWare.Console.Operations.Demo
 
             ConsoleOperations ops = new ConsoleOperations(console);
 
-            //SplitterTest();
-            //PrintColorsMessages(console);
-            //PrintAllNamedColors(controller, console);
-            //PrintFrames(ops, console);
+            SplitterTest();
+            PrintColorsMessages(console);
+            PrintAllNamedColors(controller, console);
+            PrintFrames(ops, console);
             PrintTables(console);
 
             SimulateConsole(console);
@@ -299,16 +299,15 @@ namespace ObscureWare.Console.Operations.Demo
 
         private static void PrintAllNamedColors(ConsoleController controller, IConsole console)
         {
-            var props =
-                typeof(Color).GetProperties(BindingFlags.Static | BindingFlags.Public)
+            var props = typeof(Color).GetProperties(BindingFlags.Static | BindingFlags.Public)
                     .Where(p => p.PropertyType == typeof(Color));
             foreach (var propertyInfo in props)
             {
                 Color c = (Color)propertyInfo.GetValue(null);
                 ConsoleColor cc = controller.CloseColorFinder.FindClosestColor(c);
-                Console.ForegroundColor = cc;
-                Console.WriteLine("{0,-25} {1,-18} #{2,-8:X}", propertyInfo.Name, Enum.GetName(typeof(ConsoleColor), cc),
-                    c.ToArgb());
+
+                console.WriteLine(new ConsoleFontColor(c, Color.Black),
+                    string.Format("{0,-25} {1,-18} #{2,-8:X}", propertyInfo.Name, Enum.GetName(typeof(ConsoleColor), cc), c.ToArgb()));
             }
 
             Console.ReadLine();
