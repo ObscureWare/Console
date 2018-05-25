@@ -8,9 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>ObscureWare.Console.Operations.Demo</RootNamespace>
     <AssemblyName>ObscureWare.Console.Operations.Demo</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -70,7 +71,7 @@
       <Name>ObscureWare.Console.Operations.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Desktop\ObscureWare.Console.Root.Desktop.csproj">
-      <Project>{aaff5245-d9b6-4ab5-b67f-68b38a578d82}</Project>
+      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
       <Name>ObscureWare.Console.Root.Desktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">

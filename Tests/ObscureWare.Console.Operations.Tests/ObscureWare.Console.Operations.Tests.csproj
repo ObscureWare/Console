@@ -10,10 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ObscureWare.Console.Operations.Tests</RootNamespace>
     <AssemblyName>ObscureWare.Console.Operations.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,9 +42,6 @@
     </Reference>
     <Reference Include="Moq, Version=4.7.145.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Moq.4.7.145\lib\net45\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="ObscureWare.Console.Root.Desktop, Version=0.4.0.16785, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ObscureWare.Console.Root.Desktop.0.4.0.16785\lib\net461\ObscureWare.Console.Root.Desktop.dll</HintPath>
     </Reference>
     <Reference Include="ObscureWare.Console.Root.Shared, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ObscureWare.Console.Root.Shared.0.4.0\lib\net461\ObscureWare.Console.Root.Shared.dll</HintPath>
