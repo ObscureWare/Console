@@ -23,18 +23,35 @@
     /// <summary>
     /// Provides detailed information about the host operating system.
     /// </summary>
-    public static class OsVersionInfo
+    public class OsVersion
     {
-        private static readonly Lazy<Win10Version> win10Version = new Lazy<Win10Version>(() => new Win10Version(IsWindows10(), MinorVersion));
+        private static readonly Lazy<Win10SystemVersion> win10Version = new Lazy<Win10SystemVersion>(() => new Win10SystemVersion(Info.IsWindows10(), Info.BuildVersion));
+
+        private static Lazy<OsVersion> info = new Lazy<OsVersion>(() => new OsVersion());
 
         private delegate bool IsWow64ProcessDelegate([In] IntPtr handle, [Out] out bool isWow64Process);
 
+        /// <summary>
+        /// Returns more info about Win10 updates
+        /// </summary>
+        public static Win10SystemVersion Win10SystemInfo => win10Version.Value;
+
+        /// <summary>
+        /// System information
+        /// </summary>
+        public static OsVersion Info => info.Value;
+
+
+        private OsVersion()
+        {
+
+        }
 
         #region BITS
         /// <summary>
         /// Determines if the current application is 32 or 64-bit.
         /// </summary>
-        public static SoftwareArchitecture ProgramBitness
+        public SoftwareArchitecture ProgramBitness
         {
             get
             {
@@ -64,7 +81,7 @@
         /// <summary>
         /// Determines if the current system / CPU are 32 or 64-bit.
         /// </summary>
-        public static SoftwareArchitecture SystemBitness
+        public SoftwareArchitecture SystemBitness
         {
             get
             {
@@ -92,7 +109,7 @@
         /// <summary>
         /// Determines if the current processor is 32 or 64-bit.
         /// </summary>
-        public static ProcessorArchitecture ProcessorBits
+        public ProcessorArchitecture ProcessorBitness
         {
             get
             {
@@ -131,11 +148,11 @@
 
         #region EDITION
 
-        private static string _sEdition;
+        private string _sEdition;
         /// <summary>
         /// Gets the edition of the operating system running on this computer.
         /// </summary>
-        public static string Edition
+        public string Edition
         {
             get
             {
@@ -480,11 +497,11 @@
 
         #region NAME
 
-        private static string s_Name;
+        private string s_Name;
         /// <summary>
         /// Gets the name of the operating system running on this computer.
         /// </summary>
-        public static string Name
+        public string Name
         {
             get
             {
@@ -675,7 +692,7 @@
         /// <summary>
         /// Gets the service pack information of the operating system running on this computer.
         /// </summary>
-        public static string ServicePack
+        public string ServicePack
         {
             get
             {
@@ -699,12 +716,12 @@
         /// <summary>
         /// Gets the build version number of the operating system running on this computer.
         /// </summary>
-        public static int BuildVersion => int.Parse(RegistryHelpers.RegistryRead(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber", "0"));
+        public int BuildVersion => int.Parse(RegistryHelpers.RegistryRead(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuildNumber", "0"));
 
         /// <summary>
         /// Gets the full version string of the operating system running on this computer.
         /// </summary>
-        public static string VersionString
+        public string VersionString
         {
             get
             {
@@ -715,7 +732,7 @@
         /// <summary>
         /// Gets the full version of the operating system running on this computer.
         /// </summary>
-        public static Version Version
+        public Version Version
         {
             get
             {
@@ -728,7 +745,7 @@
         /// <summary>
         /// Gets the major version number of the operating system running on this computer.
         /// </summary>
-        public static int MajorVersion
+        public int MajorVersion
         {
             get
             {
@@ -753,7 +770,7 @@
         /// <summary>
         /// Gets the minor version number of the operating system running on this computer.
         /// </summary>
-        public static int MinorVersion
+        public int MinorVersion
         {
             get
             {
@@ -778,7 +795,7 @@
         /// <summary>
         /// Gets the revision version number of the operating system running on this computer.
         /// </summary>
-        public static int RevisionVersion
+        public int RevisionVersion
         {
             get
             {
@@ -790,18 +807,13 @@
             }
         }
 
-        /// <summary>
-        /// Returns more info about Win10 updates
-        /// </summary>
-        public static Win10Version Win10Version => win10Version.Value;
-
         #endregion REVISION
 
         #endregion VERSION
 
         #region 64 BIT OS DETECTION
 
-        private static IsWow64ProcessDelegate GetIsWow64ProcessDelegate()
+        private IsWow64ProcessDelegate GetIsWow64ProcessDelegate()
         {
             IntPtr handle = NativeMethods.LoadLibrary("kernel32");
 
@@ -818,7 +830,7 @@
             return null;
         }
 
-        private static bool Is32BitProcessOn64BitProcessor()
+        private bool Is32BitProcessOn64BitProcessor()
         {
             IsWow64ProcessDelegate fnDelegate = GetIsWow64ProcessDelegate();
 
@@ -842,7 +854,7 @@
 
         #region Windows 10 Detection
 
-        private static bool IsWindows10()
+        private bool IsWindows10()
         {
             string productName = RegistryHelpers.RegistryRead(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "");
             if (productName.StartsWith("Windows 10", StringComparison.OrdinalIgnoreCase))

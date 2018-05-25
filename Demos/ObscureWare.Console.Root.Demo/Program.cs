@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ObscureWare.Console.Root.Demo
+﻿namespace ObscureWare.Console.Root.Demo
 {
+    using OsInfo;
+
     using Console = System.Console;
 
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(OsInfo.OsVersionInfo.Win10Version.HasApril2018Update);
+
+            //Console.WriteLine(OsVersion.Win10SystemInfo.HasApril2018Update);
         }
     }
 }
