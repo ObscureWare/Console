@@ -36,6 +36,9 @@
     <Reference Include="Conditions, Version=2.1.0.24, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Conditions.2.1.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Conditions.dll</HintPath>
     </Reference>
+    <Reference Include="ObscureWare.Console.Root.Shared, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ObscureWare.Console.Root.Shared.0.4.0\lib\net461\ObscureWare.Console.Root.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="Shouldly, Version=2.8.3.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Shouldly.2.8.3\lib\net451\Shouldly.dll</HintPath>
     </Reference>
@@ -83,10 +86,6 @@
     <ProjectReference Include="..\..\Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj">
       <Project>{3F6C7A65-7F28-41B8-A451-6448A86CED47}</Project>
       <Name>ObscureWare.Console.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
-      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
-      <Name>ObscureWare.Console.Root.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -30,6 +30,7 @@ namespace ObscureWare.Console.Root.Desktop
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Drawing;
     using System.Runtime.InteropServices;
     using Conditions;
@@ -45,11 +46,17 @@ namespace ObscureWare.Console.Root.Desktop
 
         private CloseColorFinder _closeColorFinder;
 
+        // https://blogs.msdn.microsoft.com/commandline/2016/09/22/24-bit-color-in-the-windows-console/
+        // https://github.com/bitcrazed/24bit-color
+        // TODO: use VT Sequences?
+
         /// <summary>
         /// Initializes new instance of ConsoleColorsHelper class
         /// </summary>
         public ConsoleController()
         {
+            IntPtr handle = Process.GetCurrentProcess().MainWindowHandle;
+
             // TODO: second instance created is crashing. Find out why and how to fix it / prevent. In the worst case - hidden control instance singleton
             // Not very important, can wait
             this._hConsoleOutput = NativeMethods.GetStdHandle(NativeMethods.STD_OUTPUT_HANDLE); // 7
@@ -91,7 +98,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// </summary>
         /// <param name="color">Console named color</param>
         /// <param name="rgbColor">New RGB value to be used under this color name</param>
-        /// <remarks>For mutliple colors change rather use <see cref="ReplaceConsoleColors"/> instead!</remarks>
+        /// <remarks>For multiple colors change rather use <see cref="ReplaceConsoleColors"/> instead!</remarks>
         public void ReplaceConsoleColor(ConsoleColor color, Color rgbColor)
         {
             var csbe = this.GetConsoleScreenBufferInfoEx();

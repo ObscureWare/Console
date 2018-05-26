@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ObscureWare.Console.Commands.Demo</RootNamespace>
     <AssemblyName>ObscureWare.Console.Commands.Demo</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <SccProjectName>SAK</SccProjectName>
@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Conditions, Version=2.1.0.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Conditions.2.1.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Conditions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -88,7 +91,7 @@
       <Project>{ebf3d264-6875-49ef-9218-9ceb9bb7ad0e}</Project>
       <Name>ObscureWare.Console.Operations.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Desktop.csproj">
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Desktop\ObscureWare.Console.Root.Desktop.csproj">
       <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
       <Name>ObscureWare.Console.Root.Desktop</Name>
     </ProjectReference>

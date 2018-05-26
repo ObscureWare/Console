@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ObscureWare.Console.Root.Tests</RootNamespace>
     <AssemblyName>ObscureWare.Console.Root.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,20 +57,31 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj">
       <Project>{3f6c7a65-7f28-41b8-a451-6448a86ced47}</Project>
       <Name>ObscureWare.Console.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Framework\ObscureWare.Console.Root.Desktop.csproj">
-      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
+    <ProjectReference Include="..\..\Common\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj">
+      <Project>{bf939ea3-3af8-4f85-8539-28f5ab5a7347}</Project>
+      <Name>ObscureWare.Tests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Desktop\ObscureWare.Console.Root.Desktop.csproj">
+      <Project>{aaff5245-d9b6-4ab5-b67f-68b38a578d82}</Project>
       <Name>ObscureWare.Console.Root.Desktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
-      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
+      <Project>{116bb296-d09b-47d6-9787-aff751928152}</Project>
       <Name>ObscureWare.Console.Root.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObscureWare.Console.TestShared\ObscureWare.Console.TestShared.csproj">
+      <Project>{7e00e1cc-1894-4ca0-a567-67200b6b6388}</Project>
+      <Name>ObscureWare.Console.TestShared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

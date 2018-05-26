@@ -26,6 +26,7 @@
 //   Defines the PredefinedColorSets class with predefined sets of colors
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace ObscureWare.Console.Root.Desktop
 {
     using System;
