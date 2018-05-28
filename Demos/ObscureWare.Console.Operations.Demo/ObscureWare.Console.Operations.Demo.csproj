@@ -86,6 +86,10 @@
       <Project>{7E00E1CC-1894-4CA0-A567-67200B6B6388}</Project>
       <Name>ObscureWare.Console.TestShared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Shared.csproj">
+      <Project>{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}</Project>
+      <Name>ObscureWare.Console.Demo.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

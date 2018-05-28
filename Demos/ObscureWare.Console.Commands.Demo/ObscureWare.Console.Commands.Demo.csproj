@@ -99,6 +99,10 @@
       <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
       <Name>ObscureWare.Console.Root.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Shared.csproj">
+      <Project>{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}</Project>
+      <Name>ObscureWare.Console.Demo.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,6 +3,7 @@
     using System;
     using System.Drawing;
 
+    using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Interfaces;
     using ObscureWare.Console.Root.Desktop;
@@ -20,12 +21,12 @@
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, Color.Gold),
                 new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue, Color.MidnightBlue));
 
-            IConsole console = new SystemConsole(controller, isFullScreen: false);
+            IConsole console = new SystemConsole(controller, ConsoleStartConfiguration.Colorfull);
             ConsoleOperations ops = new ConsoleOperations(console);
 
             TestCommands test = new TestCommands(console);
 
-            console.ReadLine();
+            console.WaitBeforeQuit();
         }
     }
 }

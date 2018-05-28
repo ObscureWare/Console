@@ -35,6 +35,7 @@ namespace ObscureWare.Console.Operations.Demo
     using System.Linq;
     using System.Reflection;
 
+    using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Implementation.TablePrinters;
     using ObscureWare.Console.Operations.Implementation.Tables;
@@ -62,7 +63,7 @@ namespace ObscureWare.Console.Operations.Demo
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, Color.Gold),
                 new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue, Color.MidnightBlue));
 
-            IConsole console = new SystemConsole(controller, isFullScreen: false);
+            IConsole console = new SystemConsole(controller, ConsoleStartConfiguration.Colorfull);
 
             ConsoleOperations ops = new ConsoleOperations(console);
 
@@ -74,8 +75,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             SimulateConsole(console);
 
-            Console.WriteLine("Holding console window open. Press ENTER to quit for good.");
-            console.ReadLine();
+            console.WaitBeforeQuit();
         }
 
         // TODO: write simulation console to automatically test complex printing functions results (content only, no color abstracting)

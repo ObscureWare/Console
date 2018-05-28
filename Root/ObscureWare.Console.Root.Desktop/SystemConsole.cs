@@ -43,6 +43,7 @@ namespace ObscureWare.Console.Root.Desktop
     public class SystemConsole : IConsole
     {
         private readonly ConsoleController _controller;
+        private readonly ConsoleStartConfiguration _configuration;
 
         /// <summary>
         /// In characters...
@@ -53,29 +54,23 @@ namespace ObscureWare.Console.Root.Desktop
         /// The most safe constructor - uses default window and buffer sizes
         /// </summary>
         /// <param name="controller"></param>
-        public SystemConsole(ConsoleController controller)
+        /// <param name="config"></param>
+        public SystemConsole(ConsoleController controller, ConsoleStartConfiguration config = null)
         {
             controller.Requires(nameof(controller)).IsNotNull();
-
+            config = config ?? ConsoleStartConfiguration.Colorfull; // surprise ;-)
             this._controller = controller;
+            this._configuration = config;
+
+            if (config.TryVirtualConsole)
+            {
+                this.TryTurningVirtualConsoleMode();
+            }
 
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
 
-            this.WindowWidth = Console.WindowWidth;
-            this.WindowHeight = Console.WindowHeight;
-
-            this.TryTurningVirtualConsoleMode();
-        }
-
-        /// <summary>
-        /// Full-screen constructor, when flag value is TRUE. If no - it's just constructs 120x40 window with 120x500 buffer (larger than default).
-        /// </summary>
-        /// <param name="controller"></param>
-        /// <param name="isFullScreen"></param>
-        public SystemConsole(ConsoleController controller, bool isFullScreen) : this(controller)
-        {
-            if (isFullScreen)
+            if (config.RunFullScreen)
             {
                 this.SetConsoleWindowToFullScreen();
 
@@ -90,7 +85,8 @@ namespace ObscureWare.Console.Root.Desktop
                 Console.WindowWidth = this.WindowSize.X;
                 Console.BufferHeight = this.WindowSize.Y;
                 Console.WindowHeight = this.WindowSize.Y;
-                Console.SetWindowPosition(0, 0);
+
+                Console.SetWindowPosition(0, 0); // move again
             }
             else
             {
@@ -107,8 +103,6 @@ namespace ObscureWare.Console.Root.Desktop
 
             this.WindowWidth = Console.WindowWidth;
             this.WindowHeight = Console.WindowHeight;
-
-            this.TryTurningVirtualConsoleMode();
         }
 
         public bool IsExcutedAsChild
@@ -122,7 +116,7 @@ namespace ObscureWare.Console.Root.Desktop
                 }
                 catch
                 {
-                    return true; // safe assumption in case of failure ( API changed) - do not resize.
+                    return true; // safe assumption in case of failure (API changed) - do not resize.
                 }
             }
         }

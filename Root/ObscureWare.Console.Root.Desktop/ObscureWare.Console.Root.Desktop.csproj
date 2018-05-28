@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleController.cs" />
+    <Compile Include="ConsoleStartConfiguration.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="ParentProcessUtilities.cs" />
     <Compile Include="PredefinedColorSets.cs" />

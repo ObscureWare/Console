@@ -51,7 +51,7 @@
         /// <summary>
         /// Determines if the current application is 32 or 64-bit.
         /// </summary>
-        public SoftwareArchitecture ProgramBitness
+        public SoftwareArchitecture ApplicationBitness
         {
             get
             {

@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net47</TargetFramework>
     <AssemblyName>ObscureWare.Console.Root.Shared</AssemblyName>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
     <FileVersion>0.4.0.0</FileVersion>
-    <Version>0.4.0</Version>
+    <Version>1.0.0</Version>
     <Authors>Sebastian Gruchacz</Authors>
     <Description>Shared library for console operations</Description>
-    <Copyright>Copyright Sebastian Gruchacz 2017</Copyright>
+    <Copyright>Copyright Sebastian Gruchacz 2018</Copyright>
     <Company>ObscureWare Solutions</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseUrl>https://github.com/ObscureWare/Console/blob/master/LICENSE</PackageLicenseUrl>
