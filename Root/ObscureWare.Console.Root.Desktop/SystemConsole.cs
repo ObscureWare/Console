@@ -92,15 +92,30 @@ namespace ObscureWare.Console.Root.Desktop
             {
                 if (!this.IsExcutedAsChild)
                 {
-                    // set console (buffer) little bigger by default (not when child process of cmd...)
+                    // set console (buffer) little bigger by default (not when child process of cmd... - in such case keep the size)
                     // TODO: improve this code in case of already configured larger window...
-                    Console.BufferWidth = 120;
-                    Console.BufferHeight = 500;
-                    Console.WindowWidth = 120;
-                    Console.WindowHeight = 40;
+
+                    int currentBufferWidth = Console.BufferWidth;
+                    int currentBufferHeight = Console.BufferHeight;
+                    int currentWindowWidth = Console.WindowWidth;
+                    int currentWindowHeight = Console.WindowHeight;
+
+                    // window cannot be greater than buffer, also - cannot create buffer smaller that current window (because it's window to the buffer)
+                    int targetBufferWidth = Math.Max(Math.Max((int) currentBufferWidth, (int) config.DesiredBufferRowWidth), (int) config.DesiredRowWidth);
+                    int targetRowWidth = Math.Min(Math.Max((int)currentWindowWidth, (int)config.DesiredRowWidth), targetBufferWidth);
+                    int targetBufferHeight = Math.Max(Math.Max((int)currentBufferHeight, (int)config.DesiredBufferRowCount), (int)config.DesiredRowCount);
+                    int targetRowCount = Math.Min(Math.Max((int)currentWindowHeight, (int)config.DesiredRowCount), targetBufferHeight);
+
+
+                    Console.WindowWidth = Math.Min(targetRowWidth, Console.LargestWindowWidth - 2);
+                    Console.WindowHeight = Math.Min(targetRowCount, Console.LargestWindowHeight - 1);
+
+                    Console.BufferWidth = targetBufferWidth;
+                    Console.BufferHeight = targetBufferHeight;
                 }
             }
 
+            // read parameters after resizing
             this.WindowWidth = Console.WindowWidth;
             this.WindowHeight = Console.WindowHeight;
         }
@@ -119,30 +134,6 @@ namespace ObscureWare.Console.Root.Desktop
                     return true; // safe assumption in case of failure (API changed) - do not resize.
                 }
             }
-        }
-
-        /// <summary>
-        /// Custom sized console
-        /// </summary>
-        /// <param name="controller"></param>
-        /// <param name="bufferSize">Width and height of the buffer. Must be >= window size. Will be resized automatically if not fits...</param>
-        /// <param name="windowSize">Width and height of the window (In columns and rows, depends of font and screen resolution!). Cannot exceed screen size. Will be automatically trimmed.</param>
-        public SystemConsole(ConsoleController controller, Point bufferSize, Point windowSize) : this(controller)
-        {
-            windowSize.X = Math.Min(windowSize.X, Console.LargestWindowWidth - 2);
-            windowSize.Y = Math.Min(windowSize.Y, Console.LargestWindowHeight - 1);
-            bufferSize.X = Math.Max(bufferSize.X, windowSize.X);
-            bufferSize.Y = Math.Max(bufferSize.Y, windowSize.Y);
-
-            Console.BufferWidth = bufferSize.X;
-            Console.WindowWidth = windowSize.X;
-            Console.BufferHeight = bufferSize.Y;
-            Console.WindowHeight = windowSize.Y;
-
-            this.WindowWidth = Console.WindowWidth;
-            this.WindowHeight = Console.WindowHeight;
-
-            this.TryTurningVirtualConsoleMode();
         }
 
         private void SetConsoleWindowToFullScreen()

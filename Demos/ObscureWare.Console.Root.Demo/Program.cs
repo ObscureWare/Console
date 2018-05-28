@@ -19,13 +19,16 @@
         private static void Main(string[] args)
         {
             var controller = new ConsoleController();
-            var console = new SystemConsole(controller, ConsoleStartConfiguration.Colorfull);
+            var console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
+            {
+                DesiredRowWidth = 128 // for bars
+            });
 
             console.PrintStatus("Virtual Console enabled", console.VirtualConsoleEnabled, StatusStyles.Default, StatusStyles.Default.SelectFlagStyle(console.VirtualConsoleEnabled));
             console.WriteLine();
 
             //PrintOsVersionDemo(console);
-            //RainbowColors(console);
+            RainbowColors(console);
 
 
             // color-full tests
