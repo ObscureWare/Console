@@ -67,7 +67,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             ConsoleOperations ops = new ConsoleOperations(console);
 
-            SplitterTest();
+            SplitterTest(console);
             PrintColorsMessages(console);
             PrintAllNamedColors(controller, console);
             PrintFrames(ops, console);
@@ -102,15 +102,17 @@ namespace ObscureWare.Console.Operations.Demo
             }
         }
 
-        private static void SplitterTest()
+        private static void SplitterTest(IConsole console)
         {
             for (int i = 0; i < 20; i++)
             {
                 string str = TestTools.AlphaSentence.BuildRandomStringFrom(20, 50);
                 string[] split = str.SplitTextToFit(15).ToArray();
 
-                Console.WriteLine(str + " => " + string.Join("|", split));
+                console.WriteLine(str + " => " + string.Join("|", split));
             }
+
+            console.WaitForNextPage();
         }
 
         private static void PrintTables(IConsole console)
@@ -213,7 +215,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             // TODO: PrintTableAt(dt, x, y);
 
-            Console.ReadLine();
+            console.WaitForNextPage();
 
             console.WriteLine(tableFrameColor, "Large tables");
             Console.WriteLine();
@@ -259,7 +261,9 @@ namespace ObscureWare.Console.Operations.Demo
             Console.WriteLine();
 
             console.WriteLine(tableFrameColor, "");
-            Console.ReadLine();
+
+
+            console.WaitForNextPage();
         }
 
         private static void PrintFrames(ConsoleOperations ops, IConsole console)
@@ -293,7 +297,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             console.WriteText(0, 20, "", Color.Gray, Color.Black); // reset
 
-            Console.ReadLine();
+            console.WaitForNextPage();
             console.Clear();
         }
 
@@ -310,7 +314,7 @@ namespace ObscureWare.Console.Operations.Demo
                     string.Format("{0,-25} {1,-18} #{2,-8:X}", propertyInfo.Name, Enum.GetName(typeof(ConsoleColor), cc), c.ToArgb()));
             }
 
-            Console.ReadLine();
+            console.WaitForNextPage();
             console.Clear();
         }
 
@@ -330,7 +334,7 @@ namespace ObscureWare.Console.Operations.Demo
             console.WriteText(0, 12, "test message 3d ds sfsdfsad ", Color.DimGray, Color.Black);
             console.WriteText(0, 20, "", Color.Gray, Color.Black); // reset
 
-            Console.ReadLine();
+            console.WaitForNextPage();
             console.Clear();
         }
     }
