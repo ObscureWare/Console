@@ -1,5 +1,9 @@
 ﻿namespace ObscureWare.Console.Root.Demo
 {
+    using System;
+    using System.Drawing;
+    using System.Linq;
+
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Root.Desktop;
     using ObscureWare.Console.Root.Shared;
@@ -8,18 +12,20 @@
 
     using Console = System.Console;
 
-    class Program
+    public static class Program
     {
         private const byte ESC = 0x1B;
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var controller = new ConsoleController();
             var console = new SystemConsole(controller, ConsoleStartConfiguration.Colorfull);
 
-            PrintOsVersionDemo(console);
+            console.PrintStatus("Virtual Console enabled", console.VirtualConsoleEnabled, StatusStyles.Default, StatusStyles.Default.SelectFlagStyle(console.VirtualConsoleEnabled));
+            console.WriteLine();
 
-            console.WaitForNextPage();
+            //PrintOsVersionDemo(console);
+            //RainbowColors(console);
 
 
             // color-full tests
@@ -32,6 +38,126 @@
 
             console.WaitBeforeQuit();
         }
+
+        #region 24bit colors
+
+        // based on https://github.com/bitcrazed/24bit-color/blob/master/24-bit-color.sh
+        private static void RainbowColors(SystemConsole console)
+        {
+            Color foreColor = Color.White;
+            Color bgColor = Color.Black;
+
+            console.WriteLine(@"Based on: https://github.com/bitcrazed/24bit-color/blob/master/24-bit-color.sh");
+            NextLine(console);
+
+            foreach (int r in Enumerable.Range(0, 127))
+            {
+                console.SetColors(foreColor, Color.FromArgb(r, 0, 0));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+
+            foreach (int r in Enumerable.Range(128, 127).Reverse())
+            {
+                console.SetColors(foreColor, Color.FromArgb(r, 0, 0));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+
+            foreach (int g in Enumerable.Range(0, 127))
+            {
+                console.SetColors(foreColor, Color.FromArgb(0, g, 0));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+
+            foreach (int g in Enumerable.Range(128, 127).Reverse())
+            {
+                console.SetColors(foreColor, Color.FromArgb(0, g, 0));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+
+            foreach (int b in Enumerable.Range(0, 127))
+            {
+                console.SetColors(foreColor, Color.FromArgb(0, 0, b));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+
+            foreach (int b in Enumerable.Range(128, 127).Reverse())
+            {
+                console.SetColors(foreColor, Color.FromArgb(0, 0, b));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+            NextLine(console);
+
+            foreach (int i in Enumerable.Range(0, 127))
+            {
+                console.SetColors(foreColor, BuildRainbowColor(i));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+
+            foreach (int i in Enumerable.Range(128, 127).Reverse())
+            {
+                console.SetColors(foreColor, BuildRainbowColor(i));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+
+
+            console.WaitForNextPage();
+        }
+
+        private static void NextLine(SystemConsole console)
+        {
+            Color foreColor = Color.White;
+            Color bgColor = Color.Black;
+
+            console.SetColors(foreColor, bgColor);
+            console.WriteLine();
+        }
+
+        /*
+        # Gives a color $1/255 % along HSV
+        # Who knows what happens when $1 is outside 0-255
+        # Echoes "$red $green $blue" where
+        # $red $green and $blue are integers
+        # ranging between 0 and 255 inclusive
+        */
+        private static Color BuildRainbowColor(int param1)
+        {
+            int h = param1 / 43;
+            int f = param1 - 43 * h;
+            int t = f * 255 / 43;
+            int q = 255 - t;
+
+            switch (h)
+            {
+                case 0: return Color.FromArgb(255, t, 0);
+                case 1: return Color.FromArgb(q, 255, 0);
+                case 2: return Color.FromArgb(0, 255, t);
+                case 3: return Color.FromArgb(0, q, 255);
+                case 4: return Color.FromArgb(t, 0, 255);
+                case 5: return Color.FromArgb(255, 0, q);
+
+                default: throw new InvalidOperationException(@"should never reach here");
+            }
+        }
+
+        #endregion
+
+        #region Sys Info
 
         private static void PrintOsVersionDemo(IConsole console)
         {
@@ -59,7 +185,16 @@
                 statusStyles.SelectFlagStyle(OsVersion.Win10SystemInfo.HasRedstone5Update));
             console.PrintStatus("IsThreshold1Version", OsVersion.Win10SystemInfo.IsThreshold1Version, statusStyles,
                 statusStyles.SelectFlagStyle(!OsVersion.Win10SystemInfo.IsThreshold1Version));
+
+            console.WaitForNextPage();
         }
+
+        #endregion Sys Info
+
+        #region Animations
+
+
+        #endregion Animations
     }
 
 
