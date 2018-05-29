@@ -27,7 +27,7 @@
             console.PrintStatus("Virtual Console enabled", console.VirtualConsoleEnabled, StatusStyles.Default, StatusStyles.Default.SelectFlagStyle(console.VirtualConsoleEnabled));
             console.WriteLine();
 
-            //PrintOsVersionDemo(console);
+            PrintOsVersionDemo(console);
             RainbowColors(console);
 
 
