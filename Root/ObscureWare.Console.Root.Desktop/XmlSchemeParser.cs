@@ -20,6 +20,7 @@
             "Ansi 4 Color",  // DARK_BLUE
             "Ansi 2 Color",  // DARK_GREEN
             "Ansi 6 Color",  // DARK_CYAN
+
             "Ansi 1 Color",  // DARK_RED
             "Ansi 5 Color",  // DARK_MAGENTA
             "Ansi 3 Color",  // DARK_YELLOW
@@ -132,7 +133,7 @@
         }
 
 
-        public ColorScheme ParseScheme(string schemeName, bool reportErrors = true)
+        public ColorScheme ParseScheme(string schemeName, bool throwExceptions = true)
         {
             XmlDocument xmlDoc = loadXmlScheme(schemeName); // Create an XML document object
             if (xmlDoc == null) return null;
@@ -157,9 +158,9 @@
             }
             if (colorsFound < NativeMethods.COLOR_TABLE_SIZE)
             {
-                if (reportErrors)
+                if (throwExceptions)
                 {
-                    // InvalidNumberOfColors 
+                    throw new InvalidOperationException($"Scheme file does not contain all expected {NativeMethods.COLOR_TABLE_SIZE} color definitions.");
                 }
                 success = false;
             }

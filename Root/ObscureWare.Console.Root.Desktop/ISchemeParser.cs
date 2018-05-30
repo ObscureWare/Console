@@ -11,6 +11,6 @@
     {
         string Name { get; }
 
-        ColorScheme ParseScheme(string schemeName, bool reportErrors = true);
+        ColorScheme ParseScheme(string schemeName, bool throwExceptions = true);
     }
 }
