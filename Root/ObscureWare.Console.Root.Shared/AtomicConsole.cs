@@ -13,78 +13,78 @@
 
         public AtomicConsole(IConsole innerConsole)
         {
-            _innerConsole = innerConsole ?? throw new ArgumentNullException(nameof(innerConsole));
+            this._innerConsole = innerConsole ?? throw new ArgumentNullException(nameof(innerConsole));
         }
 
         public void WriteText(int x, int y, string text, Color foreColor, Color bgColor)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.WriteText(x, y, text, foreColor, bgColor);
+                this._innerConsole.WriteText(x, y, text, foreColor, bgColor);
             }
         }
 
         public void Clear()
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.Clear();
+                this._innerConsole.Clear();
             }
         }
 
         public void WriteText(ConsoleFontColor colors, string text)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.WriteText(colors, text);
+                this._innerConsole.WriteText(colors, text);
             }
         }
 
         public void WriteText(string text)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.WriteText(text);
+                this._innerConsole.WriteText(text);
             }
         }
 
         public void WriteLine(ConsoleFontColor colors, string text)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.WriteLine(colors, text);
+                this._innerConsole.WriteLine(colors, text);
             }
         }
 
         public void WriteLine(string text)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.WriteLine(text);
+                this._innerConsole.WriteLine(text);
             }
         }
 
         public void SetColors(Color foreColor, Color bgColor)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.SetColors(foreColor, bgColor);
+                this._innerConsole.SetColors(foreColor, bgColor);
             }
         }
 
         public void SetCursorPosition(int x, int y)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.SetCursorPosition(x, y);
+                this._innerConsole.SetCursorPosition(x, y);
             }
         }
 
         public void WriteText(char character)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.WriteText(character);
+                this._innerConsole.WriteText(character);
             }
         }
 
@@ -92,60 +92,60 @@
 
         public Point GetCursorPosition()
         {
-            return _innerConsole.GetCursorPosition();
+            return this._innerConsole.GetCursorPosition();
         }
 
-        public int WindowHeight => _innerConsole.WindowHeight;
+        public int WindowHeight => this._innerConsole.WindowHeight;
 
-        public int WindowWidth => _innerConsole.WindowWidth;
+        public int WindowWidth => this._innerConsole.WindowWidth;
 
-        public ConsoleMode ConsoleMode => _innerConsole.ConsoleMode;
+        public ConsoleMode ConsoleMode => this._innerConsole.ConsoleMode;
 
         public string ReadLine()
         {
-            return _innerConsole.ReadLine();
+            return this._innerConsole.ReadLine();
         }
 
         public ConsoleKeyInfo ReadKey()
         {
-            return _innerConsole.ReadKey();
+            return this._innerConsole.ReadKey();
         }
 
-        public object AtomicHandle => _innerConsole.AtomicHandle;
+        public object AtomicHandle => this._innerConsole.AtomicHandle;
 
         public void HideCursor()
         {
-            _innerConsole.HideCursor();
+            this._innerConsole.HideCursor();
         }
 
         public void ShowCursor()
         {
-            _innerConsole.ShowCursor();
+            this._innerConsole.ShowCursor();
         }
 
         // ReSharper restore InconsistentlySynchronizedField
 
         public void WriteLine()
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.WriteLine();
+                this._innerConsole.WriteLine();
             }
         }
 
         public void SetColors(ConsoleFontColor style)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                _innerConsole.SetColors(style);
+                this._innerConsole.SetColors(style);
             }
         }
 
-        public void RunAtomicOperations(Action action)
+        public void RunAtomicOperations(Action<IConsole> action)
         {
-            lock (_innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle)
             {
-                action.Invoke();
+                action.Invoke(this);
             }
         }
     }
