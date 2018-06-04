@@ -34,6 +34,7 @@ namespace ObscureWare.Console.Operations.Demo
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+    using System.Threading;
 
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Gaming.Menu;
@@ -408,10 +409,11 @@ namespace ObscureWare.Console.Operations.Demo
             ConsoleMenuItem result = null;
             while (result == null || result.Code != exitGuid)
             {
-                result = menu.Focus();
+                result = menu.Focus(resetActiveItem: true);
                 console.SetCursorPosition(0, 0);
 
                 console.WriteText(new ConsoleFontColor(Color.BlanchedAlmond, Color.Black), $"Selected menu: {result.Caption}            ");
+                Thread.Sleep(1000);
             }
 
             console.ShowCursor();

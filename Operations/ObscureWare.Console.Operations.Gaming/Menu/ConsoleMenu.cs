@@ -49,15 +49,25 @@
         /// <summary>
         /// Activates menu.
         /// </summary>
+        /// <param name="resetActiveItem">When TRUE, currently active element highlight will be removed.</param>
         /// <returns>Finally activated menu item.</returns>
         /// <remarks>Note - it auto-hides cursor for better interaction, but does not restore it back on exit</remarks>
-        public ConsoleMenuItem Focus() // TODO: async?
+        public ConsoleMenuItem Focus(bool resetActiveItem = false) // TODO: async?
         {
             _console.HideCursor();
             this._selectedItem = this._activeItem ?? this._menuItems.FirstOrDefault();
             if (this._selectedItem != null)
             {
                 RenderSingleItem(this._selectedItem, _menuItems.IndexOf(this._selectedItem));
+            }
+            if (resetActiveItem)
+            {
+                var tempItem = this._activeItem;
+                if (tempItem != null)
+                {
+                    this._activeItem = null;
+                    RenderSingleItem(tempItem, _menuItems.IndexOf(tempItem));
+                }
             }
 
             ConsoleKey key = ConsoleKey.Escape;
