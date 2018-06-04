@@ -8,8 +8,8 @@ namespace ObscureWare.Console.Operations.Gaming.Menu
             this.PreviousItem = previousItem;
         }
 
-        public ConsoleMenuItem ActiveItem { get; private set; }
+        public ConsoleMenuItem ActiveItem { get; internal set; }
 
-        public ConsoleMenuItem PreviousItem { get; private set; }
+        public ConsoleMenuItem PreviousItem { get; internal set; }
     }
 }
