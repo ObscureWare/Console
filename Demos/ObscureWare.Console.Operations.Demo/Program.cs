@@ -35,6 +35,7 @@ namespace ObscureWare.Console.Operations.Demo
     using System.Linq;
     using System.Reflection;
     using System.Threading;
+    using System.Windows.Forms;
 
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Gaming.Menu;
@@ -51,6 +52,8 @@ namespace ObscureWare.Console.Operations.Demo
 
     using Tests;
     using ObscureWare.Console.TestShared;
+
+    using FrameStyle = Interfaces.Styles.FrameStyle;
 
     internal static class Program
     {
@@ -400,6 +403,7 @@ namespace ObscureWare.Console.Operations.Demo
                 DisabledItem = new ConsoleFontColor(Color.Gray, Color.Black),
                 NormalItem = new ConsoleFontColor(Color.WhiteSmoke, Color.Black),
                 SelectedItem = new ConsoleFontColor(Color.Black, Color.LightGray),
+                Alignment = HorizontalAlignment.Center
             };
 
 

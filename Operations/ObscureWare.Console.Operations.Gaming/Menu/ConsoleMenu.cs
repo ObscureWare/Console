@@ -13,6 +13,8 @@
     /// </summary>
     public class ConsoleMenu
     {
+        public const char ELLIPSIS_CHARACTER = '…';
+
         private readonly IAtomicConsole _console;
         private readonly Rectangle _availableArea;
         private readonly List<ConsoleMenuItem> _menuItems;
@@ -54,11 +56,11 @@
         /// <remarks>Note - it auto-hides cursor for better interaction, but does not restore it back on exit</remarks>
         public ConsoleMenuItem Focus(bool resetActiveItem = false) // TODO: async?
         {
-            _console.HideCursor();
+            this._console.HideCursor();
             this._selectedItem = this._activeItem ?? this._menuItems.FirstOrDefault();
             if (this._selectedItem != null)
             {
-                RenderSingleItem(this._selectedItem, _menuItems.IndexOf(this._selectedItem));
+                this.RenderSingleItem(this._selectedItem, this._menuItems.IndexOf(this._selectedItem));
             }
             if (resetActiveItem)
             {
@@ -66,7 +68,7 @@
                 if (tempItem != null)
                 {
                     this._activeItem = null;
-                    RenderSingleItem(tempItem, _menuItems.IndexOf(tempItem));
+                    this.RenderSingleItem(tempItem, this._menuItems.IndexOf(tempItem));
                 }
             }
 
@@ -97,11 +99,11 @@
                     var currentItemIndex = this.FindSelectedItem();
                     if (currentItemIndex != elementIndex)
                     {
-                        var tempItem = _selectedItem;
+                        var tempItem = this._selectedItem;
 
-                        _selectedItem = this._menuItems[elementIndex.Value];
+                        this._selectedItem = this._menuItems[elementIndex.Value];
 
-                        this.RenderSingleItem(_selectedItem, elementIndex.Value);
+                        this.RenderSingleItem(this._selectedItem, elementIndex.Value);
 
 
                         if (currentItemIndex.HasValue)
@@ -109,13 +111,13 @@
                             this.RenderSingleItem(tempItem, currentItemIndex.Value);
                         }
 
-                        this.OnItemChanged(new MenuItemChangedHandlerArgs(_selectedItem, tempItem));
+                        this.OnItemChanged(new MenuItemChangedHandlerArgs(this._selectedItem, tempItem));
                     }
                 }
             }
 
             this._activeItem = this._selectedItem;
-            RenderSingleItem(this._activeItem, _menuItems.IndexOf(this._activeItem));
+            this.RenderSingleItem(this._activeItem, this._menuItems.IndexOf(this._activeItem));
             this._selectedItem = null;
             this.RenderAll();
             return this._activeItem;
@@ -123,12 +125,12 @@
 
         private int? FindSelectedItem()
         {
-            if (_selectedItem == null)
+            if (this._selectedItem == null)
             {
                 return null;
             }
 
-            return this._menuItems.IndexOf(_selectedItem);
+            return this._menuItems.IndexOf(this._selectedItem);
         }
 
         private int? FindLastItem() // enabled items only
@@ -159,7 +161,7 @@
 
         private int? FindItemBelow()
         {
-            var selectedItemIndex = FindSelectedItem();
+            var selectedItemIndex = this.FindSelectedItem();
             if (selectedItemIndex.HasValue)
             {
                 for (int i = selectedItemIndex.Value + 1; i < this._menuItems.Count; i++)
@@ -178,7 +180,7 @@
 
         private int? FindItemAbove()
         {
-            var selectedItemIndex = FindSelectedItem();
+            var selectedItemIndex = this.FindSelectedItem();
             if (selectedItemIndex.HasValue)
             {
                 for (int i = selectedItemIndex.Value - 1; i >= 0; i--)
@@ -231,9 +233,35 @@
         private void RenderSingleItem(ConsoleMenuItem item, int yIndex)
         {
             // TODO: use Span<char> to optimize. Hopefully System.Console will receive such overload as well
-            var caption = (item.Caption.Length <= this._availableArea.Width)
-                ? item.Caption.PadRight(this._availableArea.Width, ' ') // want bg-color replacement after text as well
-                : item.Caption.Substring(0, this._availableArea.Width); // TODO: add elipsis? set style?
+            string caption = "###";
+            if (item.Caption.Length <= this._availableArea.Width)
+            {
+                switch (this._styling.Alignment)
+                {
+                    case System.Windows.Forms.HorizontalAlignment.Left:
+                    {
+                        caption = item.Caption.PadRight(this._availableArea.Width);
+                        break;
+                    }
+                    case System.Windows.Forms.HorizontalAlignment.Right:
+                    {
+                        caption = item.Caption.PadLeft(this._availableArea.Width);
+                        break;
+                    };
+                    case System.Windows.Forms.HorizontalAlignment.Center:
+                    {
+                        int padLeft = (this._availableArea.Width - item.Caption.Length) / 2;
+                        caption = item.Caption.PadLeft(padLeft + item.Caption.Length).PadRight(this._availableArea.Width);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                caption = (this._styling.AddEllipsisOnOverflow)
+                    ? item.Caption.Substring(0, this._availableArea.Width - 1) + ELLIPSIS_CHARACTER
+                    : item.Caption.Substring(0, this._availableArea.Width);
+            }
 
             this._console.RunAtomicOperations((c) =>
             {
