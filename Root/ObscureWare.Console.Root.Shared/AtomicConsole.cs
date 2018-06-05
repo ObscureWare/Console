@@ -146,7 +146,7 @@
         {
             lock (this._innerConsole.AtomicHandle) // TODO: is not locking properly? revise
             {
-                action.Invoke(this);
+                action.Invoke(this._innerConsole);
             }
         }
     }

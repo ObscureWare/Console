@@ -1,13 +1,17 @@
 ﻿namespace ObscureWare.Console.Operations.Demo
 {
     using System;
+    using System.Collections.Generic;
     using System.Drawing;
     using System.Threading;
     using System.Windows.Forms;
 
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Gaming.Menu;
+    using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Root.Shared;
+
+    using FrameStyle = ObscureWare.Console.Operations.Interfaces.Styles.FrameStyle;
 
     internal static class MenuDemos
     {
@@ -71,8 +75,16 @@
                 Alignment = HorizontalAlignment.Center
             };
 
+            var frameColors = new ConsoleFontColor(Color.Yellow, Color.Black);
+            var boxInnerColors = new ConsoleFontColor(Color.WhiteSmoke, Color.Black);
+            var frameStyle = new FrameStyle(frameColors, boxInnerColors, @"┌─┐││└─┘", ' ');
+
             var aConsole = new AtomicConsole(console);
-            int menuStartY = 10;
+            int menuStartY = 6;
+
+            var ops = new ConsoleOperations(aConsole);
+            ops.WriteTextBox(new Rectangle(4, menuStartY - 1, 27, menuItems.Length + 2), "", frameStyle);
+
             var menu = new ConsoleMenu(aConsole, new Rectangle(5, menuStartY, 25, 0), menuItems, menuStyling);
             menu.RenderAll();
 
@@ -82,7 +94,11 @@
                 result = menu.Focus(resetActiveItem: true);
 
                 aConsole.CleanLineSync(0, Color.Black);
-                aConsole.WriteText(0, 0, $"Selected menu: {result.Caption}", Color.BlanchedAlmond, Color.Black);
+                aConsole.SetCursorPosition(0, 0);
+                aConsole.PrintColorfullText(
+                    new KeyValuePair<ConsoleFontColor, string>(new ConsoleFontColor(Color.BlanchedAlmond, Color.Black), @"Selected menu: "),
+                    new KeyValuePair<ConsoleFontColor, string>(new ConsoleFontColor(Color.Gold, Color.Black), result.Caption)
+                    );
                 Thread.Sleep(1000);
             }
 
