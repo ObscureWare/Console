@@ -149,6 +149,13 @@ namespace ObscureWare.Console.Root.Desktop
         [DllImport("kernel32.dll")]
         public static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint dwMode);
 
+        public static uint RGB(int r, int g, int b)
+        {
+            return (uint)r + (((uint)g) << 8) + (((uint)b) << 16);
+        }
+
+        public const int COLOR_TABLE_SIZE = 16;
+
         // ReSharper restore InconsistentNaming
     }
 

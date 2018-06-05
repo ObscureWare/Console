@@ -45,7 +45,7 @@
         #region 24bit colors
 
         // based on https://github.com/bitcrazed/24bit-color/blob/master/24-bit-color.sh
-        private static void RainbowColors(SystemConsole console)
+        private static void RainbowColors(IConsole console)
         {
             Color foreColor = Color.White;
             Color bgColor = Color.Black;
@@ -122,7 +122,7 @@
             console.WaitForNextPage();
         }
 
-        private static void NextLine(SystemConsole console)
+        private static void NextLine(IConsole console)
         {
             Color foreColor = Color.White;
             Color bgColor = Color.Black;

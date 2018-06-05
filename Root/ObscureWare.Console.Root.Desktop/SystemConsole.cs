@@ -40,6 +40,7 @@ namespace ObscureWare.Console.Root.Desktop
     /// <summary>
     /// Wraps System.Console with IConsole interface methods
     /// </summary>
+    /// <remarks>All methods re non-locking.</remarks>
     public class SystemConsole : IConsole
     {
         private readonly ConsoleController _controller;
@@ -101,7 +102,7 @@ namespace ObscureWare.Console.Root.Desktop
                     int currentWindowHeight = Console.WindowHeight;
 
                     // window cannot be greater than buffer, also - cannot create buffer smaller that current window (because it's window to the buffer)
-                    int targetBufferWidth = Math.Max(Math.Max((int) currentBufferWidth, (int) config.DesiredBufferRowWidth), (int) config.DesiredRowWidth);
+                    int targetBufferWidth = Math.Max(Math.Max((int)currentBufferWidth, (int)config.DesiredBufferRowWidth), (int)config.DesiredRowWidth);
                     int targetRowWidth = Math.Min(Math.Max((int)currentWindowWidth, (int)config.DesiredRowWidth), targetBufferWidth);
                     int targetBufferHeight = Math.Max(Math.Max((int)currentBufferHeight, (int)config.DesiredBufferRowCount), (int)config.DesiredRowCount);
                     int targetRowCount = Math.Min(Math.Max((int)currentWindowHeight, (int)config.DesiredRowCount), targetBufferHeight);

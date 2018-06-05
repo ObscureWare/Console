@@ -51,6 +51,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsInfo", "Common\OsInfo\OsI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Demo.Shared", "Demos\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Shared.csproj", "{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "colorschemes", "colorschemes", "{3653C439-74DD-449C-96C5-133F85452715}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Gaming", "Operations\ObscureWare.Console.Operations.Gaming\ObscureWare.Console.Operations.Gaming.csproj", "{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +129,10 @@ Global
 		{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +155,8 @@ Global
 		{AAFF5245-D9B6-4AB5-B67F-68B38A578D82} = {3A4BEA05-1B54-4850-B70D-DE6ADAF21438}
 		{6DF55C4B-418D-478B-9899-60023F869076} = {A0D9A806-4C64-4B01-A22A-F7B994699869}
 		{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
+		{3653C439-74DD-449C-96C5-133F85452715} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
+		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814} = {05B980A6-F2D8-4BAF-BDF5-82FA67CF5B80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27BF5FD-4504-4BFD-8AE6-159AF8EB23E2}

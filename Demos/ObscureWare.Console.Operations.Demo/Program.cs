@@ -39,16 +39,15 @@ namespace ObscureWare.Console.Operations.Demo
     using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Implementation.TablePrinters;
     using ObscureWare.Console.Operations.Implementation.Tables;
-    using ObscureWare.Console.Operations.Interfaces;
     using ObscureWare.Console.Operations.Interfaces.Styles;
     using ObscureWare.Console.Operations.Interfaces.Tables;
     using ObscureWare.Console.Root.Desktop;
     using ObscureWare.Tests.Common;
     using ObscureWare.Console.Shared;
     using ObscureWare.Console.Root.Shared;
-
-    using Tests;
     using ObscureWare.Console.TestShared;
+
+    using FrameStyle = Interfaces.Styles.FrameStyle;
 
     internal static class Program
     {
@@ -67,7 +66,8 @@ namespace ObscureWare.Console.Operations.Demo
 
             ConsoleOperations ops = new ConsoleOperations(console);
 
-            SplitterTest(console);
+            MenuDemos.MenuDemo(console);
+            //SplitterTest(console);
             PrintColorsMessages(console);
             PrintAllNamedColors(controller, console);
             PrintFrames(ops, console);
@@ -320,6 +320,8 @@ namespace ObscureWare.Console.Operations.Demo
 
         private static void PrintColorsMessages(IConsole console)
         {
+            console.Clear();
+
             console.WriteText(0, 0, "test message", Color.Red, Color.Black);
             console.WriteText(0, 1, "test message 2", Color.Cyan, Color.YellowGreen);
             console.WriteText(0, 2, "test message 3d ds sfsdfsad ", Color.Orange, Color.Plum);

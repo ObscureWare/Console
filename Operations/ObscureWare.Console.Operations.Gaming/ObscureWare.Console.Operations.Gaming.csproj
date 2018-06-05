@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</ProjectGuid>
+    <ProjectGuid>{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ObscureWare.Console.Root.Desktop</RootNamespace>
-    <AssemblyName>ObscureWare.Console.Root.Desktop</AssemblyName>
+    <RootNamespace>ObscureWare.Console.Operations.Gaming</RootNamespace>
+    <AssemblyName>ObscureWare.Console.Operations.Gaming</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,39 +30,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Conditions, Version=2.1.0.24, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Conditions.2.1.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Conditions.dll</HintPath>
-    </Reference>
-    <Reference Include="ObscureWare.Console.Root.Shared, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ObscureWare.Console.Root.Shared.0.4.0\lib\net461\ObscureWare.Console.Root.Shared.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XmlSchemeParser.cs" />
-    <Compile Include="IniSchemeParser.cs" />
-    <Compile Include="ColorScheme.cs" />
-    <Compile Include="ConsoleController.cs" />
-    <Compile Include="ConsoleStartConfiguration.cs" />
-    <Compile Include="ISchemeParser.cs" />
-    <Compile Include="NativeMethods.cs" />
-    <Compile Include="ParentProcessUtilities.cs" />
-    <Compile Include="PredefinedColorSets.cs" />
-    <Compile Include="SystemConsole.cs" />
+    <Compile Include="Menu\ConsoleMenuItem.cs" />
+    <Compile Include="Menu\ConsoleMenu.cs" />
+    <Compile Include="Menu\MenuItemChangedHandler.cs" />
+    <Compile Include="Menu\MenuItemChangedHandlerArgs.cs" />
+    <Compile Include="Menu\MenuStyles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="ObscureWare.Console.Root.Desktop.nuspec" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
+      <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
+      <Name>ObscureWare.Console.Root.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
