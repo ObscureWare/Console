@@ -75,17 +75,20 @@
                 Alignment = HorizontalAlignment.Center
             };
 
+            var aConsole = new AtomicConsole(console);
+
+            int menuStartY = 6;
+            int menuStartX = 5;
+            int menuContentWidth = 25;
+
             var frameColors = new ConsoleFontColor(Color.Yellow, Color.Black);
             var boxInnerColors = new ConsoleFontColor(Color.WhiteSmoke, Color.Black);
             var frameStyle = new FrameStyle(frameColors, boxInnerColors, @"┌─┐││└─┘", ' ');
 
-            var aConsole = new AtomicConsole(console);
-            int menuStartY = 6;
-
             var ops = new ConsoleOperations(aConsole);
-            ops.WriteTextBox(new Rectangle(4, menuStartY - 1, 27, menuItems.Length + 2), "", frameStyle);
+            ops.WriteTextBox(new Rectangle(menuStartX - 1, menuStartY - 1, menuContentWidth + 2, menuItems.Length + 2), "", frameStyle);
 
-            var menu = new ConsoleMenu(aConsole, new Rectangle(5, menuStartY, 25, 0), menuItems, menuStyling);
+            var menu = new ConsoleMenu(aConsole, new Rectangle(menuStartX, menuStartY, menuContentWidth, 0), menuItems, menuStyling);
             menu.RenderAll();
 
             ConsoleMenuItem result = null;
@@ -94,11 +97,14 @@
                 result = menu.Focus(resetActiveItem: true);
 
                 aConsole.CleanLineSync(0, Color.Black);
-                aConsole.SetCursorPosition(0, 0);
-                aConsole.PrintColorfullText(
-                    new KeyValuePair<ConsoleFontColor, string>(new ConsoleFontColor(Color.BlanchedAlmond, Color.Black), @"Selected menu: "),
-                    new KeyValuePair<ConsoleFontColor, string>(new ConsoleFontColor(Color.Gold, Color.Black), result.Caption)
-                    );
+                aConsole.RunAtomicOperations(ac =>
+                    {
+                        aConsole.SetCursorPosition(0, 0);
+                        aConsole.PrintColorfullText(
+                            new KeyValuePair<ConsoleFontColor, string>(new ConsoleFontColor(Color.BlanchedAlmond, Color.Black), @"Selected menu: "),
+                            new KeyValuePair<ConsoleFontColor, string>(new ConsoleFontColor(Color.Gold, Color.Black), result?.Caption ?? "#NULL#")
+                            );
+                    });
                 Thread.Sleep(1000);
             }
 
