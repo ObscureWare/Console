@@ -34,23 +34,17 @@ namespace ObscureWare.Console.Operations.Demo
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
-    using System.Threading;
-    using System.Windows.Forms;
 
     using ObscureWare.Console.Demo.Shared;
-    using ObscureWare.Console.Operations.Gaming.Menu;
     using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Implementation.TablePrinters;
     using ObscureWare.Console.Operations.Implementation.Tables;
-    using ObscureWare.Console.Operations.Interfaces;
     using ObscureWare.Console.Operations.Interfaces.Styles;
     using ObscureWare.Console.Operations.Interfaces.Tables;
     using ObscureWare.Console.Root.Desktop;
     using ObscureWare.Tests.Common;
     using ObscureWare.Console.Shared;
     using ObscureWare.Console.Root.Shared;
-
-    using Tests;
     using ObscureWare.Console.TestShared;
 
     using FrameStyle = Interfaces.Styles.FrameStyle;
@@ -72,7 +66,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             ConsoleOperations ops = new ConsoleOperations(console);
 
-            MenuDemo(console);
+            MenuDemos.MenuDemo(console);
             //SplitterTest(console);
             PrintColorsMessages(console);
             PrintAllNamedColors(controller, console);
@@ -344,85 +338,6 @@ namespace ObscureWare.Console.Operations.Demo
 
             console.WaitForNextPage();
             console.Clear();
-        }
-
-        private static void MenuDemo(IConsole console)
-        {
-            console.Clear();
-            var exitGuid = new Guid(@"a7725515-7f82-4c18-9c36-343003bdf20d");
-
-            var menuItems = new ConsoleMenuItem[]
-            {
-                new ConsoleMenuItem
-                {
-                    Enabled = true,
-                    Caption = "menu item number one",
-                    Code = Guid.NewGuid()
-                },
-                new ConsoleMenuItem
-                {
-                    Enabled = true,
-                    Caption = "menu item number two",
-                    Code = Guid.NewGuid()
-                },
-                new ConsoleMenuItem
-                {
-                    Enabled = false,
-                    Caption = "menu item number three",
-                    Code = Guid.NewGuid()
-                },
-                new ConsoleMenuItem
-                {
-                    Enabled = true,
-                    Caption = "menu item number four with very long description",
-                    Code = Guid.NewGuid()
-                },
-                new ConsoleMenuItem
-                {
-                    Enabled = false,
-                    Caption = "menu item number five",
-                    Code = Guid.NewGuid()
-                },
-                new ConsoleMenuItem
-                {
-                    Enabled = true,
-                    Caption = "menu item number six",
-                    Code = Guid.NewGuid()
-                },
-                new ConsoleMenuItem
-                {
-                    Enabled = true,
-                    Caption = "Exit menu DEMO",
-                    Code = exitGuid
-                }
-            };
-
-            var menuStyling = new MenuStyles
-            {
-                ActiveItem = new ConsoleFontColor(Color.Red, Color.Black),
-                DisabledItem = new ConsoleFontColor(Color.Gray, Color.Black),
-                NormalItem = new ConsoleFontColor(Color.WhiteSmoke, Color.Black),
-                SelectedItem = new ConsoleFontColor(Color.Black, Color.LightGray),
-                Alignment = HorizontalAlignment.Center
-            };
-
-
-            var menu = new ConsoleMenu(new AtomicConsole(console), new Rectangle(5, 10, 25, 0), menuItems, menuStyling);
-            menu.RenderAll();
-
-            ConsoleMenuItem result = null;
-            while (result == null || result.Code != exitGuid)
-            {
-                result = menu.Focus(resetActiveItem: true);
-                console.SetCursorPosition(0, 0);
-
-                console.WriteText(new ConsoleFontColor(Color.BlanchedAlmond, Color.Black), $"Selected menu: {result.Caption}            ");
-                Thread.Sleep(1000);
-            }
-
-            console.ShowCursor();
-
-            console.WaitForNextPage();
         }
     }
 }
