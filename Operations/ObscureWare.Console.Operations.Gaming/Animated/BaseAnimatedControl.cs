@@ -45,7 +45,7 @@
 
         private object CalculatePhazes(Color bgColor, Color baseColor, int phazes)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); // get from colorfull.console... meh had to do it first then ;-)
         }
 
         protected override void OnRenderFrame(IAtomicConsole console)
