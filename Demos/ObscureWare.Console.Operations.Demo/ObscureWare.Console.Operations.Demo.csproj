@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuDemos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,9 +64,9 @@
       <Project>{BF939EA3-3AF8-4F85-8539-28F5AB5A7347}</Project>
       <Name>ObscureWare.Tests.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Gaming\ObscureWare.Console.Operations.Gaming.csproj">
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Gaming\ObscureWare.Console.Operations.Controls.csproj">
       <Project>{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}</Project>
-      <Name>ObscureWare.Console.Operations.Gaming</Name>
+      <Name>ObscureWare.Console.Operations.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj">
       <Project>{24deafb5-866b-43b9-b802-7a60f1a3aea4}</Project>

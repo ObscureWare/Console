@@ -7,6 +7,7 @@
     /// Wrapper on IConsole for scenarios where some asynchronous operations are done to console.
     /// It's responsible for separating possible conflicts - especially regarding color-change
     /// </summary>
+    /// <remarks>All "set" methods are locking.</remarks>
     public class AtomicConsole : IAtomicConsole
     {
         private readonly IConsole _innerConsole;
@@ -143,9 +144,9 @@
 
         public void RunAtomicOperations(Action<IConsole> action)
         {
-            lock (this._innerConsole.AtomicHandle)
+            lock (this._innerConsole.AtomicHandle) // TODO: is not locking properly? revise
             {
-                action.Invoke(this);
+                action.Invoke(this._innerConsole);
             }
         }
     }
