@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Operations.Gaming.Menu
+﻿namespace ObscureWare.Console.Operations.Controls.Menu
 {
     using System;
     using System.Collections.Generic;
@@ -239,21 +239,21 @@
                 switch (this._styling.Alignment)
                 {
                     case System.Windows.Forms.HorizontalAlignment.Left:
-                    {
-                        caption = item.Caption.PadRight(this._availableArea.Width);
-                        break;
-                    }
+                        {
+                            caption = item.Caption.PadRight(this._availableArea.Width);
+                            break;
+                        }
                     case System.Windows.Forms.HorizontalAlignment.Right:
-                    {
-                        caption = item.Caption.PadLeft(this._availableArea.Width);
-                        break;
-                    };
+                        {
+                            caption = item.Caption.PadLeft(this._availableArea.Width);
+                            break;
+                        };
                     case System.Windows.Forms.HorizontalAlignment.Center:
-                    {
-                        int padLeft = (this._availableArea.Width - item.Caption.Length) / 2;
-                        caption = item.Caption.PadLeft(padLeft + item.Caption.Length).PadRight(this._availableArea.Width);
-                        break;
-                    }
+                        {
+                            int padLeft = (this._availableArea.Width - item.Caption.Length) / 2;
+                            caption = item.Caption.PadLeft(padLeft + item.Caption.Length).PadRight(this._availableArea.Width);
+                            break;
+                        }
                 }
             }
             else

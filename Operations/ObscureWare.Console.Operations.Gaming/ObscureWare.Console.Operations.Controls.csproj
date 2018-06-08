@@ -7,8 +7,8 @@
     <ProjectGuid>{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ObscureWare.Console.Operations.Gaming</RootNamespace>
-    <AssemblyName>ObscureWare.Console.Operations.Gaming</AssemblyName>
+    <RootNamespace>ObscureWare.Console.Operations.Controls</RootNamespace>
+    <AssemblyName>ObscureWare.Console.Operations.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animated\BaseAnimatedControl.cs" />
     <Compile Include="Menu\ConsoleMenuItem.cs" />
     <Compile Include="Menu\ConsoleMenu.cs" />
     <Compile Include="Menu\MenuItemChangedHandler.cs" />
@@ -50,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ObscureWare.Console.Shared\ObscureWare.Console.Shared.csproj">
+      <Project>{3F6C7A65-7F28-41B8-A451-6448A86CED47}</Project>
+      <Name>ObscureWare.Console.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
       <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
       <Name>ObscureWare.Console.Root.Shared</Name>

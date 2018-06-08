@@ -53,7 +53,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Demo.Sh
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "colorschemes", "colorschemes", "{3653C439-74DD-449C-96C5-133F85452715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Gaming", "Operations\ObscureWare.Console.Operations.Gaming\ObscureWare.Console.Operations.Gaming.csproj", "{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Controls", "Operations\ObscureWare.Console.Operations.Gaming\ObscureWare.Console.Operations.Controls.csproj", "{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

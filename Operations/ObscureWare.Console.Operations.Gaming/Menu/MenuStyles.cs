@@ -1,4 +1,4 @@
-namespace ObscureWare.Console.Operations.Gaming.Menu
+namespace ObscureWare.Console.Operations.Controls.Menu
 {
     using System;
     using System.Windows.Forms;

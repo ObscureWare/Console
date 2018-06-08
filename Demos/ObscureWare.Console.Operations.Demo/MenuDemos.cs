@@ -7,7 +7,7 @@
     using System.Windows.Forms;
 
     using ObscureWare.Console.Demo.Shared;
-    using ObscureWare.Console.Operations.Gaming.Menu;
+    using ObscureWare.Console.Operations.Controls.Menu;
     using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Root.Shared;
 
