@@ -13,7 +13,7 @@
     /// </summary>
     public class ConsoleMenu
     {
-        public const char ELLIPSIS_CHARACTER = '…';
+        public const char ELLIPSIS_CHARACTER = '…'; // TODO: move into some better place
 
         private readonly IAtomicConsole _console;
         private readonly Rectangle _availableArea;
