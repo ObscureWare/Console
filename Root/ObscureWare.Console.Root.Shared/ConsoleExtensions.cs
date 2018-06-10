@@ -21,8 +21,7 @@
             }));
         }
 
-        public static void PrintColorfullText(this IConsole console,
-            params KeyValuePair<ConsoleFontColor, string>[] texts)
+        public static void PrintColorfullText(this IConsole console, params KeyValuePair<ConsoleFontColor, string>[] texts)
         {
             foreach (var pair in texts)
             {
@@ -30,8 +29,7 @@
             }
         }
 
-        public static void PrintColorfullTextLine(this IConsole console,
-            params KeyValuePair<ConsoleFontColor, string>[] texts)
+        public static void PrintColorfullTextLine(this IConsole console, params KeyValuePair<ConsoleFontColor, string>[] texts)
         {
             foreach (var pair in texts)
             {
@@ -41,10 +39,8 @@
             console.WriteLine();
         }
 
-        public static void PrintColorfullTextSync(this IAtomicConsole console,
-            params KeyValuePair<ConsoleFontColor, string>[] texts)
+        public static void PrintColorfullTextSync(this IAtomicConsole console, params KeyValuePair<ConsoleFontColor, string>[] texts)
         {
-
             console.RunAtomicOperations(ac =>
                 {
                     foreach (var pair in texts)
@@ -55,11 +51,10 @@
             );
         }
 
-        public static void PrintColorfullTextLineSync(this IAtomicConsole console,
-            params KeyValuePair<ConsoleFontColor, string>[] texts)
+        public static void PrintColorfullTextLineSync(this IAtomicConsole console, params KeyValuePair<ConsoleFontColor, string>[] texts)
         {
             console.RunAtomicOperations(ac =>
-                {
+                { 
                     foreach (var pair in texts)
                     {
                         ac.WriteText(pair.Key, pair.Value);

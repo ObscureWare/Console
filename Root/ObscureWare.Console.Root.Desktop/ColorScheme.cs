@@ -3,6 +3,8 @@
     using System;
     using System.Linq;
 
+    using Shared;
+
     // Copyright (C) Microsoft.  All rights reserved.
     // Licensed under the terms described in the LICENSE file in the root of this project.
     //
@@ -70,28 +72,28 @@
             return new[] { (uint)h, (uint)s, (uint)v };
         }
 
-        internal void Dump()
+        internal void Dump(IConsole console)
         {
-            Action<string, uint> _dump = (str, c) =>
+            void InnerDump(string str, uint c)
             {
                 var rgb = RGB(c);
                 var hsv = HSV(c);
-                Console.WriteLine($"{str} =\tRGB({rgb[0]}, {rgb[1]}, {rgb[2]}),\tHSV({hsv[0]}, {hsv[1]}, {hsv[2]})");
-            };
+                console.WriteLine($"{str} =\tRGB({rgb[0]}, {rgb[1]}, {rgb[2]}),\tHSV({hsv[0]}, {hsv[1]}, {hsv[2]})");
+            }
 
             for (int i = 0; i < 16; ++i)
             {
-                _dump($"Color[{i}]", this.colorTable[i]);
+                InnerDump($"Color[{i}]", this.colorTable[i]);
             }
 
             if (this.foreground != null)
             {
-                _dump("FG       ", this.foreground.Value);
+                InnerDump("FG       ", this.foreground.Value);
             }
 
             if (this.background != null)
             {
-                _dump("BG       ", this.background.Value);
+                InnerDump("BG       ", this.background.Value);
             }
         }
     }

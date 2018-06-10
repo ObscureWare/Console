@@ -73,7 +73,7 @@
 
         // TODO: Abstract the locating of a scheme into a function the implementation can call into
         //      Both parsers duplicate the searching, they should just pass in their extension and
-        //      a callback for initally validating the file
+        //      a callback for initially validating the file
         static string FindIniScheme(string schemeName)
         {
             string exeDir = System.IO.Directory.GetParent(System.Reflection.Assembly.GetEntryAssembly().Location).FullName;

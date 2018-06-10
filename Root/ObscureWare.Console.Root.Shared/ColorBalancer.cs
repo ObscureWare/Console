@@ -116,6 +116,8 @@ namespace ObscureWare.Console.Root.Shared
 
         #region Default settings
 
+        // weights are reversed
+
         private const float COLOR_WEIGHT_HUE = 16.3f;
 
         private const float COLOR_WEIGHT_SATURATION = 25.3f;

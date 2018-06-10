@@ -68,6 +68,11 @@ namespace ObscureWare.Console.Root.Desktop
                 this.TryTurningVirtualConsoleMode();
             }
 
+            if (!string.IsNullOrWhiteSpace(config.ColorSchemeName))
+            {
+                this.TryLoadingColorScheme(controller, config.ColorSchemeName);
+            }
+
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
 
@@ -120,7 +125,10 @@ namespace ObscureWare.Console.Root.Desktop
             this.WindowWidth = Console.WindowWidth;
             this.WindowHeight = Console.WindowHeight;
         }
-
+      
+        /// <summary>
+        /// Returns TRUE if this console has been opened from another console window.
+        /// </summary>
         public bool IsExcutedAsChild
         {
             get
@@ -352,5 +360,10 @@ namespace ObscureWare.Console.Root.Desktop
         }
 
         public bool VirtualConsoleEnabled { get; private set; }
+
+        private void TryLoadingColorScheme(ConsoleController controller, string configColorSchemeName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
