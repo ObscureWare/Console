@@ -56,7 +56,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// </summary>
         /// <param name="controller"></param>
         /// <param name="config"></param>
-        public SystemConsole(ConsoleController controller, ConsoleStartConfiguration config = null)
+        public SystemConsole(ConsoleController controller, ConsoleStartConfiguration config = null)  // TODO: refactor to some more common calculation code?
         {
             controller.Requires(nameof(controller)).IsNotNull();
             config = config ?? ConsoleStartConfiguration.Colorfull; // surprise ;-)
@@ -129,7 +129,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// <summary>
         /// Returns TRUE if this console has been opened from another console window.
         /// </summary>
-        public bool IsExcutedAsChild
+        public bool IsExcutedAsChild // TODO: refactor to dedicated class of semi-native code.
         {
             get
             {
@@ -276,7 +276,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// <inheritdoc />
         public ConsoleKeyInfo ReadKey()
         {
-            return Console.ReadKey(intercept: true);
+            return Console.ReadKey(intercept: true); // TODO: add option to turn it off in startup config. Some might need such scenario without virtual entry line
         }
 
         /// <inheritdoc />
@@ -329,7 +329,7 @@ namespace ObscureWare.Console.Root.Desktop
             System.Console.CursorVisible = true;
         }
 
-        public void TryTurningVirtualConsoleMode()
+        public void TryTurningVirtualConsoleMode() // TODO: refactor to dedicated class of semi-native code.
         {
             this.VirtualConsoleEnabled = false;
 
