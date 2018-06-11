@@ -1,6 +1,7 @@
-﻿namespace ObscureWare.Console.Root.Desktop
+﻿namespace ObscureWare.Console.Root.Desktop.Schema
 {
     using System;
+    using System.Collections.Generic;
     using System.Text;
     using System.Runtime.InteropServices;
     using System.IO;
@@ -10,12 +11,14 @@
     //
 
     // Based on e-MIT-ed source from https://github.com/Microsoft/console/blob/master/tools/ColorTool/ColorTool/IniSchemeParser.cs
-    // Adapted to be used and reuse ObscureWare's Console library
+    // Adapted to be used and reused ObscureWare's Console library
 
     public class IniSchemeParser : ISchemeParser
     {
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        private const string MY_EXTENSION = @".ini";
 
         // These are in Windows Color table order - BRG, not RGB.
         public static string[] COLOR_NAMES = {
@@ -39,13 +42,13 @@
 
         public string Name => "INI File Parser";
 
-        static uint ParseHex(string arg)
+        private static uint ParseHex(string arg)
         {
             System.Drawing.Color col = System.Drawing.ColorTranslator.FromHtml(arg);
             return NativeMethods.RGB(col.R, col.G, col.B);
         }
 
-        static uint ParseRgb(string arg)
+        private static uint ParseRgb(string arg)
         {
             int[] components = { 0, 0, 0 };
             string[] args = arg.Split(',');
@@ -59,7 +62,7 @@
             return NativeMethods.RGB(components[0], components[1], components[2]);
         }
 
-        static uint ParseColor(string arg)
+        private static uint ParseColor(string arg)
         {
             if (arg[0] == '#')
             {
@@ -71,49 +74,13 @@
             }
         }
 
-        // TODO: Abstract the locating of a scheme into a function the implementation can call into
-        //      Both parsers duplicate the searching, they should just pass in their extension and
-        //      a callback for initially validating the file
-        static string FindIniScheme(string schemeName)
+        public ColorScheme ParseScheme(string filename, bool throwExceptions = true)
         {
-            string exeDir = System.IO.Directory.GetParent(System.Reflection.Assembly.GetEntryAssembly().Location).FullName;
-            string filename = schemeName + ".ini";
-            string exeSchemes = exeDir + "/schemes/";
-            string cwd = "./";
-            string cwdSchemes = "./schemes/";
-            // Search order, for argument "name", where 'exe' is the dir of the exe.
-            //  1. ./name
-            //  2. ./name.ini
-            //  3. ./schemes/name
-            //  4. ./schemes/name.ini
-            //  5. exe/schemes/name
-            //  6. exe/schemes/name.ini
-            //  7. name (as an absolute path)
-            string[] paths = {
-                cwd + schemeName,
-                cwd + filename,
-                cwdSchemes + schemeName,
-                cwdSchemes + filename,
-                exeSchemes + schemeName,
-                exeSchemes + filename,
-                schemeName,
-            };
-            foreach (string path in paths)
+            if (string.IsNullOrWhiteSpace(filename))
             {
-                if (File.Exists(path))
-                {
-                    return path;
-                }
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(filename));
             }
-            return null;
-        }
-
-        public ColorScheme ParseScheme(string schemeName, bool throwExceptions = true)
-        {
             bool success = true;
-
-            string filename = FindIniScheme(schemeName);
-            if (filename == null) return null;
 
             string[] tableStrings = new string[NativeMethods.COLOR_TABLE_SIZE];
             uint[] colorTable = null;
@@ -166,6 +133,18 @@
             {
                 return null;
             }
+        }
+
+        /// <inheritdoc />
+        public bool CanProcess(string extension)
+        {
+            return MY_EXTENSION.Equals(extension, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        // <inheritdoc />
+        public IEnumerable<string> GetSupportedExtensions()
+        {
+            yield return MY_EXTENSION;
         }
     }
 

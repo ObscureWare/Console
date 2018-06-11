@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Root.Desktop
+﻿namespace ObscureWare.Console.Root.Desktop.Schema
 {
     using System;
     using System.Linq;
@@ -10,9 +10,9 @@
     //
 
     // Based on e-MIT-ed source from https://github.com/Microsoft/console/blob/master/tools/ColorTool/ColorTool/ColorScheme.cs
-    // Adapted to be used and reuse ObscureWare's Console library
+    // Adapted to be used and reused ObscureWare's Console library
 
-    // TODO: looks like concurrent heuristics... Perhaps better... MAybe therefore extract heuristic as strategy plugin?
+    // TODO: looks like concurrent heuristics... Perhaps better... Maybe therefore extract heuristic as strategy plug-in?
 
     public class ColorScheme
     {
