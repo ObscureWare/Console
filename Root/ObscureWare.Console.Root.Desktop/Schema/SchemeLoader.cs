@@ -1,5 +1,6 @@
 ﻿namespace ObscureWare.Console.Root.Desktop.Schema
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
 
@@ -9,14 +10,15 @@
 
         private const string INI_EXTENSION = @".ini";
 
-        private static readonly ISchemeParser[] Parsers = 
+        private static readonly ISchemeParser[] Parsers =
         {
-            new IniSchemeParser(), 
-            new XmlSchemeParser() 
+            new IniSchemeParser(),
+            new XmlSchemeParser()
         };
 
         private static readonly string[] SupportedExtensions;
         private static readonly string[] FoldersToScan;
+        private static readonly List<string> CustomFolders = new List<string>();
 
         static SchemeLoader()
         {
@@ -32,6 +34,14 @@
                 @"./schemes/",
                 @"./"
             };
+        }
+
+        public static void AddCustomFolder(string path)
+        {
+            if (!CustomFolders.Contains(path))
+            {
+                CustomFolders.Add(path);
+            }
         }
 
         /// <summary>
@@ -56,22 +66,23 @@
             }
 
             string[] itemsToScan;
-            if (Path.HasExtension(schemeName)) 
+            if (Path.HasExtension(schemeName))
             {
                 // look only for specific files
-                itemsToScan = FoldersToScan
+                itemsToScan = FoldersToScan.Concat(CustomFolders)
                     .Select(f => Path.Combine(f, schemeName))
                     .ToArray();
             }
             else
             {
-                itemsToScan = FoldersToScan
+                itemsToScan = FoldersToScan.Concat(CustomFolders)
                     .Select(f => Path.Combine(f, schemeName))
                     .SelectMany(p => SupportedExtensions.Select(e => p + e))
                     .ToArray();
             }
 
-            return (from path in itemsToScan where File.Exists(path)
+            return (from path in itemsToScan
+                    where File.Exists(path)
                     let parser = SelectParser(path)
                     where parser != null
                     select parser.ParseScheme(path, throwExceptions: true))
