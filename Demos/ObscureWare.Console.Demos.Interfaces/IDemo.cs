@@ -1,8 +1,10 @@
-﻿namespace ObscureWare.Console.Demo.Shared
+﻿namespace ObscureWare.Console.Demos.Interfaces
 {
-    using ObscureWare.Console.Root.Shared;
+    using Demo.Shared;
 
     using OsInfo;
+
+    using Root.Shared;
 
     public interface IDemo
     {
@@ -31,7 +33,7 @@
         /// <summary>
         /// If SelfCreate, demo is responsible for creation of all ICosnole by itself.
         /// </summary>
-        ConsoleSharing ConsoleSharing { get; }
+        ConsoleDemoSharing ConsoleSharing { get; }
 
         /// <summary>
         /// Specifies to which set this demo belongs to

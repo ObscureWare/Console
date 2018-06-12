@@ -1,7 +1,6 @@
 namespace ObscureWare.Console.Operations.Controls.Menu
 {
     using System;
-    using System.Windows.Forms;
 
     using Root.Shared;
 
@@ -33,6 +32,6 @@ namespace ObscureWare.Console.Operations.Controls.Menu
         /// <summary>
         /// Alignment of text in menu line
         /// </summary>
-        public HorizontalAlignment Alignment { get; set; } = HorizontalAlignment.Left;
+        public TextAlign Alignment { get; set; } = TextAlign.Left;
     }
 }

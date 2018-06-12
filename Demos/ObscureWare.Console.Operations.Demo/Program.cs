@@ -35,6 +35,8 @@ namespace ObscureWare.Console.Operations.Demo
     using System.Linq;
     using System.Reflection;
 
+    using Demos.Interfaces;
+
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Implementation.TablePrinters;

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{024CAC06-E16A-429C-A6D8-763A525E8599}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ObscureWare.Console.Root.Demo</RootNamespace>
-    <AssemblyName>ObscureWare.Console.Root.Demo</AssemblyName>
+    <ProjectGuid>{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ObscureWare.Console.Demos.Interfaces</RootNamespace>
+    <AssemblyName>ObscureWare.Console.Demos.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,13 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Conditions, Version=2.1.0.24, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Conditions.2.1.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Conditions.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,35 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ConsoleDemoExtensions.cs" />
+    <Compile Include="ConsoleDemoSharing.cs" />
+    <Compile Include="DemoSet.cs" />
+    <Compile Include="IDemo.cs" />
+    <Compile Include="LabelStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RainbowColorsDemo.cs" />
-    <Compile Include="SysInfoDemo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Compile Include="StatusStyle.cs" />
+    <Compile Include="StatusStyles.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\OsInfo\OsInfo.csproj">
-      <Project>{6df55c4b-418d-478b-9899-60023f869076}</Project>
+      <Project>{6DF55C4B-418D-478B-9899-60023F869076}</Project>
       <Name>OsInfo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Desktop\ObscureWare.Console.Root.Desktop.csproj">
-      <Project>{AAFF5245-D9B6-4AB5-B67F-68B38A578D82}</Project>
-      <Name>ObscureWare.Console.Root.Desktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
       <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
       <Name>ObscureWare.Console.Root.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Shared.csproj">
-      <Project>{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}</Project>
-      <Name>ObscureWare.Console.Demo.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ObscureWare.Console.Demos.Interfaces\ObscureWare.Console.Demos.Interfaces.csproj">
-      <Project>{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}</Project>
-      <Name>ObscureWare.Console.Demos.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

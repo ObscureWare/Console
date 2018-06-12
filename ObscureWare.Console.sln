@@ -65,6 +65,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "colorschemes", "colorscheme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Controls", "Operations\ObscureWare.Console.Operations.Gaming\ObscureWare.Console.Operations.Controls.csproj", "{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Demos.Interfaces", "Demos\ObscureWare.Console.Demos.Interfaces\ObscureWare.Console.Demos.Interfaces.csproj", "{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -167,6 +173,7 @@ Global
 		{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 		{3653C439-74DD-449C-96C5-133F85452715} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814} = {05B980A6-F2D8-4BAF-BDF5-82FA67CF5B80}
+		{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27BF5FD-4504-4BFD-8AE6-159AF8EB23E2}

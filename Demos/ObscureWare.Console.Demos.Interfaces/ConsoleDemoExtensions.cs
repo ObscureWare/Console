@@ -1,8 +1,10 @@
-﻿namespace ObscureWare.Console.Demo.Shared
+﻿namespace ObscureWare.Console.Demos.Interfaces
 {
     using System.Drawing;
 
-    using ObscureWare.Console.Root.Shared;
+    using Demo.Shared;
+
+    using Root.Shared;
 
     public static class ConsoleDemoExtensions
     {
@@ -29,6 +31,11 @@
             console.WriteText(statusStyles.TitleStyle, title);
             console.WriteText(statusStyles.SeparatorStyle, statusStyles.SeparatorText);
             console.WriteLine(statusStyles.SelectStyle(usedStyle), value?.ToString() ?? "");
+        }
+
+        public static void PrintLabel(this IConsole console, int posX, int posY, int labelWidth, string text, LabelStyle style)
+        {
+            // ...
         }
     }
 }

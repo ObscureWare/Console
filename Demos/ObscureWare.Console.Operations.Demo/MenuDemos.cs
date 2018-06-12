@@ -6,6 +6,8 @@
     using System.Threading;
     using System.Windows.Forms;
 
+    using Demos.Interfaces;
+
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Controls.Menu;
     using ObscureWare.Console.Operations.Implementation;
@@ -72,7 +74,7 @@
                 DisabledItem = new ConsoleFontColor(Color.Gray, Color.Black),
                 NormalItem = new ConsoleFontColor(Color.WhiteSmoke, Color.Black),
                 SelectedItem = new ConsoleFontColor(Color.Black, Color.LightGray),
-                Alignment = HorizontalAlignment.Center
+                Alignment = TextAlign.Center
             };
 
             var aConsole = new AtomicConsole(console);
