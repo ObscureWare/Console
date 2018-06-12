@@ -18,15 +18,17 @@
     {
         private const string NUMBER_SEPARATOR = @". ";
 
-        private readonly LabelStyle _styleActiveTitle = new LabelStyle(Color.Azure, Color.Black, TextAlign.Center);
+        private readonly LabelStyle _styleActiveTitle = new LabelStyle(Color.Azure, Color.FromArgb(5, 5, 5), TextAlign.Center);
 
-        private readonly LabelStyle _styleInactiveTitle = new LabelStyle(Color.Gray, Color.Black, TextAlign.Center);
+        private readonly LabelStyle _styleInactiveTitle = new LabelStyle(Color.Gray, Color.FromArgb(5, 5, 5), TextAlign.Center);
 
-        private readonly LabelStyle _styleAuthor  = new LabelStyle(Color.Aqua, Color.Black, TextAlign.Center);
+        private readonly LabelStyle _styleAuthor  = new LabelStyle(Color.Aqua, Color.FromArgb(10, 10, 10), TextAlign.Center);
 
         private readonly LabelStyle _styleDescription  = new LabelStyle(Color.BlueViolet, Color.Black, TextAlign.Center);
 
         private readonly ConsoleFontColor _promptStyle = new ConsoleFontColor(Color.Yellow, Color.Black);
+
+        private readonly ConsoleFontColor _promptLabelStyle = new ConsoleFontColor(Color.WhiteSmoke, Color.DimGray);
 
         private readonly IDemo[] _demos;
 
@@ -48,6 +50,7 @@
             IDemo demo;
             while ((demo = this.SelectDemo(console, items)) != null)
             {
+                console.SetColors(Color.WhiteSmoke, Color.Black); // TODO: default reset?
                 console.Clear();
 
                 demo.Run(demo.ConsoleSharing == ConsoleDemoSharing.CanShare ? console : null);
@@ -133,14 +136,16 @@
                 console.WriteText(0, this._selectionRow, @"Select demo number (type 'exit' to quit): ",
                     this._promptStyle.ForeColor, this._promptStyle.BgColor);
 
+                console.SetColors(this._promptLabelStyle);
                 string txt = console.ReadLine(); // TODO: virtual, length-limited prompt when done
+
                 if ("exit".Equals(txt, StringComparison.InvariantCultureIgnoreCase))
                 {
                     return null;
                 }
 
                 int.TryParse(txt, NumberStyles.Integer, CultureInfo.InvariantCulture, out int selectedIndex);
-                if (selectedIndex <= 0 && selectedIndex >= this._demos.Length)
+                if (selectedIndex <= 0 || selectedIndex > this._demos.Length)
                 {
                     continue;
                 }
