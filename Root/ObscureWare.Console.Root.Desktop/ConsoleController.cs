@@ -42,7 +42,21 @@ namespace ObscureWare.Console.Root.Desktop
     /// </summary>
     public class ConsoleController : IDisposable
     {
-        private static IntPtr _hConsoleOutput;
+        private static readonly IntPtr HConsoleOutput;
+
+        static ConsoleController()
+        {
+            if (HConsoleOutput == IntPtr.Zero)
+            {
+                HConsoleOutput = NativeMethods.GetStdHandle(NativeMethods.STD_OUTPUT_HANDLE); // 7
+                if (HConsoleOutput == NativeMethods.INVALID_HANDLE)
+                {
+                    throw new SystemException("GetStdHandle->WinError: #" + Marshal.GetLastWin32Error());
+                }
+            }
+
+            AppDomain.CurrentDomain.ProcessExit += StaticClass_Dtor;
+        }
 
         private CloseColorFinder _closeColorFinder;
 
@@ -59,14 +73,7 @@ namespace ObscureWare.Console.Root.Desktop
 
             // TODO: second instance created is crashing. Find out why and how to fix it / prevent. In the worst case - hidden control instance singleton
             // Not very important, can wait
-            if (_hConsoleOutput == IntPtr.Zero)
-            {
-                _hConsoleOutput = NativeMethods.GetStdHandle(NativeMethods.STD_OUTPUT_HANDLE); // 7
-                if (_hConsoleOutput == NativeMethods.INVALID_HANDLE)
-                {
-                    throw new SystemException("GetStdHandle->WinError: #" + Marshal.GetLastWin32Error());
-                }
-            }
+            
 
             this._closeColorFinder = new CloseColorFinder(this.GetCurrentColorset());
         }
@@ -145,7 +152,7 @@ namespace ObscureWare.Console.Root.Desktop
             NativeMethods.CONSOLE_SCREEN_BUFFER_INFO_EX csbe = new NativeMethods.CONSOLE_SCREEN_BUFFER_INFO_EX();
             csbe.cbSize = Marshal.SizeOf(csbe); // 96 = 0x60
 
-            bool brc = NativeMethods.GetConsoleScreenBufferInfoEx(_hConsoleOutput, ref csbe);
+            bool brc = NativeMethods.GetConsoleScreenBufferInfoEx(HConsoleOutput, ref csbe);
             if (!brc)
             {
                 throw new SystemException("GetConsoleScreenBufferInfoEx->WinError: #" + Marshal.GetLastWin32Error());
@@ -159,7 +166,7 @@ namespace ObscureWare.Console.Root.Desktop
             ++csbe.srWindow.Bottom;
             ++csbe.srWindow.Right;
 
-            bool brc = NativeMethods.SetConsoleScreenBufferInfoEx(_hConsoleOutput, ref csbe);
+            bool brc = NativeMethods.SetConsoleScreenBufferInfoEx(HConsoleOutput, ref csbe);
             if (!brc)
             {
                 throw new SystemException("SetConsoleScreenBufferInfoEx->WinError: #" + Marshal.GetLastWin32Error());
@@ -259,13 +266,15 @@ namespace ObscureWare.Console.Root.Desktop
             {
                 // free managed resources
             }
-            // keep this single handle shared...
+        }
 
+        static void StaticClass_Dtor(object sender, EventArgs e)
+        {
             // free native resources
-            //if (this._hConsoleOutput != NativeMethods.INVALID_HANDLE)
-            //{
-            //    NativeMethods.CloseHandle(this._hConsoleOutput);
-            //}
+            if (HConsoleOutput != NativeMethods.INVALID_HANDLE)
+            {
+                NativeMethods.CloseHandle(HConsoleOutput);
+            }
         }
 
         #endregion IDsiposable implementation
