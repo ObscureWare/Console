@@ -7,7 +7,7 @@ namespace ObscureWare.Console.Root.Desktop
 
     public class ConsoleStartConfiguration
     {
-        
+
         public ConsoleStartConfiguration(
             bool runFullScreen = false,
             ConsoleMode mode = ConsoleMode.Buffered,
@@ -90,7 +90,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// - sub-folder "schemes" of where executing assembly is located
         /// - treats given name as absolute path to the scheme file.
         /// Given order is default to color-tool (https://github.com/Microsoft/console/blob/master/tools/ColorTool), yet it might be changed to exact opposite as we feel it to be more intuitive and precise.</remarks>
-        public string ColorSchemeName { get; set; }
+        public string ColorSchemeName { get; set; } = null;
 
         #region Static definitions
 
@@ -115,7 +115,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// </summary>
         /// <remarks>"Non-buffered" means that there is no off-screen buffer outside console window - it just has the same size and location.</remarks>
         public static ConsoleStartConfiguration GamingFulLScreen => new ConsoleStartConfiguration(runFullScreen: true, mode: ConsoleMode.SingleScreenNoWrapping, tryVirtualConsole: true);
-        
+
         #endregion Static definitions
     }
 }

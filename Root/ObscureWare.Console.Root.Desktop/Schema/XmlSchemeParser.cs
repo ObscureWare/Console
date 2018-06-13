@@ -1,6 +1,7 @@
-﻿namespace ObscureWare.Console.Root.Desktop
+﻿namespace ObscureWare.Console.Root.Desktop.Schema
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Xml;
@@ -10,10 +11,12 @@
     //
 
     // Based on e-MIT-ed source from https://github.com/Microsoft/console/blob/master/tools/ColorTool/ColorTool/XmlSchemeParser.cs
-    // Adapted to be used and reuse ObscureWare's Console library
+    // Adapted to be used and reused by ObscureWare's Console library
 
     public class XmlSchemeParser : ISchemeParser
     {
+        private const string MY_EXTENSION = @".itermcolors";
+
         // In Windows Color Table order
         private static string[] PLIST_COLOR_NAMES = {
             "Ansi 0 Color",  // DARK_BLACK
@@ -83,60 +86,19 @@
             return true;
         }
 
-
-        static XmlDocument loadXmlScheme(string schemeName)
+        
+        public ColorScheme ParseScheme(string filename, bool throwExceptions = true)
         {
-            XmlDocument xmlDoc = new XmlDocument(); // Create an XML document object
-            string exeDir = System.IO.Directory.GetParent(System.Reflection.Assembly.GetEntryAssembly().Location).FullName;
-            bool found = false;
-            string filename = schemeName + ".itermcolors";
-            string exeSchemes = exeDir + "/schemes/";
-            string cwd = "./";
-            string cwdSchemes = "./schemes/";
-            // Search order, for argument "name", where 'exe' is the dir of the exe.
-            //  1. ./name
-            //  2. ./name.itermcolors
-            //  3. ./schemes/name
-            //  4. ./schemes/name.itermcolors
-            //  5. exe/schemes/name
-            //  6. exe/schemes/name.itermcolors
-            //  7. name (as an absolute path)
-            string[] paths = {
-                cwd + schemeName,
-                cwd + filename,
-                cwdSchemes + schemeName,
-                cwdSchemes + filename,
-                exeSchemes + schemeName,
-                exeSchemes + filename,
-                schemeName,
-            };
-            foreach (string path in paths)
+            if (string.IsNullOrWhiteSpace(filename))
             {
-                try
-                {
-                    xmlDoc.Load(path);
-                    found = true;
-                    break;
-                }
-                catch (Exception /*e*/)
-                {
-                    // We can either fail to find the file,
-                    //   or fail to parse the XML here.
-                }
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(filename));
             }
 
-            if (!found)
-            {
-                return null;
-            }
-            return xmlDoc;
-        }
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filename); // Create an XML document object
 
-
-        public ColorScheme ParseScheme(string schemeName, bool throwExceptions = true)
-        {
-            XmlDocument xmlDoc = loadXmlScheme(schemeName); // Create an XML document object
             if (xmlDoc == null) return null;
+
             XmlNode root = xmlDoc.GetElementsByTagName("dict")[0];
             XmlNodeList children = root.ChildNodes;
 
@@ -171,5 +133,18 @@
 
             return new ColorScheme { colorTable = colorTable, foreground = fgColor, background = bgColor };
         }
+
+        // <inheritdoc />
+        public bool CanProcess(string extension)
+        {
+            return MY_EXTENSION.Equals(extension, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        // <inheritdoc />
+        public IEnumerable<string> GetSupportedExtensions()
+        {
+            yield return MY_EXTENSION;
+        }
     }
 }
+

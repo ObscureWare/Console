@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Demo.Shared
+﻿namespace ObscureWare.Console.Demos.Interfaces
 {
     public enum StatusStyle
     {

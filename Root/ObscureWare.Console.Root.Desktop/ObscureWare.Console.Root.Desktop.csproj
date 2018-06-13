@@ -46,12 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XmlSchemeParser.cs" />
-    <Compile Include="IniSchemeParser.cs" />
-    <Compile Include="ColorScheme.cs" />
+    <Compile Include="Schema\SchemeLoader.cs" />
+    <Compile Include="Schema\XmlSchemeParser.cs" />
+    <Compile Include="Schema\IniSchemeParser.cs" />
+    <Compile Include="Schema\ColorScheme.cs" />
     <Compile Include="ConsoleController.cs" />
     <Compile Include="ConsoleStartConfiguration.cs" />
-    <Compile Include="ISchemeParser.cs" />
+    <Compile Include="Schema\ISchemeParser.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="ParentProcessUtilities.cs" />
     <Compile Include="PredefinedColorSets.cs" />

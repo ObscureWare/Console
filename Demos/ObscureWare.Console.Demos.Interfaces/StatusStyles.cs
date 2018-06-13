@@ -1,9 +1,9 @@
-﻿namespace ObscureWare.Console.Demo.Shared
+﻿namespace ObscureWare.Console.Demos.Interfaces
 {
     using System;
     using System.Drawing;
 
-    using ObscureWare.Console.Root.Shared;
+    using Root.Shared;
 
     public class StatusStyles
     {

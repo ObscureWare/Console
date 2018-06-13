@@ -21,6 +21,18 @@
             }));
         }
 
+        public static void CleanLine(this IConsole console, int? lineNo = null, Color? color = null) // add colors...
+        {
+            if (console == null) throw new ArgumentNullException(nameof(console));
+            
+            lineNo = lineNo ?? console.GetCursorPosition().Y;
+            color = color ?? Color.Black;
+
+            string text = new string(' ', console.WindowWidth);
+            console.SetCursorPosition(0, lineNo.Value);
+            console.WriteText(0, lineNo.Value, text, color.Value, color.Value);
+        }
+
         public static void PrintColorfullText(this IConsole console, params KeyValuePair<ConsoleFontColor, string>[] texts)
         {
             foreach (var pair in texts)

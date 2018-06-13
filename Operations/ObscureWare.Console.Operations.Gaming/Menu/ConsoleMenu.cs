@@ -232,23 +232,25 @@
 
         private void RenderSingleItem(ConsoleMenuItem item, int yIndex)
         {
+            // TODO: reuse printlabel from demos? move these from demo shared to operations / root?
+
             // TODO: use Span<char> to optimize. Hopefully System.Console will receive such overload as well
             string caption = "###";
             if (item.Caption.Length <= this._availableArea.Width)
             {
                 switch (this._styling.Alignment)
                 {
-                    case System.Windows.Forms.HorizontalAlignment.Left:
+                    case TextAlign.Left:
                         {
                             caption = item.Caption.PadRight(this._availableArea.Width);
                             break;
                         }
-                    case System.Windows.Forms.HorizontalAlignment.Right:
+                    case TextAlign.Right:
                         {
                             caption = item.Caption.PadLeft(this._availableArea.Width);
                             break;
                         };
-                    case System.Windows.Forms.HorizontalAlignment.Center:
+                    case TextAlign.Center:
                         {
                             int padLeft = (this._availableArea.Width - item.Caption.Length) / 2;
                             caption = item.Caption.PadLeft(padLeft + item.Caption.Length).PadRight(this._availableArea.Width);
