@@ -1,8 +1,11 @@
 ﻿namespace ObscureWare.Console.Root.Demo
 {
     using System;
+    using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
+
+    using Desktop.Schema;
 
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Demos.Interfaces;
@@ -40,14 +43,70 @@
             var controller = new ConsoleController();
             console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
             {
-                DesiredRowWidth = 128 // for bars
+                DesiredRowWidth = 128, // for bars
+                DesiredRowCount = 60   // many samples... 
             });
 
-            //RainbowColors(console);
+            this.PrintBaseRainbowColors(console);
 
-            console.WriteLine(@"TODO");
+            IEnumerable<ColorScheme> schemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\colorschemes");
+            foreach (var scheme in schemes)
+            {
+                this.PrintSchemeRainbowColors(console, scheme);
+            }
 
             console.WaitForNextPage();
+        }
+
+        private void PrintSchemeRainbowColors(IConsole console, ColorScheme scheme)
+        {
+            Color foreColor = Color.White;
+            Color bgColor = Color.Black;
+
+            console.WriteLine(@"Scheme: " + scheme.Name);
+
+
+            //foreach (int i in Enumerable.Range(0, 127))
+            //{
+            //    console.SetColors(foreColor, BuildRainbowColor(i));
+            //    console.WriteText('_');
+            //}
+
+            //NextLine(console);
+
+            //foreach (int i in Enumerable.Range(128, 127).Reverse())
+            //{
+            //    console.SetColors(foreColor, BuildRainbowColor(i));
+            //    console.WriteText('_');
+            //}
+
+            NextLine(console);
+            NextLine(console);
+        }
+
+        private void PrintBaseRainbowColors(IConsole console)
+        {
+            Color foreColor = Color.White;
+            Color bgColor = Color.Black;
+
+            console.WriteLine(@"Referential colors:");
+
+            foreach (int i in Enumerable.Range(0, 127))
+            {
+                console.SetColors(foreColor, BuildRainbowColor(i));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+
+            foreach (int i in Enumerable.Range(128, 127).Reverse())
+            {
+                console.SetColors(foreColor, BuildRainbowColor(i));
+                console.WriteText('_');
+            }
+
+            NextLine(console);
+            NextLine(console);
         }
 
         // based on https://github.com/bitcrazed/24bit-color/blob/master/24-bit-color.sh

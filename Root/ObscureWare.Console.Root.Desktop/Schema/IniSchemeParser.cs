@@ -127,7 +127,7 @@
 
             if (colorTable != null)
             {
-                return new ColorScheme { colorTable = colorTable };
+                return new ColorScheme(Path.GetFileNameWithoutExtension(filename)) { colorTable = colorTable };
             }
             else
             {

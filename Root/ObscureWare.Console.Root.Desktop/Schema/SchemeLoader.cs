@@ -8,8 +8,6 @@
     {
         private static readonly string ExeDirectory = System.IO.Directory.GetParent(System.Reflection.Assembly.GetEntryAssembly().Location).FullName;
 
-        private const string INI_EXTENSION = @".ini";
-
         private static readonly ISchemeParser[] Parsers =
         {
             new IniSchemeParser(),
@@ -114,6 +112,23 @@
             string extension = Path.GetExtension(filePath);
 
             return Parsers.FirstOrDefault(p => p.CanProcess(extension));
+        }
+
+        public static IEnumerable<ColorScheme> LoadAllFromFolder(string folder)
+        {
+            DirectoryInfo dir = new DirectoryInfo(folder);
+            if (dir.Exists)
+            {
+                var files = dir.GetFiles("*", SearchOption.TopDirectoryOnly); // TODO: improve with usage of SupportedExtensions
+                foreach (var file in files)
+                {
+                    var scheme = TryLoadingSchemeFromFile(file.FullName);
+                    if (scheme != null)
+                    {
+                        yield return scheme;
+                    }
+                }
+            }
         }
     }
 }
