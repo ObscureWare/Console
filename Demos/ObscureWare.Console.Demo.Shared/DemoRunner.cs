@@ -73,31 +73,33 @@
 
             console.PrintLabel(0, 1, availableWidth, "Available Demos", _styleHeader);
 
+
             int maxNumberLength = (int)Math.Floor(Math.Log10((double)this._demos.Length)) + 1;
 
             int longestDemoName = this._demos.Max(d => d.Name.Length);
             int longestAuthorname = this._demos.Max(d => d.Author.Length);
 
             int demoHeaderBiggestWidth = Math.Max(longestDemoName + maxNumberLength + NUMBER_SEPARATOR.Length, longestAuthorname);
-            int headerSpaceWithFrames = demoHeaderBiggestWidth + 2; // +2 for frames, more for margins?
+            int headerSpaceWithFrames = demoHeaderBiggestWidth + 2; // +2 for frames, more for margins? or just leave margins?
             int possibleColumnCount = (int)Math.Floor((decimal)availableWidth / headerSpaceWithFrames);
 
             int realColumnWidth = (int)Math.Floor((decimal)availableWidth / possibleColumnCount);
 
             var demoItems = this.BuildDemoItems(realColumnWidth).ToArray();
             var descriptionMaxRows = demoItems.Max(i => i.DescriptionRows.Length);
-            var maxItemHeight = descriptionMaxRows + 2;
+            var maxItemHeight = descriptionMaxRows + 2; // desc + header + author
 
             // print frame
             // TODO:
             // print items
             var itemIndex = 1;
+            int menuStartIndex = 3;
             foreach (var item in demoItems)
             {
                 var culumnNumber = itemIndex % possibleColumnCount; // 1-based
                 var posX = 1 + realColumnWidth * (culumnNumber - 1);
-                var rowNumber = (int)Math.Floor((decimal)itemIndex / possibleColumnCount);
-                var posY = (maxItemHeight + 1) * rowNumber + 3; // 0-based
+                var rowNumber = (int)Math.Floor((decimal)itemIndex / possibleColumnCount); // 0-based
+                var posY = (maxItemHeight + 1) * rowNumber + menuStartIndex; // +1 for frame/margin between menu rows
 
                 this.PrintSingleDemoItem(console, item, new Point(posX, posY), demoHeaderBiggestWidth);
 
@@ -105,7 +107,7 @@
             }
 
             // this is row at which demo selection prompt will be displayed;
-            this._selectionRow = (descriptionMaxRows + 2 + 1) * this._demos.Length / possibleColumnCount + 6;
+            this._selectionRow = (descriptionMaxRows + 2 + 1) * this._demos.Length / possibleColumnCount + menuStartIndex + 3; // some extra spacing below last menu row
 
             return demoItems;
         }
@@ -141,6 +143,7 @@
             foreach (var row in item.DescriptionRows)
             {
                 console.PrintLabel(start.X, index++, maxColumnWidth, row, this._styleDescription);
+                // TODO: perhaps print also empty rows so all item-boxes have the same size
             }
         }
 
