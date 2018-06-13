@@ -232,6 +232,8 @@
 
         private void RenderSingleItem(ConsoleMenuItem item, int yIndex)
         {
+            // TODO: reuse printlabel from demos? move these from demo shared to operations / root?
+
             // TODO: use Span<char> to optimize. Hopefully System.Console will receive such overload as well
             string caption = "###";
             if (item.Caption.Length <= this._availableArea.Width)

@@ -18,15 +18,17 @@
     {
         private const string NUMBER_SEPARATOR = @". ";
 
-        private readonly LabelStyle _styleActiveTitle = new LabelStyle(Color.Azure, Color.FromArgb(5, 5, 5), TextAlign.Center);
+        private readonly LabelStyle _styleActiveTitle = new LabelStyle(Color.Azure, Color.FromArgb(10, 10, 10), TextAlign.Center);
 
-        private readonly LabelStyle _styleInactiveTitle = new LabelStyle(Color.Gray, Color.FromArgb(5, 5, 5), TextAlign.Center);
+        private readonly LabelStyle _styleInactiveTitle = new LabelStyle(Color.Gray, Color.FromArgb(10, 10, 10), TextAlign.Center);
 
-        private readonly LabelStyle _styleAuthor  = new LabelStyle(Color.Aqua, Color.FromArgb(10, 10, 10), TextAlign.Center);
+        private readonly LabelStyle _styleAuthor = new LabelStyle(Color.CadetBlue, Color.FromArgb(15, 15, 15), TextAlign.Center);
 
-        private readonly LabelStyle _styleDescription  = new LabelStyle(Color.BlueViolet, Color.Black, TextAlign.Center);
+        private readonly LabelStyle _styleDescription = new LabelStyle(Color.CornflowerBlue, Color.FromArgb(25, 25, 25), TextAlign.Center);
 
-        private readonly ConsoleFontColor _promptStyle = new ConsoleFontColor(Color.Yellow, Color.Black);
+        private readonly LabelStyle _styleHeader = new LabelStyle(Color.Gold, Color.DimGray, TextAlign.Center);
+
+        private readonly ConsoleFontColor _promptStyle = new ConsoleFontColor(Color.Gold, Color.Black);
 
         private readonly ConsoleFontColor _promptLabelStyle = new ConsoleFontColor(Color.WhiteSmoke, Color.DimGray);
 
@@ -35,7 +37,7 @@
         private readonly OsVersion _osInfo;
 
         private int _selectionRow;
-        
+
 
         public DemoRunner(IEnumerable<IDemo> demos, OsVersion osInfo)
         {
@@ -67,12 +69,15 @@
 
         private IEnumerable<DemoItem> PrintDemosList(IConsole console)
         {
-            int maxNumberLength = (int)Math.Floor(Math.Log10((double) this._demos.Length)) + 1;
+            int availableWidth = console.WindowWidth;
+
+            console.PrintLabel(0, 1, availableWidth, "Available Demos", _styleHeader);
+
+            int maxNumberLength = (int)Math.Floor(Math.Log10((double)this._demos.Length)) + 1;
 
             int longestDemoName = this._demos.Max(d => d.Name.Length);
             int longestAuthorname = this._demos.Max(d => d.Author.Length);
 
-            int availableWidth = console.WindowWidth;
             int demoHeaderBiggestWidth = Math.Max(longestDemoName + maxNumberLength + NUMBER_SEPARATOR.Length, longestAuthorname);
             int headerSpaceWithFrames = demoHeaderBiggestWidth + 2; // +2 for frames, more for margins?
             int possibleColumnCount = (int)Math.Floor((decimal)availableWidth / headerSpaceWithFrames);
@@ -81,13 +86,26 @@
 
             var demoItems = this.BuildDemoItems(realColumnWidth).ToArray();
             var descriptionMaxRows = demoItems.Max(i => i.DescriptionRows.Length);
+            var maxItemHeight = descriptionMaxRows + 2;
 
             // print frame
             // TODO:
             // print items
+            var itemIndex = 1;
+            foreach (var item in demoItems)
+            {
+                var culumnNumber = itemIndex % possibleColumnCount; // 1-based
+                var posX = 1 + realColumnWidth * (culumnNumber - 1);
+                var rowNumber = (int)Math.Floor((decimal)itemIndex / possibleColumnCount);
+                var posY = (maxItemHeight + 1) * rowNumber + 3; // 0-based
+
+                this.PrintSingleDemoItem(console, item, new Point(posX, posY), demoHeaderBiggestWidth);
+
+                itemIndex++;
+            }
 
             // this is row at which demo selection prompt will be displayed;
-            this._selectionRow = (descriptionMaxRows + 2 + 1) * this._demos.Length / possibleColumnCount + 1;
+            this._selectionRow = (descriptionMaxRows + 2 + 1) * this._demos.Length / possibleColumnCount + 6;
 
             return demoItems;
         }
