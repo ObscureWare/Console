@@ -8,7 +8,6 @@
 
     using Demos.Interfaces;
 
-    using Operations.Implementation;
     using Root.Shared;
     using Console.Shared;
 
@@ -34,14 +33,11 @@
 
         private readonly IDemo[] _demos;
 
-        private readonly OsVersion _osInfo;
-
         private int _selectionRow;
 
 
-        public DemoRunner(IEnumerable<IDemo> demos, OsVersion osInfo)
+        public DemoRunner(IEnumerable<IDemo> demos)
         {
-            this._osInfo = osInfo;
             this._demos = demos.ToArray();
         }
 
@@ -57,6 +53,7 @@
 
                 demo.Run(demo.ConsoleSharing == ConsoleDemoSharing.CanShare ? console : null);
 
+                console.SetColors(Color.WhiteSmoke, Color.Black); // TODO: default reset?
                 console.Clear();
                 items = this.PrintDemosList(console).ToArray(); // in case of resizing during demo layout could be updated...
             }
@@ -71,9 +68,6 @@
         {
             int availableWidth = console.WindowWidth;
 
-            console.PrintLabel(0, 1, availableWidth, "Available Demos", _styleHeader);
-
-
             int maxNumberLength = (int)Math.Floor(Math.Log10((double)this._demos.Length)) + 1;
 
             int longestDemoName = this._demos.Max(d => d.Name.Length);
@@ -83,11 +77,13 @@
             int headerSpaceWithFrames = demoHeaderBiggestWidth + 2; // +2 for frames, more for margins? or just leave margins?
             int possibleColumnCount = (int)Math.Floor((decimal)availableWidth / headerSpaceWithFrames);
 
-            int realColumnWidth = (int)Math.Floor((decimal)availableWidth / possibleColumnCount);
+            int realColumnWidth = (int)Math.Floor((decimal)availableWidth / possibleColumnCount) - 2;
 
             var demoItems = this.BuildDemoItems(realColumnWidth).ToArray();
             var descriptionMaxRows = demoItems.Max(i => i.DescriptionRows.Length);
             var maxItemHeight = descriptionMaxRows + 2; // desc + header + author
+
+            console.PrintLabel(0, 1, availableWidth, "Available Demos", _styleHeader);
 
             // print frame
             // TODO:
@@ -97,11 +93,11 @@
             foreach (var item in demoItems)
             {
                 var culumnNumber = itemIndex % possibleColumnCount; // 1-based
-                var posX = 1 + realColumnWidth * (culumnNumber - 1);
+                var posX = 1 + (1 + realColumnWidth) * (culumnNumber - 1);
                 var rowNumber = (int)Math.Floor((decimal)itemIndex / possibleColumnCount); // 0-based
                 var posY = (maxItemHeight + 1) * rowNumber + menuStartIndex; // +1 for frame/margin between menu rows
 
-                this.PrintSingleDemoItem(console, item, new Point(posX, posY), demoHeaderBiggestWidth);
+                this.PrintSingleDemoItem(console, item, new Point(posX, posY), realColumnWidth);
 
                 itemIndex++;
             }
@@ -132,8 +128,6 @@
 
         private void PrintSingleDemoItem(IConsole console, DemoItem item, Point start, int maxColumnWidth)
         {
-            var op = new ConsoleOperations(console);
-
             console.PrintLabel(start.X, start.Y, maxColumnWidth, item.DisplayTitle,
                 (item.Enabled) ? this._styleActiveTitle : this._styleInactiveTitle);
 
