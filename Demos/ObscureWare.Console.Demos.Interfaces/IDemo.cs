@@ -2,8 +2,6 @@
 {
     using Demo.Shared;
 
-    using OsInfo;
-
     using Root.Shared;
 
     public interface IDemo
@@ -26,9 +24,8 @@
         /// <summary>
         /// If demo requires some specific system capabilities it might validate them here
         /// </summary>
-        /// <param name="sysInfo"></param>
         /// <returns></returns>
-        bool CanRun(OsVersion sysInfo);
+        bool CanRun();
 
         /// <summary>
         /// If SelfCreate, demo is responsible for creation of all ICosnole by itself.

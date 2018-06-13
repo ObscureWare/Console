@@ -51,10 +51,6 @@
     <Compile Include="StatusStyles.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\OsInfo\OsInfo.csproj">
-      <Project>{6DF55C4B-418D-478B-9899-60023F869076}</Project>
-      <Name>OsInfo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Root\ObscureWare.Console.Root.Shared\ObscureWare.Console.Root.Shared.csproj">
       <Project>{116BB296-D09B-47D6-9787-AFF751928152}</Project>
       <Name>ObscureWare.Console.Root.Shared</Name>

@@ -20,7 +20,7 @@
         public string Description { get; } = "Demonstrates system version capabilities plus StatusStyle helper usage.";
 
         /// <inheritdoc />
-        public bool CanRun(OsVersion sysInfo)
+        public bool CanRun()
         {
             return true; // no limits
         }

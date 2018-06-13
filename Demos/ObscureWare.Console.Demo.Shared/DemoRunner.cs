@@ -103,7 +103,7 @@
                     Number = index,
                     DisplayTitle = $"{index}{NUMBER_SEPARATOR}{demo.Name}",
                     DescriptionRows = demo.Description?.SplitTextToFit((uint)realColumnWidth).ToArray(),
-                    Enabled = demo.CanRun(this._osInfo)
+                    Enabled = demo.CanRun()
                 };
 
                 index++;

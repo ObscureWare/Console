@@ -26,9 +26,9 @@
         public string Description { get; } = "Demonstrates virtual console 24-bit color capabilities.";
 
         /// <inheritdoc />
-        public bool CanRun(OsVersion sysInfo)
+        public bool CanRun()
         {
-            return sysInfo.Version.Major == 10; // Win 10 required
+            return OsVersion.Win10SystemInfo.IsWindows10;
         }
 
         /// <inheritdoc />
