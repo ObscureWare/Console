@@ -2,8 +2,6 @@
 {
     using Console.Demo.Shared;
 
-    using Demos.Interfaces;
-
     using OsInfo;
 
     using Shared;
@@ -14,7 +12,7 @@
         public string Name { get; } = "Sys-Info";
 
         /// <inheritdoc />
-        public string Author { get; } = "Sebastian Gruchacz";
+        public string Author { get; } = @"Sebastian Gruchacz";
 
         /// <inheritdoc />
         public string Description { get; } = "Demonstrates system version capabilities plus StatusStyle helper usage.";
@@ -35,7 +33,13 @@
         public void Run(IConsole console)
         {
             StatusStyles statusStyles = StatusStyles.Default;
+            console.WriteLine();
+
+            console.PrintStatus("OS Name", OsVersion.Info.Name, statusStyles, StatusStyle.Info);
+            console.PrintStatus("OS Edition", OsVersion.Info.Edition, statusStyles, StatusStyle.Info);
+            console.PrintStatus("OS ServicePack", OsVersion.Info.ServicePack, statusStyles, StatusStyle.Info);
             console.PrintStatus("Windows version", OsVersion.Info.VersionString, statusStyles, StatusStyle.Info);
+
             console.PrintStatus("App bitness", OsVersion.Info.ApplicationBitness, statusStyles, StatusStyle.Info);
             console.PrintStatus("OS bitness", OsVersion.Info.SystemBitness, statusStyles, StatusStyle.Info);
             console.PrintStatus("CPU bitness", OsVersion.Info.ProcessorBitness, statusStyles, StatusStyle.Info);

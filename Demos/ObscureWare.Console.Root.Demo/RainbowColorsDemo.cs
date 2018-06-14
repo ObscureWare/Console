@@ -6,8 +6,6 @@
 
     using Console.Demo.Shared;
 
-    using Demos.Interfaces;
-
     using Desktop;
 
     using OsInfo;

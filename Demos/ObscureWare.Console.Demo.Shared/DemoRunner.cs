@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Demo.Shared
+﻿namespace ObscureWare.Console.Demo.Components
 {
     using System;
     using System.Collections.Generic;
@@ -6,12 +6,9 @@
     using System.Globalization;
     using System.Linq;
 
-    using Demos.Interfaces;
-
-    using Root.Shared;
-    using Console.Shared;
-
-    using OsInfo;
+    using ObscureWare.Console.Demo.Shared;
+    using ObscureWare.Console.Root.Shared;
+    using ObscureWare.Console.Shared;
 
     public class DemoRunner
     {
@@ -26,6 +23,7 @@
         private readonly LabelStyle _styleDescription = new LabelStyle(Color.CornflowerBlue, Color.FromArgb(25, 25, 25), TextAlign.Center);
 
         private readonly LabelStyle _styleHeader = new LabelStyle(Color.Gold, Color.DimGray, TextAlign.Center);
+        private readonly LabelStyle _styleHeaderBorder = new LabelStyle(Color.DimGray, Color.FromArgb(30, 30, 30), TextAlign.Center);
 
         private readonly ConsoleFontColor _promptStyle = new ConsoleFontColor(Color.Gold, Color.Black);
 
@@ -81,9 +79,11 @@
 
             var demoItems = this.BuildDemoItems(realColumnWidth).ToArray();
             var descriptionMaxRows = demoItems.Max(i => i.DescriptionRows.Length);
-            var maxItemHeight = descriptionMaxRows + 2; // desc + header + author
+            var maxItemHeight = descriptionMaxRows + 3; // desc + header + author + separator
 
+            console.PrintLabel(0, 0, availableWidth, "", _styleHeaderBorder);
             console.PrintLabel(0, 1, availableWidth, "Available Demos", _styleHeader);
+            console.PrintLabel(0, 2, availableWidth, "", _styleHeaderBorder);
 
             // print frame
             // TODO:
@@ -97,7 +97,7 @@
                 var rowNumber = (int)Math.Floor((decimal)itemIndex / possibleColumnCount); // 0-based
                 var posY = (maxItemHeight + 1) * rowNumber + menuStartIndex; // +1 for frame/margin between menu rows
 
-                this.PrintSingleDemoItem(console, item, new Point(posX, posY), realColumnWidth);
+                this.PrintSingleDemoItem(console, item, new Point(posX, posY), realColumnWidth, descriptionMaxRows);
 
                 itemIndex++;
             }
@@ -126,18 +126,27 @@
             }
         }
 
-        private void PrintSingleDemoItem(IConsole console, DemoItem item, Point start, int maxColumnWidth)
+        private void PrintSingleDemoItem(IConsole console, DemoItem item, Point start, int maxColumnWidth, int descriptionMaxRows)
         {
             console.PrintLabel(start.X, start.Y, maxColumnWidth, item.DisplayTitle,
                 (item.Enabled) ? this._styleActiveTitle : this._styleInactiveTitle);
 
             console.PrintLabel(start.X, start.Y + 1, maxColumnWidth, item.Demo.Author, this._styleAuthor);
 
-            int index = start.Y + 2;
+            // separator
+            console.PrintLabel(start.X, start.Y + 2, maxColumnWidth, "", this._styleDescription);
+
+            // description
+            int index = 0;
             foreach (var row in item.DescriptionRows)
             {
-                console.PrintLabel(start.X, index++, maxColumnWidth, row, this._styleDescription);
-                // TODO: perhaps print also empty rows so all item-boxes have the same size
+                console.PrintLabel(start.X, start.Y + 3 + index++, maxColumnWidth, row, this._styleDescription);
+            }
+
+            //trailing empty rows
+            for (int i = index; i < descriptionMaxRows; i++)
+            {
+                console.PrintLabel(start.X, start.Y + 3 + i, maxColumnWidth, "", this._styleDescription);
             }
         }
 

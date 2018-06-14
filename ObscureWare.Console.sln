@@ -49,7 +49,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Root.De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsInfo", "Common\OsInfo\OsInfo.csproj", "{6DF55C4B-418D-478B-9899-60023F869076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Demo.Shared", "Demos\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Shared.csproj", "{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Demo.Components", "Demos\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Components.csproj", "{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "colorschemes", "colorschemes", "{3653C439-74DD-449C-96C5-133F85452715}"
 	ProjectSection(SolutionItems) = preProject
@@ -65,7 +65,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "colorschemes", "colorscheme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Controls", "Operations\ObscureWare.Console.Operations.Gaming\ObscureWare.Console.Operations.Controls.csproj", "{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Demos.Interfaces", "Demos\ObscureWare.Console.Demos.Interfaces\ObscureWare.Console.Demos.Interfaces.csproj", "{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Demo.Shared", "Demos\ObscureWare.Console.Demos.Interfaces\ObscureWare.Console.Demo.Shared.csproj", "{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

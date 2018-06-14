@@ -8,7 +8,6 @@
     using Desktop.Schema;
 
     using ObscureWare.Console.Demo.Shared;
-    using ObscureWare.Console.Demos.Interfaces;
     using ObscureWare.Console.Root.Desktop;
     using ObscureWare.Console.Root.Shared;
 
@@ -20,7 +19,7 @@
         public string Name { get; } = "Color schemes";
 
         /// <inheritdoc />
-        public string Author { get; } = "Sebastian Gruchacz";
+        public string Author { get; } = @"Sebastian Gruchacz";
 
         /// <inheritdoc />
         public string Description { get; } = "Demonstrates schemes differences using 24-bit color capabilities. Using rainbow from Rainbow demo.";
@@ -44,7 +43,7 @@
             console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
             {
                 DesiredRowWidth = 128, // for bars
-                DesiredRowCount = 60   // many samples... 
+                DesiredRowCount = 40   // many samples... 
             });
 
             this.PrintBaseRainbowColors(console);
@@ -61,7 +60,6 @@
         private void PrintSchemeRainbowColors(IConsole console, ColorScheme scheme)
         {
             Color foreColor = Color.DarkGray;
-            Color bgColor = Color.Black;
 
             console.WriteLine(@" Scheme: " + scheme.Name);
 
@@ -124,14 +122,6 @@
             console.SetColors(foreColor, bgColor);
             console.WriteLine();
         }
-
-        /*
-        # Gives a color $1/255 % along HSV
-        # Who knows what happens when $1 is outside 0-255
-        # Echoes "$red $green $blue" where
-        # $red $green and $blue are integers
-        # ranging between 0 and 255 inclusive
-        */
 
         private static Color BuildRainbowColor(int param1)
         {

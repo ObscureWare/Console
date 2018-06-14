@@ -3,8 +3,6 @@
     using System;
     using System.Drawing;
 
-    using Demos.Interfaces;
-
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Interfaces;

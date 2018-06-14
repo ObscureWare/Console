@@ -1,8 +1,6 @@
-﻿namespace ObscureWare.Console.Demos.Interfaces
+﻿namespace ObscureWare.Console.Demo.Shared
 {
-    using Demo.Shared;
-
-    using Root.Shared;
+    using ObscureWare.Console.Root.Shared;
 
     public interface IDemo
     {

@@ -1,6 +1,6 @@
-﻿namespace ObscureWare.Console.Demo.Shared
+﻿namespace ObscureWare.Console.Demo.Components
 {
-    using Demos.Interfaces;
+    using ObscureWare.Console.Demo.Shared;
 
     internal class DemoItem
     {

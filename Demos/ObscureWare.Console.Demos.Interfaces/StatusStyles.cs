@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Demos.Interfaces
+﻿namespace ObscureWare.Console.Demo.Shared
 {
     using System;
     using System.Drawing;

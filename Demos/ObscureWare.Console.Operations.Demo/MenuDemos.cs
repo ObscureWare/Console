@@ -4,9 +4,6 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Threading;
-    using System.Windows.Forms;
-
-    using Demos.Interfaces;
 
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Operations.Controls.Menu;
