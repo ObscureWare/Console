@@ -23,7 +23,7 @@
         public string Author { get; } = "Sebastian Gruchacz";
 
         /// <inheritdoc />
-        public string Description { get; } = "Demonstrates schemes differences using 24-bit color capabilities.";
+        public string Description { get; } = "Demonstrates schemes differences using 24-bit color capabilities. Using rainbow from Rainbow demo.";
 
         /// <inheritdoc />
         public bool CanRun()
@@ -60,36 +60,41 @@
 
         private void PrintSchemeRainbowColors(IConsole console, ColorScheme scheme)
         {
-            Color foreColor = Color.White;
+            Color foreColor = Color.DarkGray;
             Color bgColor = Color.Black;
 
-            console.WriteLine(@"Scheme: " + scheme.Name);
+            console.WriteLine(@" Scheme: " + scheme.Name);
 
 
-            //foreach (int i in Enumerable.Range(0, 127))
-            //{
-            //    console.SetColors(foreColor, BuildRainbowColor(i));
-            //    console.WriteText('_');
-            //}
+            foreach (int i in Enumerable.Range(0, 127))
+            {
+                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), scheme));
+                console.WriteText('_');
+            }
 
-            //NextLine(console);
+            NextLine(console);
 
-            //foreach (int i in Enumerable.Range(128, 127).Reverse())
-            //{
-            //    console.SetColors(foreColor, BuildRainbowColor(i));
-            //    console.WriteText('_');
-            //}
+            foreach (int i in Enumerable.Range(128, 127).Reverse())
+            {
+                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), scheme));
+                console.WriteText('_');
+            }
 
             NextLine(console);
             NextLine(console);
         }
 
+        private Color LimitScheme(Color color, ColorScheme scheme)
+        {
+            var index = scheme.CalculateIndex((uint)color.ToArgb());
+            return Color.FromArgb((int)scheme.colorTable[index]);
+        }
+
         private void PrintBaseRainbowColors(IConsole console)
         {
-            Color foreColor = Color.White;
-            Color bgColor = Color.Black;
+            Color foreColor = Color.DarkGray;
 
-            console.WriteLine(@"Referential colors:");
+            console.WriteLine(@" Referential colors:");
 
             foreach (int i in Enumerable.Range(0, 127))
             {
@@ -110,81 +115,6 @@
         }
 
         // based on https://github.com/bitcrazed/24bit-color/blob/master/24-bit-color.sh
-
-        private static void RainbowColors(IConsole console)
-        {
-            Color foreColor = Color.White;
-            Color bgColor = Color.Black;
-
-            console.WriteLine(@"TODO");
-
-            NextLine(console);
-
-            foreach (int r in Enumerable.Range(0, 127))
-            {
-                console.SetColors(foreColor, Color.FromArgb(r, 0, 0));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int r in Enumerable.Range(128, 127).Reverse())
-            {
-                console.SetColors(foreColor, Color.FromArgb(r, 0, 0));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int g in Enumerable.Range(0, 127))
-            {
-                console.SetColors(foreColor, Color.FromArgb(0, g, 0));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int g in Enumerable.Range(128, 127).Reverse())
-            {
-                console.SetColors(foreColor, Color.FromArgb(0, g, 0));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int b in Enumerable.Range(0, 127))
-            {
-                console.SetColors(foreColor, Color.FromArgb(0, 0, b));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int b in Enumerable.Range(128, 127).Reverse())
-            {
-                console.SetColors(foreColor, Color.FromArgb(0, 0, b));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-            NextLine(console);
-
-            foreach (int i in Enumerable.Range(0, 127))
-            {
-                console.SetColors(foreColor, BuildRainbowColor(i));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int i in Enumerable.Range(128, 127).Reverse())
-            {
-                console.SetColors(foreColor, BuildRainbowColor(i));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-        }
 
         private static void NextLine(IConsole console)
         {
