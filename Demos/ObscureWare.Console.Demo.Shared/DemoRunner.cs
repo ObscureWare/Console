@@ -85,8 +85,6 @@
             console.PrintLabel(0, 1, availableWidth, "Available Demos", _styleHeader);
             console.PrintLabel(0, 2, availableWidth, "", _styleHeaderBorder);
 
-            // print frame
-            // TODO:
             // print items
             var itemIndex = 1;
             int menuStartIndex = 3;
