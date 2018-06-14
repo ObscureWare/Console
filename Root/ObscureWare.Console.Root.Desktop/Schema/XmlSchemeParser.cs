@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.IO;
     using System.Linq;
     using System.Xml;
 
@@ -131,7 +132,7 @@
                 return null;
             }
 
-            return new ColorScheme { colorTable = colorTable, foreground = fgColor, background = bgColor };
+            return new ColorScheme(Path.GetFileNameWithoutExtension(filename)) { colorTable = colorTable, foreground = fgColor, background = bgColor };
         }
 
         // <inheritdoc />

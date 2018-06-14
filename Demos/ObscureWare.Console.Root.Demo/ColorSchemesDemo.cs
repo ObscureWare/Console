@@ -1,27 +1,28 @@
 ﻿namespace ObscureWare.Console.Root.Demo
 {
     using System;
+    using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
 
-    using Console.Demo.Shared;
+    using Desktop.Schema;
 
-    using Desktop;
+    using ObscureWare.Console.Demo.Shared;
+    using ObscureWare.Console.Root.Desktop;
+    using ObscureWare.Console.Root.Shared;
 
     using OsInfo;
 
-    using Shared;
-
-    public class RainbowColorsDemo : IDemo
+    public class ColorSchemesDemo : IDemo
     {
         /// <inheritdoc />
-        public string Name { get; } = "Rainbow Colors";
+        public string Name { get; } = "Color schemes";
 
         /// <inheritdoc />
-        public string Author { get; } = "JohnMorales & @bitcrazed & SG";
+        public string Author { get; } = @"Sebastian Gruchacz";
 
         /// <inheritdoc />
-        public string Description { get; } = "Demonstrates virtual console 24-bit color capabilities.";
+        public string Description { get; } = "Demonstrates schemes differences using 24-bit color capabilities. Using rainbow from Rainbow demo.";
 
         /// <inheritdoc />
         public bool CanRun()
@@ -41,72 +42,57 @@
             var controller = new ConsoleController();
             console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
             {
-                DesiredRowWidth = 128 // for bars
+                DesiredRowWidth = 128, // for bars
+                DesiredRowCount = 40   // many samples... 
             });
 
-            RainbowColors(console);
+            this.PrintBaseRainbowColors(console);
+
+            IEnumerable<ColorScheme> schemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\colorschemes");
+            foreach (var scheme in schemes)
+            {
+                this.PrintSchemeRainbowColors(console, scheme);
+            }
 
             console.WaitForNextPage();
         }
 
-        // based on https://github.com/bitcrazed/24bit-color/blob/master/24-bit-color.sh
-
-        private static void RainbowColors(IConsole console)
+        private void PrintSchemeRainbowColors(IConsole console, ColorScheme scheme)
         {
-            Color foreColor = Color.White;
-            Color bgColor = Color.Black;
+            Color foreColor = Color.DarkGray;
 
-            console.WriteLine(@"Based on: https://github.com/bitcrazed/24bit-color/blob/master/24-bit-color.sh");
-            NextLine(console);
+            console.WriteLine(@" Scheme: " + scheme.Name);
 
-            foreach (int r in Enumerable.Range(0, 127))
+
+            foreach (int i in Enumerable.Range(0, 127))
             {
-                console.SetColors(foreColor, Color.FromArgb(r, 0, 0));
+                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), scheme));
                 console.WriteText('_');
             }
 
             NextLine(console);
 
-            foreach (int r in Enumerable.Range(128, 127).Reverse())
+            foreach (int i in Enumerable.Range(128, 127).Reverse())
             {
-                console.SetColors(foreColor, Color.FromArgb(r, 0, 0));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int g in Enumerable.Range(0, 127))
-            {
-                console.SetColors(foreColor, Color.FromArgb(0, g, 0));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int g in Enumerable.Range(128, 127).Reverse())
-            {
-                console.SetColors(foreColor, Color.FromArgb(0, g, 0));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int b in Enumerable.Range(0, 127))
-            {
-                console.SetColors(foreColor, Color.FromArgb(0, 0, b));
-                console.WriteText('_');
-            }
-
-            NextLine(console);
-
-            foreach (int b in Enumerable.Range(128, 127).Reverse())
-            {
-                console.SetColors(foreColor, Color.FromArgb(0, 0, b));
+                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), scheme));
                 console.WriteText('_');
             }
 
             NextLine(console);
             NextLine(console);
+        }
+
+        private Color LimitScheme(Color color, ColorScheme scheme)
+        {
+            var index = scheme.CalculateIndex((uint)color.ToArgb());
+            return Color.FromArgb((int)scheme.colorTable[index]);
+        }
+
+        private void PrintBaseRainbowColors(IConsole console)
+        {
+            Color foreColor = Color.DarkGray;
+
+            console.WriteLine(@" Referential colors:");
 
             foreach (int i in Enumerable.Range(0, 127))
             {
@@ -123,7 +109,10 @@
             }
 
             NextLine(console);
+            NextLine(console);
         }
+
+        // based on https://github.com/bitcrazed/24bit-color/blob/master/24-bit-color.sh
 
         private static void NextLine(IConsole console)
         {
@@ -133,14 +122,6 @@
             console.SetColors(foreColor, bgColor);
             console.WriteLine();
         }
-
-        /*
-        # Gives a color $1/255 % along HSV
-        # Who knows what happens when $1 is outside 0-255
-        # Echoes "$red $green $blue" where
-        # $red $green and $blue are integers
-        # ranging between 0 and 255 inclusive
-        */
 
         private static Color BuildRainbowColor(int param1)
         {

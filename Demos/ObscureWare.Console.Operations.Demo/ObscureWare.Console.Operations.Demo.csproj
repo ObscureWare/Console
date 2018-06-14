@@ -92,13 +92,13 @@
       <Project>{7E00E1CC-1894-4CA0-A567-67200B6B6388}</Project>
       <Name>ObscureWare.Console.TestShared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Shared.csproj">
+    <ProjectReference Include="..\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Components.csproj">
       <Project>{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}</Project>
-      <Name>ObscureWare.Console.Demo.Shared</Name>
+      <Name>ObscureWare.Console.Demo.Components</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ObscureWare.Console.Demos.Interfaces\ObscureWare.Console.Demos.Interfaces.csproj">
+    <ProjectReference Include="..\ObscureWare.Console.Demos.Interfaces\ObscureWare.Console.Demo.Shared.csproj">
       <Project>{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}</Project>
-      <Name>ObscureWare.Console.Demos.Interfaces</Name>
+      <Name>ObscureWare.Console.Demo.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

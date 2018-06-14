@@ -16,9 +16,16 @@
 
     public class ColorScheme
     {
+        public string Name { get; }
+
         public uint[] colorTable = null;
         public uint? foreground = null;
         public uint? background = null;
+
+        public ColorScheme(string name)
+        {
+            this.Name = name;
+        }
 
         public int CalculateIndex(uint value) =>
             this.colorTable.Select((color, idx) => Tuple.Create<uint, int>(color, idx))
