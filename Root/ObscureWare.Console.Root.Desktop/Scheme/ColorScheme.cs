@@ -3,6 +3,8 @@
     using System;
     using System.Linq;
 
+    using ColorBalancing;
+
     using Shared;
 
     // Copyright (C) Microsoft.  All rights reserved.
@@ -13,6 +15,10 @@
     // Adapted to be used and reused ObscureWare's Console library
 
     // TODO: looks like concurrent heuristics... Perhaps better... Maybe therefore extract heuristic as strategy plug-in?
+
+
+    
+
 
     public class ColorScheme
     {
@@ -35,8 +41,10 @@
         private static Func<Tuple<uint, int>, double> Difference(uint c1) =>
             // heuristic 1: nearest neighbor in RGB space
             // tup => Distance(RGB(c1), RGB(tup.Item1));
+
             // heuristic 2: nearest neighbor in RGB space
             // tup => Distance(HSV(c1), HSV(tup.Item1));
+
             // heuristic 3: weighted RGB L2 distance
             tup => WeightedRGBSimilarity(c1, tup.Item1);
 

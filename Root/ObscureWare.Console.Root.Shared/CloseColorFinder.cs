@@ -37,6 +37,19 @@ namespace ObscureWare.Console.Root.Shared
 
     using Conditions;
 
+
+    public class ColorBalancer : IDisposable
+    {
+        private readonly ColorScheme _scheme;
+        private readonly IColorHeuristic _heuristics;
+
+        public ColorBalancer(ColorScheme scheme, IColorHeuristic heuristics)
+        {
+            this._scheme = scheme;
+            this._heuristics = heuristics;
+        }
+    }
+
     /// <summary>
     /// Class responsible for finding closest color index from given console colors array.
     /// </summary>

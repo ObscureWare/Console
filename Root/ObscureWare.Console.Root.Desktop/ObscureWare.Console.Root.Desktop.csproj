@@ -46,13 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Schema\SchemeLoader.cs" />
-    <Compile Include="Schema\XmlSchemeParser.cs" />
-    <Compile Include="Schema\IniSchemeParser.cs" />
-    <Compile Include="Schema\ColorScheme.cs" />
+    <Compile Include="ColorBalancing\BaseGruchenColorHeuristic.cs" />
+    <Compile Include="ColorBalancing\BaseMicrosoftColorHeuristic.cs" />
+    <Compile Include="ColorBalancing\GruchenDefaultColorHeuristic.cs" />
+    <Compile Include="ColorBalancing\GruchenNoRgbColorHeuristic.cs" />
+    <Compile Include="ColorBalancing\IColorHeuristic.cs" />
+    <Compile Include="ColorBalancing\NearestNeighborHsvColorHeuristic.cs" />
+    <Compile Include="ColorBalancing\NearestNeighborRgbColorHeuristic.cs" />
+    <Compile Include="ColorBalancing\WeightedRgbSimilarityColorHeuristic.cs" />
+    <Compile Include="Scheme\SchemeLoader.cs" />
+    <Compile Include="Scheme\XmlSchemeParser.cs" />
+    <Compile Include="Scheme\IniSchemeParser.cs" />
+    <Compile Include="Scheme\ColorScheme.cs" />
     <Compile Include="ConsoleController.cs" />
     <Compile Include="ConsoleStartConfiguration.cs" />
-    <Compile Include="Schema\ISchemeParser.cs" />
+    <Compile Include="Scheme\ISchemeParser.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="ParentProcessUtilities.cs" />
     <Compile Include="PredefinedColorSets.cs" />
