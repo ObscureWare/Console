@@ -39,16 +39,16 @@
         /// <inheritdoc />
         public void Run(IConsole console)
         {
+            var schemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\colorschemes").ToArray();
+
             var controller = new ConsoleController();
             console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
             {
                 DesiredRowWidth = 128, // for bars
-                DesiredRowCount = 40   // many samples... 
+                DesiredRowCount = (uint)(8 + 5 * schemes.Length)   // many samples... 
             });
 
             this.PrintBaseRainbowColors(console);
-
-            IEnumerable<ColorScheme> schemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\colorschemes");
             foreach (var scheme in schemes)
             {
                 this.PrintSchemeRainbowColors(console, scheme);

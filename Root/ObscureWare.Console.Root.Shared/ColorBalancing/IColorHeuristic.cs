@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Root.Desktop.ColorBalancing
+﻿namespace ObscureWare.Console.Root.Shared.ColorBalancing
 {
     public interface IColorHeuristic
     {

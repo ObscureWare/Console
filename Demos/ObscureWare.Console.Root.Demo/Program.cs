@@ -10,7 +10,7 @@
         private static void Main(string[] args)
         {
             var controller = new ConsoleController();
-            var console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
+            var console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Default)
             {
                 DesiredRowWidth = 128 // for bars
             });

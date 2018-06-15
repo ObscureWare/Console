@@ -1,9 +1,9 @@
 ﻿namespace ObscureWare.Console.Root.Desktop.Schema
 {
     using System;
+    using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
-
-    using ColorBalancing;
 
     using Shared;
 
@@ -17,12 +17,35 @@
     // TODO: looks like concurrent heuristics... Perhaps better... Maybe therefore extract heuristic as strategy plug-in?
 
 
-    
+
 
 
     public class ColorScheme
     {
         public string Name { get; }
+
+        public static ColorScheme Default { get; private set; } = new ColorScheme("default")
+        {
+            colorTable = new uint[]
+            {
+                (uint) Color.FromArgb(12, 12, 12).ToArgb(),
+                (uint) Color.FromArgb(0, 55, 218).ToArgb(),
+                (uint) Color.FromArgb(19, 161, 14).ToArgb(),
+                (uint) Color.FromArgb(58, 150, 221).ToArgb(),
+                (uint) Color.FromArgb(197, 15, 31).ToArgb(),
+                (uint) Color.FromArgb(136, 23, 152).ToArgb(),
+                (uint) Color.FromArgb(193, 156, 0).ToArgb(),
+                (uint) Color.FromArgb(204, 204, 204).ToArgb(),
+                (uint) Color.FromArgb(118, 118, 118).ToArgb(),
+                (uint) Color.FromArgb(59, 120, 255).ToArgb(),
+                (uint) Color.FromArgb(22, 198, 12).ToArgb(),
+                (uint) Color.FromArgb(97, 214, 214).ToArgb(),
+                (uint) Color.FromArgb(231, 72, 86).ToArgb(),
+                (uint) Color.FromArgb(180, 0, 158).ToArgb(),
+                (uint) Color.FromArgb(249, 241, 165).ToArgb(),
+                (uint) Color.FromArgb(242, 242, 242).ToArgb()
+            }
+        };
 
         public uint[] colorTable = null;
         public uint? foreground = null;
@@ -110,6 +133,13 @@
             {
                 InnerDump("BG       ", this.background.Value);
             }
+        }
+
+        public static ColorScheme FromDefinition(string schemeName, KeyValuePair<ConsoleColor, Color>[] keyValuePair)
+        {
+            var scheme = new ColorScheme(schemeName);
+            scheme.colorTable = keyValuePair.OrderBy(p => (int)p.Key).Select(p => (uint)p.Value.ToArgb()).ToArray();
+            return scheme;
         }
     }
 }

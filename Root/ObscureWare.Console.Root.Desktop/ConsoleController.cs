@@ -35,7 +35,9 @@ namespace ObscureWare.Console.Root.Desktop
     using System.Runtime.InteropServices;
     using Conditions;
 
+    using ObscureWare.Console.Root.Desktop.Schema;
     using ObscureWare.Console.Root.Shared;
+    using ObscureWare.Console.Root.Shared.ColorBalancing;
 
     /// <summary>
     /// Class used to control basic system's console behavior
@@ -58,7 +60,7 @@ namespace ObscureWare.Console.Root.Desktop
             AppDomain.CurrentDomain.ProcessExit += StaticClass_Dtor;
         }
 
-        private CloseColorFinder _closeColorFinder;
+        private ColorBalancer _closeColorFinder;
 
         // https://blogs.msdn.microsoft.com/commandline/2016/09/22/24-bit-color-in-the-windows-console/
         // https://github.com/bitcrazed/24bit-color
@@ -73,15 +75,15 @@ namespace ObscureWare.Console.Root.Desktop
 
             // TODO: second instance created is crashing. Find out why and how to fix it / prevent. In the worst case - hidden control instance singleton
             // Not very important, can wait
-            
 
-            this._closeColorFinder = new CloseColorFinder(this.GetCurrentColorset());
+
+            this._closeColorFinder = ColorBalancer.Default;
         }
 
         /// <summary>
         /// Exposes instance of inner <seealso cref="CloseColorFinder"/>
         /// </summary>
-        public CloseColorFinder CloseColorFinder => this._closeColorFinder;
+        public ColorBalancer CloseColorFinder => this._closeColorFinder;
 
         /// <summary>
         /// Replaces default (or previous...) values of console colors with new RGB values.
@@ -172,7 +174,9 @@ namespace ObscureWare.Console.Root.Desktop
                 throw new SystemException("SetConsoleScreenBufferInfoEx->WinError: #" + Marshal.GetLastWin32Error());
             }
 
-            this._closeColorFinder = new CloseColorFinder(this.GetCurrentColorset());
+            // TODO: build scheme
+
+            this._closeColorFinder = new ColorBalancer(ColorScheme.FromDefinition("from system", this.GetCurrentColorset()), new GruchenDefaultColorHeuristic());
         }
 
         private static void SetNewColorDefinition(ref NativeMethods.CONSOLE_SCREEN_BUFFER_INFO_EX csbe, ConsoleColor color, Color rgbColor)
