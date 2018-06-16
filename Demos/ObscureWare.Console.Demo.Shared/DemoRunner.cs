@@ -86,12 +86,12 @@
             console.PrintLabel(0, 2, availableWidth, "", _styleHeaderBorder);
 
             // print items
-            var itemIndex = 1;
+            var itemIndex = 0;
             int menuStartIndex = 3;
             foreach (var item in demoItems)
             {
-                var culumnNumber = itemIndex % possibleColumnCount; // 1-based
-                var posX = 1 + (1 + realColumnWidth) * (culumnNumber - 1);
+                var culumnNumber = itemIndex % possibleColumnCount; // 0-based
+                var posX = 1 + (1 + realColumnWidth) * (culumnNumber);
                 var rowNumber = (int)Math.Floor((decimal)itemIndex / possibleColumnCount); // 0-based
                 var posY = (maxItemHeight + 1) * rowNumber + menuStartIndex; // +1 for frame/margin between menu rows
 

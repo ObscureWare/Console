@@ -1,4 +1,4 @@
-﻿namespace ObscureWare.Console.Root.Desktop.Schema
+﻿namespace ObscureWare.Console.Root.Desktop.Scheme
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +6,8 @@
     using System.IO;
     using System.Linq;
     using System.Xml;
+
+    using Shared;
 
     // Copyright (C) Microsoft.  All rights reserved.
     // Licensed under the terms described in the LICENSE file in the root of this project.
@@ -98,7 +100,10 @@
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(filename); // Create an XML document object
 
-            if (xmlDoc == null) return null;
+            if (xmlDoc == null)
+            {
+                return null;
+            }
 
             XmlNode root = xmlDoc.GetElementsByTagName("dict")[0];
             XmlNodeList children = root.ChildNodes;
@@ -132,7 +137,11 @@
                 return null;
             }
 
-            return new ColorScheme(Path.GetFileNameWithoutExtension(filename)) { colorTable = colorTable, foreground = fgColor, background = bgColor };
+            return new ColorScheme(Path.GetFileNameWithoutExtension(filename), colorTable)
+            {
+                DefaultForeground = fgColor,
+                DefaultBacground = bgColor
+            };
         }
 
         // <inheritdoc />

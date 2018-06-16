@@ -1,10 +1,12 @@
-﻿namespace ObscureWare.Console.Root.Desktop.Schema
+﻿namespace ObscureWare.Console.Root.Desktop.Scheme
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
-    using System.Runtime.InteropServices;
     using System.IO;
+    using System.Runtime.InteropServices;
+    using System.Text;
+
+    using Shared;
 
     // Copyright (C) Microsoft.  All rights reserved.
     // Licensed under the terms described in the LICENSE file in the root of this project.
@@ -127,7 +129,7 @@
 
             if (colorTable != null)
             {
-                return new ColorScheme(Path.GetFileNameWithoutExtension(filename)) { colorTable = colorTable };
+                return new ColorScheme(Path.GetFileNameWithoutExtension(filename), colorTable);
             }
             else
             {
