@@ -35,6 +35,6 @@
         }
 
         /// <inheritdoc />
-        public override string Name => @"Gruchen's without RGB balancing"
+        public override string Name => @"Gruchen's without RGB balancing";
     }
 }

@@ -4,29 +4,37 @@
     using System.Drawing;
     using System.Linq;
 
-    using Desktop.Scheme;
+    using Console.Demo.Shared;
 
-    using ObscureWare.Console.Demo.Shared;
-    using ObscureWare.Console.Root.Desktop;
-    using ObscureWare.Console.Root.Shared;
+    using Desktop;
+    using Desktop.Scheme;
 
     using OsInfo;
 
+    using Shared;
     using Shared.ColorBalancing;
 
-    public class ColorSchemesDemo : IDemo
+    public class ColorHeuriticsDemo : IDemo
     {
-         private readonly IColorHeuristic _heuristic = new WeightedRgbSimilarityColorHeuristic();
-        //private readonly IColorHeuristic _heuristic = new GruchenDefaultColorHeuristic();
+        private readonly ColorScheme _scheme = BuildInColorShemes.Windows10Default;
+
+        private readonly IColorHeuristic[] _heuristics = new IColorHeuristic[]
+        {
+            new GruchenDefaultColorHeuristic(),
+            new GruchenNoRgbColorHeuristic(),
+            new NearestNeighborHsvColorHeuristic(),
+            new NearestNeighborRgbColorHeuristic(),
+            new WeightedRgbSimilarityColorHeuristic(),
+        }; // TODO: MEF?
 
         /// <inheritdoc />
-        public string Name { get; } = "Color schemes";
+        public string Name { get; } = "Color distance heuristics";
 
         /// <inheritdoc />
         public string Author { get; } = @"Sebastian Gruchacz";
 
         /// <inheritdoc />
-        public string Description { get; } = "Demonstrates schemes differences using 24-bit color capabilities. Using rainbow from Rainbow demo.";
+        public string Description { get; } = "Demonstrates how different heuristics work on same scheme. Using rainbow from Rainbow demo.";
 
         /// <inheritdoc />
         public bool CanRun()
@@ -43,35 +51,33 @@
         /// <inheritdoc />
         public void Run(IConsole console)
         {
-            var schemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\colorschemes")
-                .Concat(new []{ BuildInColorShemes.WindowsDefault, BuildInColorShemes.Windows10Default })
-                .ToArray();
 
             var controller = new ConsoleController();
             console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
             {
                 DesiredRowWidth = 128, // for bars
-                DesiredRowCount = (uint)(8 + 5 * schemes.Length)   // many samples... 
+                DesiredRowCount = (uint)(8 + 5 * this._heuristics.Length)   // many samples... 
             });
 
-            console.WriteLine($"Using '{this._heuristic.Name}' heuristics");
+            console.WriteLine($"Using '{this._scheme.Name}' scheme");
             console.WriteLine();
 
             this.PrintBaseRainbowColors(console);
-            foreach (var scheme in schemes)
+
+            foreach (var heuristic in _heuristics)
             {
-                this.PrintSchemeRainbowColors(console, scheme);
+                this.PrintSchemeRainbowColors(console, heuristic);
             }
 
             console.WaitForNextPage();
         }
 
-        private void PrintSchemeRainbowColors(IConsole console, ColorScheme scheme)
+        private void PrintSchemeRainbowColors(IConsole console, IColorHeuristic heuristics)
         {
             Color foreColor = Color.DarkGray;
 
-            console.WriteLine(@" Scheme: " + scheme.Name);
-            var balancer = new ColorBalancer(scheme, this._heuristic);
+            console.WriteLine(@" Heuristics: " + heuristics.Name);
+            var balancer = new ColorBalancer(this._scheme, heuristics);
 
             foreach (int i in Enumerable.Range(0, 127))
             {
@@ -83,7 +89,7 @@
 
             foreach (int i in Enumerable.Range(128, 127).Reverse())
             {
-                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), balancer));
+                console.SetColors(foreColor, this.LimitScheme(BuildRainbowColor(i), balancer));
                 console.WriteText('_');
             }
 

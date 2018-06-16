@@ -20,7 +20,8 @@
                 new RainbowColorsDemo(),
                 new SysInfoDemo(),
                 new ColorSchemesDemo(),
-            });
+                new ColorHeuriticsDemo(), 
+            }); // TODO: MEF
 
             runner.RunDemos(console);
         }
