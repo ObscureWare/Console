@@ -113,6 +113,7 @@
             }
         }
 
+        // Remember to disable "Assembly shadowing" in R# before running this test...
         [Fact]
         public void PrinAllschemesWithAllHeauristicsTest()
         {
