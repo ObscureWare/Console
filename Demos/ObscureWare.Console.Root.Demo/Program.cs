@@ -21,6 +21,7 @@
                 new SysInfoDemo(),
                 new ColorSchemesDemo(),
                 new ColorHeuriticsDemo(), 
+                new PrintAllNamedColorsDemo()
             }); // TODO: MEF
 
             runner.RunDemos(console);

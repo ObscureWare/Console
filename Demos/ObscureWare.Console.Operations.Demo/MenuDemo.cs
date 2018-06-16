@@ -12,9 +12,31 @@
 
     using FrameStyle = ObscureWare.Console.Operations.Interfaces.Styles.FrameStyle;
 
-    internal static class MenuDemos
+    internal class MenuDemo : IDemo
     {
-        public static void MenuDemo(IConsole console)
+        /// <inheritdoc />
+        public string Name { get; } = "Menu demo";
+
+        /// <inheritdoc />
+        public string Author { get; } = @"Sebastian Gruchacz";
+
+        /// <inheritdoc />
+        public string Description { get; } = "Presentation of simple MENU component.";
+
+        /// <inheritdoc />
+        public bool CanRun()
+        {
+            return true;
+        }
+
+        /// <inheritdoc />
+        public ConsoleDemoSharing ConsoleSharing { get; } = ConsoleDemoSharing.CanShare;
+
+        /// <inheritdoc />
+        public DemoSet Set { get; } = DemoSet.Operations;
+
+        /// <inheritdoc />
+        public void Run(IConsole console)
         {
             console.Clear();
             var exitGuid = new Guid(@"a7725515-7f82-4c18-9c36-343003bdf20d");
@@ -112,5 +134,6 @@
 
             aConsole.WaitForNextPage();
         }
+        
     }
 }
