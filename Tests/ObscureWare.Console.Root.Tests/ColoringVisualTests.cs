@@ -115,9 +115,11 @@
         public void PrinAllschemesWithAllHeauristicsTest()
         {
             var fileSchemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\..\Demos\colorschemes");
+            var fileTerminalSchemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\..\Demos\termschemes");
             var schemes = (new[] { BuildInColorShemes.WindowsDefault, BuildInColorShemes.Windows10Default })
+                .Concat(new[] { this._gruchaScheme, this._dnvScheme })
                 .Concat(fileSchemes)
-                .Concat(new [] {this._gruchaScheme, this._dnvScheme })
+                .Concat(fileTerminalSchemes)
                 .ToArray();
 
             foreach (var colorScheme in schemes)
