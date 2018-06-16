@@ -31,7 +31,7 @@
         /// <inheritdoc />
         public bool CanRun()
         {
-            return OsVersion.Win10SystemInfo.IsWindows10;
+            return OsVersion.Win10SystemInfo.IsWindows10 && OsVersion.Win10SystemInfo.HasFallCreatorsUpdate;
         }
 
         /// <inheritdoc />
@@ -51,7 +51,7 @@
             console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
             {
                 DesiredRowWidth = 128, // for bars
-                DesiredRowCount = (uint)(8 + 5 * schemes.Length)   // many samples... 
+                DesiredRowCount = (uint)(10 + 4 * schemes.Length)   // many samples... 
             });
 
             console.WriteLine($"Using '{this._heuristic.Name}' heuristics");

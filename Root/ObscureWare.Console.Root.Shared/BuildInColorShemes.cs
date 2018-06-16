@@ -49,7 +49,7 @@ namespace ObscureWare.Console.Root.Shared
             new ColorScheme("windows 10 default", Windows10Definitions().OrderBy(p => (int)p.Key).Select(p => (uint)p.Value.ToArgb()));
         
 
-        // TODO: add more?
+        // TODO: add more build-in styles?
 
 
         private static IEnumerable<KeyValuePair<ConsoleColor, Color>> DefaultDefinitions()

@@ -1,19 +1,25 @@
 ﻿namespace ObscureWare.Console.Demo.Shared
 {
+    using System.Collections.Generic;
     using System.Drawing;
 
-    using ObscureWare.Console.Root.Shared;
+    using Root.Shared;
 
     public static class ConsoleDemoExtensions
     {
         public const char ELLIPSIS_CHARACTER = '…';
+
         private static readonly ConsoleFontColor DefaultStyle = new ConsoleFontColor(Color.WhiteSmoke, Color.Black);
+        private static readonly ConsoleFontColor HighlightStyle = new ConsoleFontColor(Color.DarkOrange, Color.Black);
 
         public static void WaitForNextPage(this IConsole console)
         {
             console.SetColors(DefaultStyle);
             console.WriteLine();
-            console.WriteLine("Press ENTER to continue.");
+            console.PrintColorfullTextLine(
+                new KeyValuePair<ConsoleFontColor, string>(DefaultStyle, "Press "),
+                new KeyValuePair<ConsoleFontColor, string>(HighlightStyle, "ENTER"),
+                new KeyValuePair<ConsoleFontColor, string>(DefaultStyle, " to continue."));
             console.ReadLine();
         }
 
@@ -21,7 +27,10 @@
         {
             console.SetColors(DefaultStyle);
             console.WriteLine();
-            console.WriteLine("Holding console window open. Press ENTER to quit for good.");
+            console.PrintColorfullTextLine(
+                new KeyValuePair<ConsoleFontColor, string>(DefaultStyle, "Holding console window open. Press "),
+                new KeyValuePair<ConsoleFontColor, string>(HighlightStyle, "ENTER"),
+                new KeyValuePair<ConsoleFontColor, string>(DefaultStyle, " to quit for good."));
             console.ReadLine();
         }
 
@@ -50,7 +59,7 @@
                         {
                             caption = text.PadLeft(labelWidth);
                             break;
-                        };
+                        }
                     case TextAlign.Center:
                         {
                             int padLeft = (labelWidth - textLength) / 2;
