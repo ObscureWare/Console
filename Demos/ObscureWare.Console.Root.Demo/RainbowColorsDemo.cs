@@ -26,7 +26,7 @@
         /// <inheritdoc />
         public bool CanRun()
         {
-            return OsVersion.Win10SystemInfo.IsWindows10;
+            return OsVersion.Win10SystemInfo.IsWindows10 && OsVersion.Win10SystemInfo.HasFallCreatorsUpdate;
         }
 
         /// <inheritdoc />

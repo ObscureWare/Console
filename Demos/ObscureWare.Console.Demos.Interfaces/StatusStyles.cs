@@ -7,10 +7,12 @@
 
     public class StatusStyles
     {
+        // ReSharper disable MemberCanBePrivate.Global (Public API, might not be used in demos)
+
         public ConsoleFontColor TitleStyle { get; set; } = new ConsoleFontColor(Color.WhiteSmoke, Color.Black);
 
         public ConsoleFontColor SeparatorStyle { get; set; } = new ConsoleFontColor(Color.Yellow, Color.Black);
-
+        
         public ConsoleFontColor ErrorStyle { get; set; } = new ConsoleFontColor(Color.DarkRed, Color.Black);
 
         public ConsoleFontColor FineStyle { get; set; } = new ConsoleFontColor(Color.Green, Color.Black);
@@ -23,6 +25,8 @@
         {
             return (flag) ? StatusStyle.Ok : StatusStyle.Bad;
         }
+
+        // ReSharper restore MemberCanBePrivate.Global
 
         public ConsoleFontColor SelectStyle(StatusStyle usedStyle)
         {

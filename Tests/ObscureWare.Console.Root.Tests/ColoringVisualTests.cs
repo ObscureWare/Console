@@ -10,11 +10,16 @@
     using Desktop.Scheme;
 
     using Xunit;
-    using ObscureWare.Console.Root.Shared;
-    using ObscureWare.Console.Shared;
+    using Shared;
+    using Console.Shared;
 
     using Shared.ColorBalancing;
 
+    /// <summary>
+    /// This is obviously not possible to programmatically verify how "close" were colors matched - it's all manual testing required...
+    /// Therefore - help pages will be rendered for default and some customized results to compare how different heuristics cooperate with different schemes.
+    /// Feel free to add your own test here as well ;-)
+    /// </summary>
     public class ColoringVisualTests
     {
         private const string TEST_ROOT = @"C:\\TestResults\\ConsoleColors\\";
@@ -22,7 +27,14 @@
         private readonly ColorScheme _gruchaScheme;
         private readonly ColorScheme _dnvScheme;
         private readonly IEnumerable<PropertyInfo> _props;
-        readonly AssemblyFileVersionAttribute _colorsVersionAtt;
+        private readonly AssemblyFileVersionAttribute _colorsVersionAtt;
+        private readonly IColorHeuristic[] _heuristics = {
+            new GruchenDefaultColorHeuristic(),
+            new GruchenNoRgbColorHeuristic(),
+            new NearestNeighborHsvColorHeuristic(),
+            new NearestNeighborRgbColorHeuristic(),
+            new WeightedRgbSimilarityColorHeuristic(),
+        }; // TODO: MEF?
 
         public ColoringVisualTests()
         {
@@ -37,22 +49,19 @@
 
             this._dnvScheme = BuildInColorShemes.Windows10Default.CustomizeScheme(
                 @"DNV scheme",
+            // ReSharper disable PossibleNullReferenceException
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Cyan, (Color)converter.ConvertFromString("#99d9f0")),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkCyan,
-                    (Color)converter.ConvertFromString("#e98300")),
+                
+                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkCyan, (Color)converter.ConvertFromString("#e98300")),
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, (Color)converter.ConvertFromString("#009fda")),
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Yellow, (Color)converter.ConvertFromString("#fecb00")),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkGreen,
-                    (Color)converter.ConvertFromString("#36842d")),
+                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkGreen, (Color)converter.ConvertFromString("#36842d")),
                 new Tuple<ConsoleColor, Color>(ConsoleColor.Blue, (Color)converter.ConvertFromString("#003591")),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.Magenta,
-                    (Color)converter.ConvertFromString("#635091")),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkRed,
-                    (Color)converter.ConvertFromString("#c4262e")),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue,
-                    (Color)converter.ConvertFromString("#0f204b")),
-                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkGray,
-                    (Color)converter.ConvertFromString("#988f86")));
+                new Tuple<ConsoleColor, Color>(ConsoleColor.Magenta, (Color)converter.ConvertFromString("#635091")),
+                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkRed, (Color)converter.ConvertFromString("#c4262e")),
+                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkBlue, (Color)converter.ConvertFromString("#0f204b")),
+                new Tuple<ConsoleColor, Color>(ConsoleColor.DarkGray, (Color)converter.ConvertFromString("#988f86")));
+            // ReSharper restore PossibleNullReferenceException
 
             this._props = typeof(Color).GetProperties(BindingFlags.Static | BindingFlags.Public)
                 .Where(p => p.PropertyType == typeof(Color));
@@ -61,25 +70,13 @@
                 .FirstOrDefault(att => att is AssemblyFileVersionAttribute) as AssemblyFileVersionAttribute;
         }
 
-        private readonly IColorHeuristic[] _heuristics = new IColorHeuristic[]
-        {
-            new GruchenDefaultColorHeuristic(),
-            new GruchenNoRgbColorHeuristic(),
-            new NearestNeighborHsvColorHeuristic(),
-            new NearestNeighborRgbColorHeuristic(),
-            new WeightedRgbSimilarityColorHeuristic(),
-        }; // TODO: MEF?
-
-        // This is obviously not possible to programmatically verify how "close" were colors matched - it's all manual testing required...
-        // Therefore - help pages will be rendered for default and some customized results
-
         [Fact]
         public void PrintDefaultColorsTest()
         {
             string fName = "default_setup.html";
             using (var colorHelper = new ColorBalancer(BuildInColorShemes.WindowsDefault, new GruchenDefaultColorHeuristic()))
             {
-                PrintAllNamedColorsToHtml(colorHelper, fName);
+                this.PrintAllNamedColorsToHtml(colorHelper, fName);
             }
         }
 
@@ -89,7 +86,7 @@
             string fName = "default_win10_setup.html";
             using (var colorHelper = new ColorBalancer(BuildInColorShemes.Windows10Default, new GruchenDefaultColorHeuristic()))
             {
-                PrintAllNamedColorsToHtml(colorHelper, fName);
+                this.PrintAllNamedColorsToHtml(colorHelper, fName);
             }
         }
 
@@ -99,7 +96,7 @@
             string fName = "custom_setup_seba.html";
             using (var colorHelper = new ColorBalancer(this._gruchaScheme, new GruchenDefaultColorHeuristic()))
             {
-                PrintAllNamedColorsToHtml(colorHelper, fName);
+                this.PrintAllNamedColorsToHtml(colorHelper, fName);
             }
         }
 
@@ -109,7 +106,7 @@
             string fName = "custom_setup_dnv.html";
             using (var colorHelper = new ColorBalancer(this._dnvScheme, new GruchenDefaultColorHeuristic()))
             {
-                PrintAllNamedColorsToHtml(colorHelper, fName);
+                this.PrintAllNamedColorsToHtml(colorHelper, fName);
             }
         }
 
@@ -157,7 +154,7 @@
 
                 // print colors
                 tw.WriteLine("<table><tr><th>ColorName</th><th>Sys Color</th>");
-                foreach (var h in _heuristics)
+                foreach (var h in this._heuristics)
                 {
                     tw.Write($"<th>{h.Name}</th>");
                 }
@@ -222,6 +219,7 @@
             }
         }
 
+        // TODO: move this function to testing shared library and reference the NUgget!
         private string GetOutputFolder(params string[] fileParts)
         {
             string colorsVersion = this._colorsVersionAtt?.Version ?? "unknown";

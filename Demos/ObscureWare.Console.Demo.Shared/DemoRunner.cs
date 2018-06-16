@@ -6,9 +6,9 @@
     using System.Globalization;
     using System.Linq;
 
-    using ObscureWare.Console.Demo.Shared;
-    using ObscureWare.Console.Root.Shared;
-    using ObscureWare.Console.Shared;
+    using Shared;
+    using Root.Shared;
+    using Console.Shared;
 
     public class DemoRunner
     {
@@ -81,9 +81,9 @@
             var descriptionMaxRows = demoItems.Max(i => i.DescriptionRows.Length);
             var maxItemHeight = descriptionMaxRows + 3; // desc + header + author + separator
 
-            console.PrintLabel(0, 0, availableWidth, "", _styleHeaderBorder);
-            console.PrintLabel(0, 1, availableWidth, "Available Demos", _styleHeader);
-            console.PrintLabel(0, 2, availableWidth, "", _styleHeaderBorder);
+            console.PrintLabel(0, 0, availableWidth, "", this._styleHeaderBorder);
+            console.PrintLabel(0, 1, availableWidth, "Available Demos", this._styleHeader);
+            console.PrintLabel(0, 2, availableWidth, "", this._styleHeaderBorder);
 
             // print items
             var itemIndex = 0;

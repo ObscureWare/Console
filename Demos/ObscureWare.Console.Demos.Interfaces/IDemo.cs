@@ -1,6 +1,6 @@
 ﻿namespace ObscureWare.Console.Demo.Shared
 {
-    using ObscureWare.Console.Root.Shared;
+    using Root.Shared;
 
     public interface IDemo
     {
