@@ -5,13 +5,15 @@
     using System.Drawing;
     using System.Linq;
 
-    using Desktop.Schema;
+    using Desktop.Scheme;
 
     using ObscureWare.Console.Demo.Shared;
     using ObscureWare.Console.Root.Desktop;
     using ObscureWare.Console.Root.Shared;
 
     using OsInfo;
+
+    using Shared.ColorBalancing;
 
     public class ColorSchemesDemo : IDemo
     {
@@ -39,7 +41,9 @@
         /// <inheritdoc />
         public void Run(IConsole console)
         {
-            var schemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\colorschemes").ToArray();
+            var schemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\colorschemes")
+                .Concat(new []{ BuildInColorShemes.WindowsDefault, BuildInColorShemes.Windows10Default })
+                .ToArray();
 
             var controller = new ConsoleController();
             console = new SystemConsole(controller, new ConsoleStartConfiguration(ConsoleStartConfiguration.Colorfull)
@@ -62,11 +66,11 @@
             Color foreColor = Color.DarkGray;
 
             console.WriteLine(@" Scheme: " + scheme.Name);
-
+            var balancer = new ColorBalancer(scheme, new WeightedRgbSimilarityColorHeuristic());
 
             foreach (int i in Enumerable.Range(0, 127))
             {
-                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), scheme));
+                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), balancer));
                 console.WriteText('_');
             }
 
@@ -74,7 +78,7 @@
 
             foreach (int i in Enumerable.Range(128, 127).Reverse())
             {
-                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), scheme));
+                console.SetColors(foreColor, LimitScheme(BuildRainbowColor(i), balancer));
                 console.WriteText('_');
             }
 
@@ -82,10 +86,10 @@
             NextLine(console);
         }
 
-        private Color LimitScheme(Color color, ColorScheme scheme)
+        private Color LimitScheme(Color color, ColorBalancer balancer)
         {
-            var index = scheme.CalculateIndex((uint)color.ToArgb());
-            return Color.FromArgb((int)scheme.colorTable[index]);
+            var colorIndex = balancer.FindClosestColor(color);
+            return Color.FromArgb((int)balancer.Scheme[colorIndex]);
         }
 
         private void PrintBaseRainbowColors(IConsole console)

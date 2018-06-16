@@ -1,8 +1,10 @@
-﻿namespace ObscureWare.Console.Root.Desktop.Schema
+﻿namespace ObscureWare.Console.Root.Desktop.Scheme
 {
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+
+    using Shared;
 
     public class SchemeLoader
     {

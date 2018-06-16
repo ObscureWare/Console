@@ -49,6 +49,9 @@
         }
 
         /// <inheritdoc />
+        public abstract string Name { get; }
+
+        /// <inheritdoc />
         public double CalculateDistance(uint color1, uint color2)
         {
             var srcColor = Color.FromArgb((int)color1);

@@ -1,11 +1,9 @@
-﻿namespace ObscureWare.Console.Root.Desktop.Schema
+﻿namespace ObscureWare.Console.Root.Shared
 {
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
-
-    using Shared;
 
     // Copyright (C) Microsoft.  All rights reserved.
     // Licensed under the terms described in the LICENSE file in the root of this project.
@@ -14,132 +12,64 @@
     // Based on e-MIT-ed source from https://github.com/Microsoft/console/blob/master/tools/ColorTool/ColorTool/ColorScheme.cs
     // Adapted to be used and reused ObscureWare's Console library
 
-    // TODO: looks like concurrent heuristics... Perhaps better... Maybe therefore extract heuristic as strategy plug-in?
+        // Stripped many code, changed interface, added some encapsulation. Removed all calculations into heuristics
 
-
-
-
-
+    /// <summary>The idea is that schema is immutable. COlor balancer is caching heuristic results for future usages, therefore it must not change.</summary>  
     public class ColorScheme
     {
+        private readonly uint[] _colorTable = null;
+        private uint? _foreground = null;
+        private uint? _background = null;
+
+
         public string Name { get; }
 
-        public static ColorScheme Default { get; private set; } = new ColorScheme("default")
+        public uint? DefaultForeground
         {
-            colorTable = new uint[]
-            {
-                (uint) Color.FromArgb(12, 12, 12).ToArgb(),
-                (uint) Color.FromArgb(0, 55, 218).ToArgb(),
-                (uint) Color.FromArgb(19, 161, 14).ToArgb(),
-                (uint) Color.FromArgb(58, 150, 221).ToArgb(),
-                (uint) Color.FromArgb(197, 15, 31).ToArgb(),
-                (uint) Color.FromArgb(136, 23, 152).ToArgb(),
-                (uint) Color.FromArgb(193, 156, 0).ToArgb(),
-                (uint) Color.FromArgb(204, 204, 204).ToArgb(),
-                (uint) Color.FromArgb(118, 118, 118).ToArgb(),
-                (uint) Color.FromArgb(59, 120, 255).ToArgb(),
-                (uint) Color.FromArgb(22, 198, 12).ToArgb(),
-                (uint) Color.FromArgb(97, 214, 214).ToArgb(),
-                (uint) Color.FromArgb(231, 72, 86).ToArgb(),
-                (uint) Color.FromArgb(180, 0, 158).ToArgb(),
-                (uint) Color.FromArgb(249, 241, 165).ToArgb(),
-                (uint) Color.FromArgb(242, 242, 242).ToArgb()
-            }
-        };
+            get => this._foreground;
+            set => this._foreground = value;
+        }
 
-        public uint[] colorTable = null;
-        public uint? foreground = null;
-        public uint? background = null;
+        public uint? DefaultBacground
+        {
+            get => this._background;
+            set => this._background = value;
+        }
 
-        public ColorScheme(string name)
+        public uint this[int colorIndex] => this._colorTable[colorIndex];
+
+        public uint this[ConsoleColor colorIndex] => this._colorTable[(int)colorIndex];
+
+        public ColorScheme(string name, IEnumerable<uint> colors)
         {
             this.Name = name;
-        }
+            this._colorTable = colors.ToArray();
 
-        public int CalculateIndex(uint value) =>
-            this.colorTable.Select((color, idx) => Tuple.Create<uint, int>(color, idx))
-                .OrderBy(Difference(value))
-                .First().Item2;
-
-        private static Func<Tuple<uint, int>, double> Difference(uint c1) =>
-            // heuristic 1: nearest neighbor in RGB space
-            // tup => Distance(RGB(c1), RGB(tup.Item1));
-
-            // heuristic 2: nearest neighbor in RGB space
-            // tup => Distance(HSV(c1), HSV(tup.Item1));
-
-            // heuristic 3: weighted RGB L2 distance
-            tup => WeightedRGBSimilarity(c1, tup.Item1);
-
-        private static double WeightedRGBSimilarity(uint c1, uint c2)
-        {
-            var rgb1 = RGB(c1);
-            var rgb2 = RGB(c2);
-            var dist = rgb1.Zip(rgb2, (a, b) => Math.Pow((int)a - (int)b, 2)).ToArray();
-            var rbar = (rgb1[0] + rgb1[0]) / 2.0;
-            return Math.Sqrt(dist[0] * (2 + rbar / 256.0) + dist[1] * 4 + dist[2] * (2 + (255 - rbar) / 256.0));
-        }
-
-        private static double Distance(uint[] c1c, uint[] c2c)
-            => Math.Sqrt(c1c.Zip(c2c, (a, b) => Math.Pow((int)a - (int)b, 2)).Sum());
-
-        internal static uint[] RGB(uint c) => new[] { c & 0xFF, (c >> 8) & 0xFF, (c >> 16) & 0xFF };
-
-        internal static uint[] HSV(uint c)
-        {
-            var rgb = RGB(c).Select(_ => (int)_).ToArray();
-            int max = rgb.Max();
-            int min = rgb.Min();
-
-            int d = max - min;
-            int h = 0;
-            int s = (int)(255 * ((max == 0) ? 0 : d / (double)max));
-            int v = max;
-
-            if (d != 0)
+            if (this._colorTable.Length != 16)
             {
-                double dh;
-                if (rgb[0] == max) dh = ((rgb[1] - rgb[2]) / (double)d);
-                else if (rgb[1] == max) dh = 2.0 + ((rgb[2] - rgb[0]) / (double)d);
-                else /* if (rgb[2] == max) */ dh = 4.0 + ((rgb[0] - rgb[1]) / (double)d);
-                dh *= 60;
-                if (dh < 0) dh += 360.0;
-                h = (int)(dh * 255.0 / 360.0);
-            }
-
-            return new[] { (uint)h, (uint)s, (uint)v };
-        }
-
-        internal void Dump(IConsole console)
-        {
-            void InnerDump(string str, uint c)
-            {
-                var rgb = RGB(c);
-                var hsv = HSV(c);
-                console.WriteLine($"{str} =\tRGB({rgb[0]}, {rgb[1]}, {rgb[2]}),\tHSV({hsv[0]}, {hsv[1]}, {hsv[2]})");
-            }
-
-            for (int i = 0; i < 16; ++i)
-            {
-                InnerDump($"Color[{i}]", this.colorTable[i]);
-            }
-
-            if (this.foreground != null)
-            {
-                InnerDump("FG       ", this.foreground.Value);
-            }
-
-            if (this.background != null)
-            {
-                InnerDump("BG       ", this.background.Value);
+                throw new ArgumentOutOfRangeException(nameof(colors), @"Must provide all 16 console colors.");
             }
         }
-
+        
+        /// <summary>
+        /// Build Color scheme from older definition
+        /// </summary>
+        /// <param name="schemeName"></param>
+        /// <param name="keyValuePair"></param>
+        /// <returns></returns>
         public static ColorScheme FromDefinition(string schemeName, KeyValuePair<ConsoleColor, Color>[] keyValuePair)
         {
-            var scheme = new ColorScheme(schemeName);
-            scheme.colorTable = keyValuePair.OrderBy(p => (int)p.Key).Select(p => (uint)p.Value.ToArgb()).ToArray();
+            var scheme = new ColorScheme(schemeName, keyValuePair.OrderBy(p => (int)p.Key).Select(p => (uint)p.Value.ToArgb()));
             return scheme;
+        }
+
+        /// <summary>
+        /// Read only copy of color table
+        /// </summary>
+        /// <returns></returns>
+        public uint[] GetAll()
+        {
+            return (uint[])this._colorTable.Clone();
         }
     }
 }

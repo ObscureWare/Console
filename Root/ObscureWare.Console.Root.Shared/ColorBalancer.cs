@@ -2,36 +2,28 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
 
-    using ObscureWare.Console.Root.Desktop.Schema;
     using ObscureWare.Console.Root.Shared.ColorBalancing;
 
     public class ColorBalancer : IDisposable
     {
+        private readonly IColorHeuristic _heuristics;
         private readonly ConcurrentDictionary<Color, ConsoleColor> _knownMappings = new ConcurrentDictionary<Color, ConsoleColor>();
         private readonly ColorScheme _scheme;
-        private readonly IColorHeuristic _heuristics;
         private bool _disposed = false;
+
+        /// <summary>
+        /// Expose internally used color scheme
+        /// </summary>
+        public ColorScheme Scheme => this._scheme;
 
         public ColorBalancer(ColorScheme scheme, IColorHeuristic heuristics)
         {
             this._scheme = scheme;
             this._heuristics = heuristics;
         }
-
-        public void Dispose()
-        {
-            _knownMappings.Clear();
-            this._disposed = true;
-        }
-
-        /// <summary>
-        /// Default balancer
-        /// </summary>
-        public static ColorBalancer Default => new ColorBalancer(ColorScheme.Default, new GruchenDefaultColorHeuristic());
 
         /// <summary>
         /// Tries to find the closest match for given RGB color among current set of colors used by System.Console
@@ -51,7 +43,7 @@
                 return cc;
             }
 
-            var index = this._scheme.colorTable
+            var index = this._scheme.GetAll()
                 .Select((c, idx) => Tuple.Create<uint, int>(c, idx))
                 .OrderBy(kp => this._heuristics.CalculateDistance((uint)color.ToArgb(), kp.Item1))
                 .First().Item2;
@@ -73,18 +65,19 @@
                 throw new ObjectDisposedException(nameof(ColorBalancer));
             }
 
-            return Color.FromArgb((int)this._scheme.colorTable[(int)cc]);
+            return Color.FromArgb((int)this._scheme[cc]);
         }
 
-        //public CloseColorFinder GetDefault()
-        //{
-        //    return new CloseColorFinder(GetDefaultDefinitions().ToArray());
-        //}
 
-        //private IEnumerable<KeyValuePair<ConsoleColor, Color>> GetDefaultDefinitions()
-        //{
-        //    // TODO: Provide switch to turn old colors set (now being alternate...)
-        //    return this._defaultSet;
-        //}
+        /// <summary>
+        /// Default balancer
+        /// </summary>
+        public static ColorBalancer Default => new ColorBalancer(BuildInColorShemes.Windows10Default, new GruchenDefaultColorHeuristic());
+
+        public void Dispose()
+        {
+            this._knownMappings.Clear();
+            this._disposed = true;
+        }
     }
 }

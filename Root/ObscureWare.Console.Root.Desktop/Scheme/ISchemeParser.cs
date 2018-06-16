@@ -1,6 +1,8 @@
-﻿namespace ObscureWare.Console.Root.Desktop.Schema
+﻿namespace ObscureWare.Console.Root.Desktop.Scheme
 {
     using System.Collections.Generic;
+
+    using Shared;
 
     // Copyright (C) Microsoft.  All rights reserved.
     // Licensed under the terms described in the LICENSE file in the root of this project.

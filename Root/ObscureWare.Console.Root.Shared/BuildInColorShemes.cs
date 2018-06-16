@@ -2,7 +2,7 @@
 // <copyright file="PredefinedColorSets.cs" company="Obscureware Solutions">
 // MIT License
 //
-// Copyright(c) 2017 Sebastian Gruchacz
+// Copyright(c) 2017-2018 Sebastian Gruchacz
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,19 +27,32 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ObscureWare.Console.Root.Desktop
+namespace ObscureWare.Console.Root.Shared
 {
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Linq;
 
-    public static class PredefinedColorSets
+    public static class BuildInColorShemes
     {
         /// <summary>
         /// Returns default color-set from .Net Console prior to Windows 10 (looks better on old screens)
         /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<KeyValuePair<ConsoleColor, Color>> DefaultDefinitions()
+        public static ColorScheme WindowsDefault =>
+            new ColorScheme("windows default", DefaultDefinitions().OrderBy(p => (int)p.Key).Select(p => (uint)p.Value.ToArgb()));
+
+        /// <summary>
+        /// Returns default Windows 10 color-set
+        /// </summary>
+        public static ColorScheme Windows10Default =>
+            new ColorScheme("windows 10 default", Windows10Definitions().OrderBy(p => (int)p.Key).Select(p => (uint)p.Value.ToArgb()));
+        
+
+        // TODO: add more?
+
+
+        private static IEnumerable<KeyValuePair<ConsoleColor, Color>> DefaultDefinitions()
         {
             yield return new KeyValuePair<ConsoleColor, Color>(ConsoleColor.Black, Color.FromArgb(0, 0, 0));
             yield return new KeyValuePair<ConsoleColor, Color>(ConsoleColor.DarkBlue, Color.FromArgb(0, 0, 128));
@@ -59,12 +72,8 @@ namespace ObscureWare.Console.Root.Desktop
             yield return new KeyValuePair<ConsoleColor, Color>(ConsoleColor.White, Color.FromArgb(255, 255, 255));
         }
 
-        /// <summary>
-        /// Returns default Windows 10 color-set
-        /// </summary>
         /// <remarks>From https://blogs.msdn.microsoft.com/commandline/2017/08/02/updating-the-windows-console-colors/</remarks>
-        /// <returns></returns>
-        public static IEnumerable<KeyValuePair<ConsoleColor, Color>> Windows10Definitions()
+        private static IEnumerable<KeyValuePair<ConsoleColor, Color>> Windows10Definitions()
         {
             yield return new KeyValuePair<ConsoleColor, Color>(ConsoleColor.Black, Color.FromArgb(12, 12, 12));
             yield return new KeyValuePair<ConsoleColor, Color>(ConsoleColor.DarkBlue, Color.FromArgb(0, 55, 218));

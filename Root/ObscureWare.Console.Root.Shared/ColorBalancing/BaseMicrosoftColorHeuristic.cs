@@ -6,6 +6,9 @@
     public abstract class BaseMicrosoftColorHeuristic : IColorHeuristic
     {
         /// <inheritdoc />
+        public abstract string Name { get; }
+
+        /// <inheritdoc />
         public abstract double CalculateDistance(uint color1, uint color2);
 
         protected static double Distance(uint[] c1c, uint[] c2c)

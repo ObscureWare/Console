@@ -35,7 +35,6 @@ namespace ObscureWare.Console.Root.Desktop
     using System.Runtime.InteropServices;
     using Conditions;
 
-    using ObscureWare.Console.Root.Desktop.Schema;
     using ObscureWare.Console.Root.Shared;
     using ObscureWare.Console.Root.Shared.ColorBalancing;
 
