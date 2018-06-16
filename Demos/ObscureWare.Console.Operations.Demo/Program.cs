@@ -39,16 +39,15 @@ namespace ObscureWare.Console.Operations.Demo
     using ObscureWare.Console.Operations.Implementation;
     using ObscureWare.Console.Operations.Implementation.TablePrinters;
     using ObscureWare.Console.Operations.Implementation.Tables;
-    using ObscureWare.Console.Operations.Interfaces;
     using ObscureWare.Console.Operations.Interfaces.Styles;
     using ObscureWare.Console.Operations.Interfaces.Tables;
     using ObscureWare.Console.Root.Desktop;
     using ObscureWare.Tests.Common;
     using ObscureWare.Console.Shared;
     using ObscureWare.Console.Root.Shared;
-
-    using Tests;
     using ObscureWare.Console.TestShared;
+
+    using FrameStyle = Interfaces.Styles.FrameStyle;
 
     internal static class Program
     {
@@ -67,7 +66,8 @@ namespace ObscureWare.Console.Operations.Demo
 
             ConsoleOperations ops = new ConsoleOperations(console);
 
-            SplitterTest();
+            MenuDemos.MenuDemo(console);
+            //SplitterTest(console);
             PrintColorsMessages(console);
             PrintAllNamedColors(controller, console);
             PrintFrames(ops, console);
@@ -102,15 +102,17 @@ namespace ObscureWare.Console.Operations.Demo
             }
         }
 
-        private static void SplitterTest()
+        private static void SplitterTest(IConsole console)
         {
             for (int i = 0; i < 20; i++)
             {
                 string str = TestTools.AlphaSentence.BuildRandomStringFrom(20, 50);
                 string[] split = str.SplitTextToFit(15).ToArray();
 
-                Console.WriteLine(str + " => " + string.Join("|", split));
+                console.WriteLine(str + " => " + string.Join("|", split));
             }
+
+            console.WaitForNextPage();
         }
 
         private static void PrintTables(IConsole console)
@@ -213,7 +215,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             // TODO: PrintTableAt(dt, x, y);
 
-            Console.ReadLine();
+            console.WaitForNextPage();
 
             console.WriteLine(tableFrameColor, "Large tables");
             Console.WriteLine();
@@ -259,7 +261,9 @@ namespace ObscureWare.Console.Operations.Demo
             Console.WriteLine();
 
             console.WriteLine(tableFrameColor, "");
-            Console.ReadLine();
+
+
+            console.WaitForNextPage();
         }
 
         private static void PrintFrames(ConsoleOperations ops, IConsole console)
@@ -293,7 +297,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             console.WriteText(0, 20, "", Color.Gray, Color.Black); // reset
 
-            Console.ReadLine();
+            console.WaitForNextPage();
             console.Clear();
         }
 
@@ -310,12 +314,14 @@ namespace ObscureWare.Console.Operations.Demo
                     string.Format("{0,-25} {1,-18} #{2,-8:X}", propertyInfo.Name, Enum.GetName(typeof(ConsoleColor), cc), c.ToArgb()));
             }
 
-            Console.ReadLine();
+            console.WaitForNextPage();
             console.Clear();
         }
 
         private static void PrintColorsMessages(IConsole console)
         {
+            console.Clear();
+
             console.WriteText(0, 0, "test message", Color.Red, Color.Black);
             console.WriteText(0, 1, "test message 2", Color.Cyan, Color.YellowGreen);
             console.WriteText(0, 2, "test message 3d ds sfsdfsad ", Color.Orange, Color.Plum);
@@ -330,7 +336,7 @@ namespace ObscureWare.Console.Operations.Demo
             console.WriteText(0, 12, "test message 3d ds sfsdfsad ", Color.DimGray, Color.Black);
             console.WriteText(0, 20, "", Color.Gray, Color.Black); // reset
 
-            Console.ReadLine();
+            console.WaitForNextPage();
             console.Clear();
         }
     }

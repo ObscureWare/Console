@@ -4,6 +4,6 @@
 
     public interface IAtomicConsole : IConsole
     {
-        void RunAtomicOperations(Action action);
+        void RunAtomicOperations(Action<IConsole> action);
     }
 }

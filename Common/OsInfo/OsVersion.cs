@@ -25,22 +25,40 @@
     /// </summary>
     public class OsVersion
     {
-        private static readonly Lazy<Win10SystemVersion> win10Version = new Lazy<Win10SystemVersion>(() => new Win10SystemVersion(Info.IsWindows10(), Info.BuildVersion));
+        private static Lazy<Win10SystemVersion> _win10Version = new Lazy<Win10SystemVersion>(() => new Win10SystemVersion(Info.IsWindows10(), Info.BuildVersion));
 
-        private static Lazy<OsVersion> info = new Lazy<OsVersion>(() => new OsVersion());
+        private static Lazy<OsVersion> _info = new Lazy<OsVersion>(() => new OsVersion());
 
         private delegate bool IsWow64ProcessDelegate([In] IntPtr handle, [Out] out bool isWow64Process);
 
         /// <summary>
         /// Returns more info about Win10 updates
         /// </summary>
-        public static Win10SystemVersion Win10SystemInfo => win10Version.Value;
+        public static Win10SystemVersion Win10SystemInfo => _win10Version.Value;
 
         /// <summary>
         /// System information
         /// </summary>
-        public static OsVersion Info => info.Value;
+        public static OsVersion Info => _info.Value;
 
+        /// <summary>
+        /// For mocking singletons.
+        /// </summary>
+        /// <param name="testVersion"></param>
+        /// <param name="testWin10Version"></param>
+        public static void OverrideSingletonsWithTestingObjects(OsVersion testVersion = null,
+            Win10SystemVersion testWin10Version = null)
+        {
+            if (testWin10Version != null)
+            {
+                _win10Version = new Lazy<Win10SystemVersion>(() => testWin10Version);
+            }
+
+            if (testVersion != null)
+            {
+                _info = new Lazy<OsVersion>(() => testVersion);
+            }
+        }
 
         private OsVersion()
         {

@@ -36,15 +36,30 @@ namespace ObscureWare.Console.Root.Desktop
     using Conditions;
 
     using ObscureWare.Console.Root.Shared;
+    using ObscureWare.Console.Root.Shared.ColorBalancing;
 
     /// <summary>
     /// Class used to control basic system's console behavior
     /// </summary>
     public class ConsoleController : IDisposable
     {
-        private readonly IntPtr _hConsoleOutput;
+        private static readonly IntPtr HConsoleOutput;
 
-        private CloseColorFinder _closeColorFinder;
+        static ConsoleController()
+        {
+            if (HConsoleOutput == IntPtr.Zero)
+            {
+                HConsoleOutput = NativeMethods.GetStdHandle(NativeMethods.STD_OUTPUT_HANDLE); // 7
+                if (HConsoleOutput == NativeMethods.INVALID_HANDLE)
+                {
+                    throw new SystemException("GetStdHandle->WinError: #" + Marshal.GetLastWin32Error());
+                }
+            }
+
+            AppDomain.CurrentDomain.ProcessExit += StaticClass_Dtor;
+        }
+
+        private ColorBalancer _closeColorFinder;
 
         // https://blogs.msdn.microsoft.com/commandline/2016/09/22/24-bit-color-in-the-windows-console/
         // https://github.com/bitcrazed/24bit-color
@@ -59,19 +74,15 @@ namespace ObscureWare.Console.Root.Desktop
 
             // TODO: second instance created is crashing. Find out why and how to fix it / prevent. In the worst case - hidden control instance singleton
             // Not very important, can wait
-            this._hConsoleOutput = NativeMethods.GetStdHandle(NativeMethods.STD_OUTPUT_HANDLE); // 7
-            if (this._hConsoleOutput == NativeMethods.INVALID_HANDLE)
-            {
-                throw new SystemException("GetStdHandle->WinError: #" + Marshal.GetLastWin32Error());
-            }
 
-            this._closeColorFinder = new CloseColorFinder(this.GetCurrentColorset());
+
+            this._closeColorFinder = ColorBalancer.Default;
         }
 
         /// <summary>
         /// Exposes instance of inner <seealso cref="CloseColorFinder"/>
         /// </summary>
-        public CloseColorFinder CloseColorFinder => this._closeColorFinder;
+        public ColorBalancer CloseColorFinder => this._closeColorFinder;
 
         /// <summary>
         /// Replaces default (or previous...) values of console colors with new RGB values.
@@ -142,7 +153,7 @@ namespace ObscureWare.Console.Root.Desktop
             NativeMethods.CONSOLE_SCREEN_BUFFER_INFO_EX csbe = new NativeMethods.CONSOLE_SCREEN_BUFFER_INFO_EX();
             csbe.cbSize = Marshal.SizeOf(csbe); // 96 = 0x60
 
-            bool brc = NativeMethods.GetConsoleScreenBufferInfoEx(this._hConsoleOutput, ref csbe);
+            bool brc = NativeMethods.GetConsoleScreenBufferInfoEx(HConsoleOutput, ref csbe);
             if (!brc)
             {
                 throw new SystemException("GetConsoleScreenBufferInfoEx->WinError: #" + Marshal.GetLastWin32Error());
@@ -156,13 +167,15 @@ namespace ObscureWare.Console.Root.Desktop
             ++csbe.srWindow.Bottom;
             ++csbe.srWindow.Right;
 
-            bool brc = NativeMethods.SetConsoleScreenBufferInfoEx(this._hConsoleOutput, ref csbe);
+            bool brc = NativeMethods.SetConsoleScreenBufferInfoEx(HConsoleOutput, ref csbe);
             if (!brc)
             {
                 throw new SystemException("SetConsoleScreenBufferInfoEx->WinError: #" + Marshal.GetLastWin32Error());
             }
 
-            this._closeColorFinder = new CloseColorFinder(this.GetCurrentColorset());
+            // TODO: build scheme
+
+            this._closeColorFinder = new ColorBalancer(ColorScheme.FromDefinition("from system", this.GetCurrentColorset()), new GruchenDefaultColorHeuristic());
         }
 
         private static void SetNewColorDefinition(ref NativeMethods.CONSOLE_SCREEN_BUFFER_INFO_EX csbe, ConsoleColor color, Color rgbColor)
@@ -256,11 +269,14 @@ namespace ObscureWare.Console.Root.Desktop
             {
                 // free managed resources
             }
+        }
 
+        static void StaticClass_Dtor(object sender, EventArgs e)
+        {
             // free native resources
-            if (this._hConsoleOutput != NativeMethods.INVALID_HANDLE)
+            if (HConsoleOutput != NativeMethods.INVALID_HANDLE)
             {
-                NativeMethods.CloseHandle(this._hConsoleOutput);
+                NativeMethods.CloseHandle(HConsoleOutput);
             }
         }
 

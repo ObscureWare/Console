@@ -47,6 +47,7 @@ namespace ObscureWare.Console.Operations.Implementation
     /// <remarks>I'm gonna need this anyway for graphical console implementation in the future... So maybe better implement this correctly already...
     /// TODO: Anyway, try targeting both stateless and state-full console (most work on the Commands library though)..</remarks>
     /// TODO: simplify, refactor, improve all of this
+    /// TODO: create simplified version with public MAX-LENGTH (and RECT!) to be used with controls (text line  and text area) without stuff like history and prompt but with navigation
     public class VirtualEntryLine
     {
         private const int MAX_COMMAND_LENGTH = 2048; // more?! no problem, but what for?

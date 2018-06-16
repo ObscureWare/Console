@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuDemos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +63,10 @@
     <ProjectReference Include="..\..\Common\ObscureWare.Tests.Common\ObscureWare.Tests.Common.csproj">
       <Project>{BF939EA3-3AF8-4F85-8539-28F5AB5A7347}</Project>
       <Name>ObscureWare.Tests.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Gaming\ObscureWare.Console.Operations.Controls.csproj">
+      <Project>{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814}</Project>
+      <Name>ObscureWare.Console.Operations.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Operations\ObscureWare.Console.Operations.Implementation\ObscureWare.Console.Operations.Implementation.csproj">
       <Project>{24deafb5-866b-43b9-b802-7a60f1a3aea4}</Project>
@@ -86,8 +92,12 @@
       <Project>{7E00E1CC-1894-4CA0-A567-67200B6B6388}</Project>
       <Name>ObscureWare.Console.TestShared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Shared.csproj">
+    <ProjectReference Include="..\ObscureWare.Console.Demo.Shared\ObscureWare.Console.Demo.Components.csproj">
       <Project>{D06955CE-EE40-4B0D-ACFA-E00C9B5C79AA}</Project>
+      <Name>ObscureWare.Console.Demo.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObscureWare.Console.Demos.Interfaces\ObscureWare.Console.Demo.Shared.csproj">
+      <Project>{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9}</Project>
       <Name>ObscureWare.Console.Demo.Shared</Name>
     </ProjectReference>
   </ItemGroup>

@@ -3,7 +3,7 @@
     using System;
     using System.Drawing;
 
-    using ObscureWare.Console.Root.Shared;
+    using Root.Shared;
 
     public class StatusStyles
     {

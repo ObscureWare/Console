@@ -40,6 +40,7 @@ namespace ObscureWare.Console.Root.Desktop
     /// <summary>
     /// Wraps System.Console with IConsole interface methods
     /// </summary>
+    /// <remarks>All methods re non-locking.</remarks>
     public class SystemConsole : IConsole
     {
         private readonly ConsoleController _controller;
@@ -55,7 +56,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// </summary>
         /// <param name="controller"></param>
         /// <param name="config"></param>
-        public SystemConsole(ConsoleController controller, ConsoleStartConfiguration config = null)
+        public SystemConsole(ConsoleController controller, ConsoleStartConfiguration config = null)  // TODO: refactor to some more common calculation code?
         {
             controller.Requires(nameof(controller)).IsNotNull();
             config = config ?? ConsoleStartConfiguration.Colorfull; // surprise ;-)
@@ -65,6 +66,11 @@ namespace ObscureWare.Console.Root.Desktop
             if (config.TryVirtualConsole)
             {
                 this.TryTurningVirtualConsoleMode();
+            }
+
+            if (!string.IsNullOrWhiteSpace(config.ColorSchemeName))
+            {
+                this.TryLoadingColorScheme(controller, config.ColorSchemeName);
             }
 
             Console.OutputEncoding = Encoding.Unicode;
@@ -92,20 +98,38 @@ namespace ObscureWare.Console.Root.Desktop
             {
                 if (!this.IsExcutedAsChild)
                 {
-                    // set console (buffer) little bigger by default (not when child process of cmd...)
+                    // set console (buffer) little bigger by default (not when child process of cmd... - in such case keep the size)
                     // TODO: improve this code in case of already configured larger window...
-                    Console.BufferWidth = 120;
-                    Console.BufferHeight = 500;
-                    Console.WindowWidth = 120;
-                    Console.WindowHeight = 40;
+
+                    int currentBufferWidth = Console.BufferWidth;
+                    int currentBufferHeight = Console.BufferHeight;
+                    int currentWindowWidth = Console.WindowWidth;
+                    int currentWindowHeight = Console.WindowHeight;
+
+                    // window cannot be greater than buffer, also - cannot create buffer smaller that current window (because it's window to the buffer)
+                    int targetBufferWidth = Math.Max(Math.Max((int)currentBufferWidth, (int)config.DesiredBufferRowWidth), (int)config.DesiredRowWidth);
+                    int targetRowWidth = Math.Min(Math.Max((int)currentWindowWidth, (int)config.DesiredRowWidth), targetBufferWidth);
+                    int targetBufferHeight = Math.Max(Math.Max((int)currentBufferHeight, (int)config.DesiredBufferRowCount), (int)config.DesiredRowCount);
+                    int targetRowCount = Math.Min(Math.Max((int)currentWindowHeight, (int)config.DesiredRowCount), targetBufferHeight);
+
+
+                    Console.WindowWidth = Math.Min(targetRowWidth, Console.LargestWindowWidth - 2);
+                    Console.WindowHeight = Math.Min(targetRowCount, Console.LargestWindowHeight - 1);
+
+                    Console.BufferWidth = targetBufferWidth;
+                    Console.BufferHeight = targetBufferHeight;
                 }
             }
 
+            // read parameters after resizing
             this.WindowWidth = Console.WindowWidth;
             this.WindowHeight = Console.WindowHeight;
         }
-
-        public bool IsExcutedAsChild
+      
+        /// <summary>
+        /// Returns TRUE if this console has been opened from another console window.
+        /// </summary>
+        public bool IsExcutedAsChild // TODO: refactor to dedicated class of semi-native code.
         {
             get
             {
@@ -119,30 +143,6 @@ namespace ObscureWare.Console.Root.Desktop
                     return true; // safe assumption in case of failure (API changed) - do not resize.
                 }
             }
-        }
-
-        /// <summary>
-        /// Custom sized console
-        /// </summary>
-        /// <param name="controller"></param>
-        /// <param name="bufferSize">Width and height of the buffer. Must be >= window size. Will be resized automatically if not fits...</param>
-        /// <param name="windowSize">Width and height of the window (In columns and rows, depends of font and screen resolution!). Cannot exceed screen size. Will be automatically trimmed.</param>
-        public SystemConsole(ConsoleController controller, Point bufferSize, Point windowSize) : this(controller)
-        {
-            windowSize.X = Math.Min(windowSize.X, Console.LargestWindowWidth - 2);
-            windowSize.Y = Math.Min(windowSize.Y, Console.LargestWindowHeight - 1);
-            bufferSize.X = Math.Max(bufferSize.X, windowSize.X);
-            bufferSize.Y = Math.Max(bufferSize.Y, windowSize.Y);
-
-            Console.BufferWidth = bufferSize.X;
-            Console.WindowWidth = windowSize.X;
-            Console.BufferHeight = bufferSize.Y;
-            Console.WindowHeight = windowSize.Y;
-
-            this.WindowWidth = Console.WindowWidth;
-            this.WindowHeight = Console.WindowHeight;
-
-            this.TryTurningVirtualConsoleMode();
         }
 
         private void SetConsoleWindowToFullScreen()
@@ -276,7 +276,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// <inheritdoc />
         public ConsoleKeyInfo ReadKey()
         {
-            return Console.ReadKey(intercept: true);
+            return Console.ReadKey(intercept: true); // TODO: add option to turn it off in startup config. Some might need such scenario without virtual entry line
         }
 
         /// <inheritdoc />
@@ -329,7 +329,7 @@ namespace ObscureWare.Console.Root.Desktop
             System.Console.CursorVisible = true;
         }
 
-        public void TryTurningVirtualConsoleMode()
+        public void TryTurningVirtualConsoleMode() // TODO: refactor to dedicated class of semi-native code.
         {
             this.VirtualConsoleEnabled = false;
 
@@ -360,5 +360,10 @@ namespace ObscureWare.Console.Root.Desktop
         }
 
         public bool VirtualConsoleEnabled { get; private set; }
+
+        private void TryLoadingColorScheme(ConsoleController controller, string configColorSchemeName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
