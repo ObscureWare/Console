@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ColorHeuriticsDemo.cs" />
     <Compile Include="ColorSchemesDemo.cs" />
+    <Compile Include="PrintAllNamedColorsDemo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RainbowColorsDemo.cs" />

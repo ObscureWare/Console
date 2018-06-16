@@ -13,6 +13,7 @@
     public class DemoRunner
     {
         private const string NUMBER_SEPARATOR = @". ";
+        private const int MINIMUM_RESONABLE_DEMO_BLOCK_WIDTH = 23;
 
         private readonly LabelStyle _styleActiveTitle = new LabelStyle(Color.Azure, Color.FromArgb(10, 10, 10), TextAlign.Center);
 
@@ -32,7 +33,6 @@
         private readonly IDemo[] _demos;
 
         private int _selectionRow;
-
 
         public DemoRunner(IEnumerable<IDemo> demos)
         {
@@ -71,7 +71,7 @@
             int longestDemoName = this._demos.Max(d => d.Name.Length);
             int longestAuthorname = this._demos.Max(d => d.Author.Length);
 
-            int demoHeaderBiggestWidth = Math.Max(longestDemoName + maxNumberLength + NUMBER_SEPARATOR.Length, longestAuthorname);
+            int demoHeaderBiggestWidth = Math.Max(MINIMUM_RESONABLE_DEMO_BLOCK_WIDTH, Math.Max(longestDemoName + maxNumberLength + NUMBER_SEPARATOR.Length, longestAuthorname));
             int headerSpaceWithFrames = demoHeaderBiggestWidth + 2; // +2 for frames, more for margins? or just leave margins?
             int possibleColumnCount = (int)Math.Floor((decimal)availableWidth / headerSpaceWithFrames);
 
@@ -101,7 +101,7 @@
             }
 
             // this is row at which demo selection prompt will be displayed;
-            this._selectionRow = (descriptionMaxRows + 2 + 1) * this._demos.Length / possibleColumnCount + menuStartIndex + 3; // some extra spacing below last menu row
+            this._selectionRow = (descriptionMaxRows + 2 + 1) * (int)Math.Ceiling((decimal)this._demos.Length / possibleColumnCount) + menuStartIndex + 2; // some extra spacing below last menu row
 
             return demoItems;
         }
