@@ -9,7 +9,7 @@
     public class WeightedRgbSimilarityColorHeuristic : BaseMicrosoftColorHeuristic
     {
         /// <inheritdoc />
-        public override string Name => @"MS Weighted RGB SImiliarity";
+        public override string Name => @"MS Weighted RGB Similarity";
 
         /// <inheritdoc />
         public override double CalculateDistance(uint color1, uint color2)
