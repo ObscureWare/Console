@@ -112,7 +112,7 @@
 
         // Remember to disable "Assembly shadowing" in R# before running this test...
         [Fact]
-        public void PrinAllschemesWithAllHeauristicsTest()
+        public void PrintAllschemesWithAllHeauristicsTest()
         {
             var fileSchemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\..\Demos\colorschemes");
             var fileTerminalSchemes = SchemeLoader.LoadAllFromFolder(@"..\..\..\..\Demos\termschemes");

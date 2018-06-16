@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TestAutoCompleter.cs" company="Obscureware Solutions">
+// <copyright file="TestingAutoCompleter.cs" company="Obscureware Solutions">
 // MIT License
 //
 // Copyright(c) 2017 Sebastian Gruchacz
@@ -23,7 +23,7 @@
 // SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the TestAutoCompleter class.
+//   Defines the TestingAutoCompleter class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -37,11 +37,11 @@ namespace ObscureWare.Console.TestShared
     /// <summary>
     /// This auto-completer provides some auto-completion from predefined, hard-coded list
     /// </summary>
-    public class TestAutoCompleter : IAutoComplete
+    public class TestingAutoCompleter : IAutoComplete
     {
         private readonly string[] _availableTexts;
 
-        public TestAutoCompleter(params string[] availableTexts)
+        public TestingAutoCompleter(params string[] availableTexts)
         {
             this._availableTexts = availableTexts;
         }

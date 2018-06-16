@@ -22,8 +22,7 @@
             OptionArgumentJoinCharacater = ':', // not used because of: CommandOptionArgumentMode.Separated
             AllowFlagsAsOneArgument = false,
             CommandsSensitivenes = CommandCaseSensitivenes.Insensitive,
-            SwitchlessOptionsMode =
-                SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
+            SwitchlessOptionsMode = SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
         };
 
         private static ICommandParserOptions simpleJoinedParsingOptions = new CommandParserOptions
@@ -35,8 +34,7 @@
             OptionArgumentJoinCharacater = ':', // not used because of: CommandOptionArgumentMode.Separated
             AllowFlagsAsOneArgument = false,
             CommandsSensitivenes = CommandCaseSensitivenes.Insensitive,
-            SwitchlessOptionsMode =
-                SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
+            SwitchlessOptionsMode = SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
         };
 
         private static ICommandParserOptions simpleMergedParsingOptions = new CommandParserOptions
@@ -48,8 +46,7 @@
             OptionArgumentJoinCharacater = ':', // not used because of: CommandOptionArgumentMode.Separated
             AllowFlagsAsOneArgument = false,
             CommandsSensitivenes = CommandCaseSensitivenes.Insensitive,
-            SwitchlessOptionsMode =
-                SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
+            SwitchlessOptionsMode = SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
         };
 
         private static ICommandParserOptions amibigousSeparatedParsingOptions = new CommandParserOptions
@@ -61,8 +58,7 @@
             OptionArgumentJoinCharacater = ':', // not used because of: CommandOptionArgumentMode.Separated
             AllowFlagsAsOneArgument = false,
             CommandsSensitivenes = CommandCaseSensitivenes.Insensitive,
-            SwitchlessOptionsMode =
-                SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
+            SwitchlessOptionsMode = SwitchlessOptionsMode.EndOnly // positional arguments can appear only at the end of commandText line
         };
 
         // ReSharper disable once MemberCanBePrivate.Global (Not really, must be public, so it can be discovered by MemberDataAttribute below.)

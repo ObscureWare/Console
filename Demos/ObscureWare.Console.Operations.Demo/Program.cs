@@ -90,7 +90,7 @@ namespace ObscureWare.Console.Operations.Demo
 
             VirtualEntryLine cmdSimulator = new VirtualEntryLine(console, new FakeClipBoard(), cmdColor);
 
-            var fakeAutocompleter = new TestAutoCompleter("abcd", "aabbdd", "nbbdbd", "sdsdsds", "sddsdssfdf", "abc");
+            var fakeAutocompleter = new TestingAutoCompleter("abcd", "aabbdd", "nbbdbd", "sdsdsds", "sddsdssfdf", "abc");
             string cmd = "";
             while (!string.Equals(cmd, "EXIT", StringComparison.OrdinalIgnoreCase))
             {
