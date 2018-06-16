@@ -5,14 +5,10 @@
     using System.Drawing;
     using System.Linq;
 
-    // Copyright (C) Microsoft.  All rights reserved.
-    // Licensed under the terms described in the LICENSE file in the root of this project.
-    //
 
     // Based on e-MIT-ed source from https://github.com/Microsoft/console/blob/master/tools/ColorTool/ColorTool/ColorScheme.cs
     // Adapted to be used and reused ObscureWare's Console library
-
-        // Stripped many code, changed interface, added some encapsulation. Removed all calculations into heuristics
+    // Stripped many code, changed interface, added some encapsulation. Removed all calculations into heuristics
 
     /// <summary>The idea is that schema is immutable. COlor balancer is caching heuristic results for future usages, therefore it must not change.</summary>  
     public class ColorScheme
@@ -70,6 +66,17 @@
         public uint[] GetAll()
         {
             return (uint[])this._colorTable.Clone();
+        }
+
+        public ColorScheme CustomizeScheme(string schemeName = null, params Tuple<ConsoleColor, Color>[] tuples)
+        {
+            var newScheme = (uint[])this._colorTable.Clone();
+            foreach (var tuple in tuples)
+            {
+                newScheme[(int) tuple.Item1] = (uint)tuple.Item2.ToArgb();
+            }
+
+            return new ColorScheme(schemeName ?? "customized " + this.Name, newScheme);
         }
     }
 }

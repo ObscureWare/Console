@@ -19,7 +19,7 @@
 
         private const float COLOR_WEIGHT_BLUE = 28.75f;
 
-        private const float COLOR_PROPORTION = 0.0f; // 100f / 255f;
+        private const float COLOR_PROPORTION = 0.0001f; // 100f / 255f;
 
 
         public GruchenNoRgbColorHeuristic() : base(

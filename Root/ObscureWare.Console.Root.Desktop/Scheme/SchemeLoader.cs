@@ -8,8 +8,6 @@
 
     public class SchemeLoader
     {
-        private static readonly string ExeDirectory = System.IO.Directory.GetParent(System.Reflection.Assembly.GetEntryAssembly().Location).FullName;
-
         private static readonly ISchemeParser[] Parsers =
         {
             new IniSchemeParser(),
@@ -22,6 +20,10 @@
 
         static SchemeLoader()
         {
+            var hostAssembly = System.Reflection.Assembly.GetEntryAssembly() ??
+                               System.Reflection.Assembly.GetCallingAssembly();
+            string exeDirectory = System.IO.Directory.GetParent(hostAssembly.Location).FullName;
+
             SupportedExtensions = Parsers
                 .SelectMany(p => p.GetSupportedExtensions())
                 .Distinct()
@@ -29,8 +31,8 @@
 
             FoldersToScan = new[]
             {
-                Path.Combine(ExeDirectory, "schemes"),
-                ExeDirectory,
+                Path.Combine(exeDirectory, "schemes"),
+                exeDirectory,
                 @"./schemes/",
                 @"./"
             };
