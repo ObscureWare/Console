@@ -68,7 +68,7 @@ namespace ObscureWare.Console.Root.Desktop
         /// <summary>
         /// Initializes new instance of ConsoleColorsHelper class
         /// </summary>
-        public ConsoleController()
+        public ConsoleController(ColorBalancer balancer = null)
         {
             IntPtr handle = Process.GetCurrentProcess().MainWindowHandle;
 
@@ -76,7 +76,7 @@ namespace ObscureWare.Console.Root.Desktop
             // Not very important, can wait
 
 
-            this._closeColorFinder = ColorBalancer.Default;
+            this._closeColorFinder = balancer ?? ColorBalancer.Default; // TODO: instead of using default - at least use currently configured scheme, do not overwrite it!
         }
 
         /// <summary>

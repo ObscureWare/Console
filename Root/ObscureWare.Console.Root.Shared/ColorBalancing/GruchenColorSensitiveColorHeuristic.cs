@@ -3,7 +3,7 @@
     /// <summary>
     /// Color heuristic calculation by Sebastian Gruchacz
     /// </summary>
-    public class GruchenNoRgbColorHeuristic : BaseGruchenColorHeuristic
+    public class GruchenColorSensitiveColorHeuristic : BaseGruchenColorHeuristic
     {
         // weights are reversed
 
@@ -19,10 +19,10 @@
 
         private const float COLOR_WEIGHT_BLUE = 28.75f;
 
-        private const float COLOR_PROPORTION = 0.00001f; // 100f / 255f;
+        private const float COLOR_PROPORTION = 0.75f; // 100f / 255f;
 
 
-        public GruchenNoRgbColorHeuristic() : base(
+        public GruchenColorSensitiveColorHeuristic() : base(
             COLOR_WEIGHT_HUE,
             COLOR_WEIGHT_SATURATION,
             COLOR_WEIGHT_BRIGHTNESS,
@@ -35,6 +35,6 @@
         }
 
         /// <inheritdoc />
-        public override string Name => @"Gruchen's without RGB balancing";
+        public override string Name => @"Gruchen's Color-Sensitive";
     }
 }

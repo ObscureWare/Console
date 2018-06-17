@@ -30,6 +30,7 @@
         private readonly AssemblyFileVersionAttribute _colorsVersionAtt;
         private readonly IColorHeuristic[] _heuristics = {
             new GruchenDefaultColorHeuristic(),
+            new GruchenColorSensitiveColorHeuristic(),
             new GruchenNoRgbColorHeuristic(),
             new NearestNeighborHsvColorHeuristic(),
             new NearestNeighborRgbColorHeuristic(),

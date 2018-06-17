@@ -35,6 +35,6 @@
         }
 
         /// <inheritdoc />
-        public override string Name => @"Default Gruchen's";
+        public override string Name => @"Gruchen's Default";
     }
 }

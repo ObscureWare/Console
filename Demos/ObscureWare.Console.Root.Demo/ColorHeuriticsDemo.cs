@@ -21,6 +21,7 @@
         private readonly IColorHeuristic[] _heuristics = new IColorHeuristic[]
         {
             new GruchenDefaultColorHeuristic(),
+            new GruchenColorSensitiveColorHeuristic(),
             new GruchenNoRgbColorHeuristic(),
             new NearestNeighborHsvColorHeuristic(),
             new NearestNeighborRgbColorHeuristic(),
