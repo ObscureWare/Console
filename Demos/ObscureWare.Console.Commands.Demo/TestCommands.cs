@@ -24,6 +24,18 @@
                 SwitchlessOptionsMode = SwitchlessOptionsMode.EndOnly, // TODO: let the command decide ?
             };
 
+            //var options = new CommandParserOptions
+            //{
+            //    UiCulture = CultureInfo.CreateSpecificCulture("en-US"), // "pl-PL"
+            //    FlagCharacters = new[] { @"--" },
+            //    SwitchCharacters = new[] { @"/" },
+            //    OptionArgumentMode = CommandOptionArgumentMode.Joined,
+            //    OptionArgumentJoinCharacater = ':',
+            //    AllowFlagsAsOneArgument = true,
+            //    CommandsSensitivenes = CommandCaseSensitivenes.Insensitive,
+            //    SwitchlessOptionsMode = SwitchlessOptionsMode.Mixed, // TODO: let the command decide ?
+            //};
+
             var engine =
                 CommandEngineBuilder.Build()
                     //.WithCommands(typeof(DirCommand), typeof(ClsCommand), typeof(ExitCommand), typeof(ChangeDirUpCommand), typeof(ChangeDirCommand))
