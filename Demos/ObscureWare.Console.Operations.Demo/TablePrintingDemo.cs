@@ -118,31 +118,32 @@
             var specflowTableWithWrapping = new SpeflowStyleTablePrinter(console, wrappingTableStyle);
 
             simpleTablePrinter.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             simpleTableWithWrapping.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             framedPrinter.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             specflowPrinter.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             specflowTableWithWrapping.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
-            Console.ReadLine();
+            console.WaitForNextPage();
 
+            console.Clear();
             console.WriteLine(tableFrameColor, "Positioned tables");
-            Console.WriteLine();
+            console.WriteLine();
 
             // TODO: PrintTableAt(dt, x, y);
 
             console.WaitForNextPage();
 
             console.WriteLine(tableFrameColor, "Large tables");
-            Console.WriteLine();
+            console.WriteLine();
 
             dt = new DataTable<string>(
                 new ColumnInfo("Column A1", ColumnAlignment.Left),
@@ -168,21 +169,21 @@
             }
 
             simpleTablePrinter.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             simpleTableWithWrapping.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             framedPrinter.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             // TODO: also wrapping framed table
 
             specflowPrinter.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             specflowTableWithWrapping.PrintTable(dt);
-            Console.WriteLine();
+            console.WriteLine();
 
             console.WriteLine(tableFrameColor, "");
 
