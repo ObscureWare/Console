@@ -1,0 +1,4 @@
+﻿[TITLE]
+Dziennik dziadka
+[CONTENT]
+...
