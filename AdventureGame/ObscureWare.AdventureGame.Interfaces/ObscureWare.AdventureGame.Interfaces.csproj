@@ -41,8 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Impl\Descriptor.cs" />
+    <Compile Include="Enums\DescriptionLevel.cs" />
+    <Compile Include="IActor.cs" />
     <Compile Include="IChapterInfo.cs" />
+    <Compile Include="ICreature.cs" />
+    <Compile Include="IDescribable.cs" />
+    <Compile Include="IDescriptor.cs" />
+    <Compile Include="IGameState.cs" />
+    <Compile Include="IGlobalMessages.cs" />
+    <Compile Include="IItem.cs" />
+    <Compile Include="IItemContainer.cs" />
+    <Compile Include="INameBuilder.cs" />
+    <Compile Include="IPlayer.cs" />
+    <Compile Include="ISubstance.cs" />
+    <Compile Include="ISubstanceHolder.cs" />
+    <Compile Include="ITextBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Enums\StandardMessages.cs" />
+    <Compile Include="Enums\SubstanceType.cs" />
+    <Compile Include="Impl\SubstanceDescriptor.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -15,6 +15,18 @@ There are classes that:
  - provide entry point
  - etc.
 
+ Game will be in Polish so there will be a lot of interesting challenges in command parsing, dialogs and story descriptors 
+ (mainly due to sex determination of the hero, but not only).
+ I would like to make possibility to use both "biorę/podnoszę" and "weź/podnieś" words that will result with same operation attempt.
+ Also matching and finding of items in area / inventory should make it possible with and without item unique names and adjectives.
+
+ Commands should be able to ask player for more details to resolve target ambiguity - "talk to who?", "equip which knife?" etc.
+
+ Also, entering terminal or dialog should switch to another communication model:
+ Rather selecting dialog options than entering them.
+ Navigating through menu and password entering near terminal. 
+ Or using items - but this might be done with "use sth on terminal" insted of "use terminal" before.
+
 # Game ideas
 
 Player probably will finish the whole story within few in-world weeks, therefore I assume no character progress, learning new skills, etc.
