@@ -38,6 +38,7 @@ namespace ObscureWare.Console.Root.Desktop
             this.DesiredBufferRowCount = baseConfiguration.DesiredBufferRowCount;
             this.DesiredBufferRowCount = baseConfiguration.DesiredBufferRowCount;
             this.StartScreen = baseConfiguration.StartScreen;
+            this.FontSize = baseConfiguration.FontSize;
         }
 
         /// <summary>
@@ -114,7 +115,9 @@ namespace ObscureWare.Console.Root.Desktop
         /// Full-screen, non-wrapping, "non-buffered" single screen console with 24-bit color enabled (if available)
         /// </summary>
         /// <remarks>"Non-buffered" means that there is no off-screen buffer outside console window - it just has the same size and location.</remarks>
-        public static ConsoleStartConfiguration GamingFulLScreen => new ConsoleStartConfiguration(runFullScreen: true, mode: ConsoleMode.SingleScreenNoWrapping, tryVirtualConsole: true);
+        public static ConsoleStartConfiguration GamingFullScreen => new ConsoleStartConfiguration(runFullScreen: true, mode: ConsoleMode.SingleScreenNoWrapping, tryVirtualConsole: true);
+
+        public int FontSize { get; set; }
 
         #endregion Static definitions
     }

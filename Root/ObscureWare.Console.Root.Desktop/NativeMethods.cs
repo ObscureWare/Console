@@ -115,6 +115,23 @@ namespace ObscureWare.Console.Root.Desktop
             internal COLORREF white;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct CONSOLE_FONT
+        {
+            short index;
+            COORD dim;
+        }
+
+ 
+
+        //BOOL WINAPI SetConsoleFont(HANDLE hOutput, DWORD fontIndex);
+
+        //BOOL WINAPI GetConsoleFontInfo(HANDLE hOutput, BOOL bMaximize, DWORD numFonts, CONSOLE_FONT* info);
+
+        //DWORD WINAPI GetNumberOfConsoleFonts();
+
+        //BOOL WINAPI SetConsoleIcon(HICON hIcon);
+
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr GetStdHandle(int nStdHandle);
 

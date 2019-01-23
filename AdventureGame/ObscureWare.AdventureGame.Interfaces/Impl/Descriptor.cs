@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class Descriptor : IDescriptor
+    public abstract class Descriptor : IDescriptor
     {
         /// <inheritdoc />
         public string DescriptionCode { get; set; }

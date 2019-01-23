@@ -4,6 +4,6 @@
 
     public class SubstanceDescriptor : Descriptor
     {
-        SubstanceType Type { get; }
+        SubstanceType SubstanceType { get; }
     }
 }

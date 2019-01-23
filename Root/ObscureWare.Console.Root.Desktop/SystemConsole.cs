@@ -76,6 +76,8 @@ namespace ObscureWare.Console.Root.Desktop
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
 
+
+
             if (config.RunFullScreen)
             {
                 this.SetConsoleWindowToFullScreen();

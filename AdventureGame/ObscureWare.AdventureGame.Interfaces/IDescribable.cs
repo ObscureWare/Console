@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ObscureWare.AdventureGame.Interfaces
+﻿namespace ObscureWare.AdventureGame.Interfaces
 {
     using Enums;
 

@@ -20,7 +20,7 @@
             {
                 // ReSharper disable once StringLiteralTypo
                 Header = @"AVSV",
-                Version = typeof(SaveVersion).Assembly.GetName().Version.ToString()
+                Version = "1"//typeof(SaveVersion).Assembly.GetName().Version.ToString()
             };
         }
     }
