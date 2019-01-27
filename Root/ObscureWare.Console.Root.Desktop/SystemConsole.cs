@@ -30,6 +30,7 @@ namespace ObscureWare.Console.Root.Desktop
 {
     using System;
     using System.Drawing;
+    using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Text;
     using System.Windows.Forms;
@@ -75,6 +76,8 @@ namespace ObscureWare.Console.Root.Desktop
 
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
+
+
 
             if (config.RunFullScreen)
             {
@@ -365,5 +368,50 @@ namespace ObscureWare.Console.Root.Desktop
         {
             throw new NotImplementedException();
         }
+
+        //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        //public class CONSOLE_FONT_INFO_EX
+        //{
+        //    private int cbSize;
+        //    public CONSOLE_FONT_INFO_EX()
+        //    [StructLayout(LayoutKind.Sequential)]
+        //    public struct CONSOLE_FONT_INFO
+        //    {
+        //        cbSize = Marshal.SizeOf(typeof(CONSOLE_FONT_INFO_EX));
+        //        public int nFont;
+        //        public Coord dwFontSize;
+        //    }
+        //    public int FontIndex;
+        //    public short FontWidth;
+        //    public short FontHeight;
+        //    public int FontFamily;
+        //    public int FontWeight;
+        //    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+        //    public string FaceName;
+        //}
+
+        //private Coord GetCurrentFontSize()
+        //{
+        //    //Need to use reflection to obtain pointer to the console output buffer
+        //    Type consoleType = typeof(Console);
+
+        //    IntPtr _consoleOutputHandle = (IntPtr)consoleType.InvokeMember(
+        //        "_consoleOutputHandle",
+        //        BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.GetField,
+        //        null,
+        //        null,
+        //        null);
+
+        //    //Obtain the current console font index
+        //    CONSOLE_FONT_INFO_EX.CONSOLE_FONT_INFO currentFont;
+        //    bool success = GetCurrentConsoleFont(
+        //        _consoleOutputHandle,
+        //        false,
+        //        out currentFont);
+
+        //    //Use that index to obtain font size    
+        //    Coord coord = GetConsoleFontSize(_consoleOutputHandle, currentFont.nFont);
+        //    return coord;
+        //}
     }
 }
