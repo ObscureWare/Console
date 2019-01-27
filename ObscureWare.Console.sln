@@ -69,16 +69,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Demo.Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operations.Colorfull", "Operations\ObscureWare.Console.Operations.Colorfull\ObscureWare.Console.Operations.Colorfull.csproj", "{E786AC00-BE2F-414D-8A0B-A8498993E486}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdventureGame", "AdventureGame", "{DA3092EB-1F74-4FA4-948D-D97D22567BE4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.AdventureGame", "AdventureGame\Obscureware.AdventureGame\ObscureWare.AdventureGame.csproj", "{CC2BFFB5-6472-47C5-A5B8-3D8E32AF34B1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Story", "Story", "{92B71072-85A5-4117-9A23-D2671329B960}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter.One", "AdventureGame\Story\Chapter.One\Chapter.One.csproj", "{72D91559-5D59-4178-B0DC-44D52D4E498B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.AdventureGame.Interfaces", "AdventureGame\ObscureWare.AdventureGame.Interfaces\ObscureWare.AdventureGame.Interfaces.csproj", "{80640134-23BF-43DF-A008-5437CF08C7B2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,18 +155,6 @@ Global
 		{E786AC00-BE2F-414D-8A0B-A8498993E486}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E786AC00-BE2F-414D-8A0B-A8498993E486}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E786AC00-BE2F-414D-8A0B-A8498993E486}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC2BFFB5-6472-47C5-A5B8-3D8E32AF34B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC2BFFB5-6472-47C5-A5B8-3D8E32AF34B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC2BFFB5-6472-47C5-A5B8-3D8E32AF34B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC2BFFB5-6472-47C5-A5B8-3D8E32AF34B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72D91559-5D59-4178-B0DC-44D52D4E498B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72D91559-5D59-4178-B0DC-44D52D4E498B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72D91559-5D59-4178-B0DC-44D52D4E498B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72D91559-5D59-4178-B0DC-44D52D4E498B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80640134-23BF-43DF-A008-5437CF08C7B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80640134-23BF-43DF-A008-5437CF08C7B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80640134-23BF-43DF-A008-5437CF08C7B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80640134-23BF-43DF-A008-5437CF08C7B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,10 +181,6 @@ Global
 		{0A3C4CCD-D99B-4F9B-BD05-F5B65D90C814} = {05B980A6-F2D8-4BAF-BDF5-82FA67CF5B80}
 		{EB05E1F0-31E2-4CF7-A5D3-FA80F7518BE9} = {6A8DF5C7-B669-4C09-9AEB-2EB01B82538C}
 		{E786AC00-BE2F-414D-8A0B-A8498993E486} = {05B980A6-F2D8-4BAF-BDF5-82FA67CF5B80}
-		{CC2BFFB5-6472-47C5-A5B8-3D8E32AF34B1} = {DA3092EB-1F74-4FA4-948D-D97D22567BE4}
-		{92B71072-85A5-4117-9A23-D2671329B960} = {DA3092EB-1F74-4FA4-948D-D97D22567BE4}
-		{72D91559-5D59-4178-B0DC-44D52D4E498B} = {92B71072-85A5-4117-9A23-D2671329B960}
-		{80640134-23BF-43DF-A008-5437CF08C7B2} = {DA3092EB-1F74-4FA4-948D-D97D22567BE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27BF5FD-4504-4BFD-8AE6-159AF8EB23E2}
