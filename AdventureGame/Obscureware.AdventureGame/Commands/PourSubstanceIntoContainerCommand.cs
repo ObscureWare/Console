@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Obscureware.AdventureGame.Commands
+namespace ObscureWare.AdventureGame.Commands
 {
     [CommandKeywords("nalej", "nasyp", "dodaj", "nabierz")]
     [CommandWhiteKeywords("do", "z")]

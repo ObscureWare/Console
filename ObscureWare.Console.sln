@@ -71,7 +71,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.Console.Operati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdventureGame", "AdventureGame", "{DA3092EB-1F74-4FA4-948D-D97D22567BE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obscureware.AdventureGame", "AdventureGame\Obscureware.AdventureGame\Obscureware.AdventureGame.csproj", "{CC2BFFB5-6472-47C5-A5B8-3D8E32AF34B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObscureWare.AdventureGame", "AdventureGame\Obscureware.AdventureGame\ObscureWare.AdventureGame.csproj", "{CC2BFFB5-6472-47C5-A5B8-3D8E32AF34B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Story", "Story", "{92B71072-85A5-4117-9A23-D2671329B960}"
 EndProject

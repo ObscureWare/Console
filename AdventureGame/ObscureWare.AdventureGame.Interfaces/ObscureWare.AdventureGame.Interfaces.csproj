@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandParsing\ExecutionObject.cs" />
+    <Compile Include="CommandParsing\ICompiledCommand.cs" />
+    <Compile Include="CommandParsing\ICompiledCommandSyntax.cs" />
+    <Compile Include="Enums\InteractionType.cs" />
+    <Compile Include="IGameWorld.cs" />
     <Compile Include="Impl\Descriptor.cs" />
     <Compile Include="Enums\DescriptionLevel.cs" />
     <Compile Include="IActor.cs" />
